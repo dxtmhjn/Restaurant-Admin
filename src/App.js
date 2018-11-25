@@ -10,6 +10,7 @@ import Footer from './base/footer/Footer';
 import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
+import AddMenuItem from './Components/menu/addMenuItem/AddMenuItem';
 import CreateUserForm from "./Components/Admin/CreateUserForm";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
@@ -20,10 +21,11 @@ import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
 import {BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 
 
+
 class App extends Component {
 
   state={
-    isLogged:false,
+    isLogged:true,
 };
 
 
@@ -37,6 +39,7 @@ class App extends Component {
             <Route path="/createuser" component={CreateUserForm} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
+            <Route path="/addmenuitem" component={AddMenuItem} />
 
             <Footer></Footer>
             </div>
