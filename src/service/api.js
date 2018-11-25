@@ -26,7 +26,7 @@
 
 //library import section Begin
 import axios from 'axios';
-import { apiURL } from "../constants/Constants"
+import { apiURL } from "../constants/constant";
 //library import section End
 
 class HttpClient {
