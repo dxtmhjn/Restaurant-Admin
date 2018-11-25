@@ -2,7 +2,7 @@ import React from "react";
 
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
-
+import {createUser} from './Helper';
 const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
 const showResults = async values=>{
     await sleep(500)
@@ -17,7 +17,7 @@ const createUser=(props)=>(
         <div className="row">
             <div className="col-sm-8 offset-2">
             <h4>Please Fill Details to Create User</h4>
-        <Form onSubmit = {showResults} 
+        <Form onSubmit = {createUser} 
         decorators={[focusOnError]}
         subscription={{
              submitting: true,
