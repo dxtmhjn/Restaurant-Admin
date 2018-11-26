@@ -2,8 +2,7 @@ import React,{Component} from 'react';
 
 class ViewMenu extends Component{
     render(){
-        return (
-        );
+        return 
     }
 }
 

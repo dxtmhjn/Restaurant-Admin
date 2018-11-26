@@ -260,6 +260,26 @@ class Header extends Component{
     
                         </div>
                     </li>
+                    <li className="has-submenu">
+                        <a className=" dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                             Menu
+                        </a>
+                        <div className="dropdown-menu dropdown-menu-right">
+                            
+                            <NavLink to="AddMenu" className="dropdown-item">
+                                Add Menu
+                            </NavLink>
+                            
+                            <NavLink to="EditMenu"  className="dropdown-item">
+                                Edit Menu
+                            </NavLink>
+                            <NavLink to="ViewMenu"  className="dropdown-item">
+                                View Menu
+                            </NavLink>
+    
+                        </div>
+                    </li>
                         </ul>
                     </div>
                 </div>
