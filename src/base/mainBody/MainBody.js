@@ -15,7 +15,7 @@ class MainBody extends Component{
         }
         else{
             body =(
-                <Login />
+                <Login changeLogin={this.props.loginHandler} />
             )
         }
         return (

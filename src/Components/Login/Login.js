@@ -13,7 +13,9 @@ const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
 const login=(props)=>(
-    <div>
+    <div className="container">
+        <div className="row">
+        <div className="col-sm-4 offset-4">
         <h1>Please Login</h1>
         <Form onSubmit = {showResults} 
         decorators={[focusOnError]}
@@ -38,8 +40,8 @@ const login=(props)=>(
                     <div className={meta.active ? "active" : ""}>
     
 
-                        <label >First Name</label>
-                        <input {...input} placeholder={placeholder} />
+                        <label >User Id</label>
+                        <input {...input} placeholder={placeholder} className="form-control"/>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
@@ -59,17 +61,18 @@ const login=(props)=>(
                     <div>
 
 
-                        <label >Last Name</label>
-                        <input {...input} placeholder={placeholder} />
+                        <label >Password</label>
+                        <input {...input} placeholder={placeholder} className="form-control" />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
-          
-            <button type="submit" disabled={submitting} >Submit</button>
-
+          <br/>
+            <button type="submit" disabled={submitting} className="btn btn-primary" onClick={props.changeLogin} >Submit</button>
             </form>}
         </Form>
+        </div>
+        </div>
     </div>
 )
 

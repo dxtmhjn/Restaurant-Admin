@@ -11,6 +11,7 @@ import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
 import CreateUserForm from "./Components/Admin/CreateUserForm";
+import UserList from "./Components/Admin/UserList";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
 
@@ -23,8 +24,19 @@ import {BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 class App extends Component {
 
   state={
-    isLogged:false,
+    isLogged:true,
 };
+
+
+loginHandler=()=>{
+  this.setState({
+    isLogged : !this.state.isLogged,
+    
+  })
+  console.log(this.state.isLogged);
+}
+
+
 
 
   render() {
@@ -32,9 +44,10 @@ class App extends Component {
       <Fragment>
            <Router>
             <div>
-            <Header isLogged={this.state.isLogged}></Header>
-            <MainBody isLogged={this.state.isLogged}></MainBody>
+            <Header isLogged={this.state.isLogged} changeLogin={this.loginHandler}></Header>
+            <MainBody isLogged={this.state.isLogged} changeLogin={this.loginHandler}></MainBody>
             <Route path="/createuser" component={CreateUserForm} exact />
+            <Route path="/userlist" component={UserList} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
 

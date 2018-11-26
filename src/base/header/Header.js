@@ -201,7 +201,7 @@ class Header extends Component{
                                 <i className="fi-lock"></i> <span>Lock Screen</span>
                             </a>
     
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
+                            <a href="javascript:void(0);" onClick={this.props.changeLogin} className="dropdown-item notify-item">
                                 <i className="fi-power"></i> <span>Logout</span>
                             </a>
     
@@ -239,6 +239,9 @@ class Header extends Component{
                             
                             <NavLink to="/createuser" className="dropdown-item">
                             Create User
+                            </NavLink>
+                            <NavLink to="/userlist" className="dropdown-item">
+                            User List
                             </NavLink>
     
                         </div>
