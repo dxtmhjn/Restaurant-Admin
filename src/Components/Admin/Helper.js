@@ -9,9 +9,11 @@ export const addresturant = (bodyParams) => {
         .then(response => {
 
               if (response.data && response.data.ok) {
-                    return response.data;
+                    alert("Restaurant Saved Successfully");
+                    return true;
                 }else{
-                    console.log("fail");
+                    alert("Error while saving Restaurant");
+                    return false;
                 }
             
         })
