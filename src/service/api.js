@@ -40,10 +40,12 @@ class HttpClient {
         return (this.api = axios.create({
             baseURL: this.getBaseUrl(),
             responseType: 'json',
-            headers :{
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-              }             
+            // headers :{
+            //     'Access-Control-Allow-Origin': '*',
+            //     'Content-Type': 'application/json',
+            //   },
+              withCredentials: true
+              
         }));
     }
 
