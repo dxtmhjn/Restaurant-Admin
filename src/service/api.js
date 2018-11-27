@@ -26,22 +26,26 @@
 
 //library import section Begin
 import axios from 'axios';
-import { apiURL } from "../constants/Constants"
+import { apiURL } from "../constants/constant";
 //library import section End
 
 class HttpClient {
     constructor() {
         this.api = null;
     }
-
+    
   //it is a method which initalize http instance
     getInitializedApi() {
         if (this.api) return this.api; // return initialized api if already initialized.
         return (this.api = axios.create({
             baseURL: this.getBaseUrl(),
             responseType: 'json',
-
-            // withCredentials: true
+            // headers :{
+            //     'Access-Control-Allow-Origin': '*',
+            //     'Content-Type': 'application/json',
+            //   },
+              withCredentials: true
+              
         }));
     }
 
@@ -50,7 +54,7 @@ class HttpClient {
         // Insert logic here to get the baseURL by either:
         // 1. Sniffing the URL to determine the environment we're running in.
         // 2. Looking for an environment variable as part of the build process.
-        return apiURL.BASE_URL
+        return apiURL.SERVERBASE_URL
     }
 
  //it is a method which use at the time of get

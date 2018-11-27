@@ -10,6 +10,10 @@ import Footer from './base/footer/Footer';
 import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
+import  AddMenuItem from './Components/menu/addMenuItem/AddMenuItem';
+
+import  EditMenu from './Components/menu/EditMenu/EditMenu';
+import  ViewMenu from './Components/menu/viewMenu/ViewMenu';
 import CreateUserForm from "./Components/Admin/CreateUserForm";
 import UserList from "./Components/Admin/UserList";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
@@ -50,7 +54,10 @@ loginHandler=()=>{
             <Route path="/userlist" component={UserList} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
-
+            <Route path="/AddMenu" component={AddMenuItem} />
+            <Route path="/EditMenu" component={EditMenu} />
+           
+            <Route path="/ViewMenu" component={ViewMenu} />
             <Footer></Footer>
             </div>
         </Router>
