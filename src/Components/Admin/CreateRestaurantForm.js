@@ -88,48 +88,8 @@ const createRestaurant=(props)=>(
                     </div> 
                    )}
             </Field> 
-            <Field 
-                name="active"  placeholder="active" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
+           
 
-
-                        <label >Active</label>
-                        <input {...input} placeholder={placeholder} className="form-control" />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
-            <Field 
-                name="createddate"  placeholder="Created Date" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
-
-
-                        <label >Created Date</label>
-                        <input {...input} placeholder={placeholder} className="form-control" />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
             <Field 
                 name="type"  placeholder="Restaurant " validate={required}
                 subscription={{
@@ -146,7 +106,7 @@ const createRestaurant=(props)=>(
 
 
                         <label >Type</label>
-                        <input {...input} placeholder={placeholder} className="form-control" />
+                        <input {...input} placeholder={placeholder} className="form-control" readOnly/>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}

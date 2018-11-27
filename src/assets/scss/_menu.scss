@@ -263,9 +263,9 @@
     //  }
     //}
 
-    .navigation-menu > li:hover a {
+    .navigation-menu > li:hover>a {
       color: $custom;
-      border-bottom: 2px solid $custom;
+      // border-bottom: 2px solid $custom;
       text-decoration: none;
 
       i {
