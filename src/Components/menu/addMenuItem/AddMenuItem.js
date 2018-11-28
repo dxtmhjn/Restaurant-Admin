@@ -183,11 +183,16 @@ class AddMenuItem extends Component{
                     </div>
                     <div className="col-lg-6 form-group">
                     <label>Description</label>
-            <Field name="foodDesc" component="textarea" className="form-control" rows="5" />
+                   <Field name="foodDesc" component="textarea" className="form-control" rows="5" />
+         
+                    </div>
+                    <div className="col-lg-6 offset-6 form-group">
+                    <label>Image Upload</label>
+                   <Field name="foodimg" component="input" type="file" className="form-control" />
          
                     </div>
                     
-                    <div className="col-lg-6 form-group">
+                    <div className="col-lg-12 form-group text-center">
                     <button type="submit" className="btn btn-sm btn-primary" disabled={submitting || pristine}>
                 Submit
               </button>

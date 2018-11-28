@@ -38,8 +38,6 @@ const createrestaurantchain=(props)=>(
                )} */}
                  {({input, meta, placeholder}) =>(
                 <div className={meta.active ? "active" : ""}>
-
-
                     <label >Restaurant Name</label>
                     <input {...input} placeholder={placeholder} className="form-control" />
                     {meta.error && meta.touched && <span>{meta.error}</span> }
