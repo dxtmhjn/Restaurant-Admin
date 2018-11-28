@@ -14,6 +14,7 @@ import AddMenuItem from './Components/menu/addMenuItem/AddMenuItem';
 import CreateUserForm from "./Components/Admin/CreateUserForm";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
+import viewMenu from "./Components/menu/viewMenu/ViewMenu";
 
 
 
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
             <Route path="/addmenuitem" component={AddMenuItem} />
+            <Route path="/viewmenu" component={viewMenu} />
 
             <Footer></Footer>
             </div>

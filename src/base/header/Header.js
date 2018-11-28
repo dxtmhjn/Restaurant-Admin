@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 
 // Router
-import {NavLink } from 'react-router-dom';
+import {NavLink,Link } from 'react-router-dom';
 
 class Header extends Component{
 
@@ -225,7 +225,17 @@ class Header extends Component{
                             </li>
     
                             <li className="has-submenu">
-                                <a href="#"><i className="icon-layers"></i>Apps</a>
+                                <a href="#"><i className="icon-layers"></i>Menu Management</a>
+                                <ul className="submenu">
+                                <li><Link to="/viewmenu" className="dropdown-item">
+                            View Menu
+                            </Link>
+                            </li>
+                            <li><Link to="/addmenuitem" className="dropdown-item">
+                            Add Menu Item
+                            </Link>
+                            </li>
+                            </ul>
                                 
                             </li>
 
