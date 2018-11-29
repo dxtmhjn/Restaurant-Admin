@@ -358,3 +358,21 @@ table.dataTable>tbody>tr.child span.dtr-title {
     color: $custom;
   }
 }
+
+table.food-menu{
+  thead{
+    tr{
+      th{
+        padding:20px 20px;
+
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        padding:20px 20px;
+      }
+    }
+  }
+}

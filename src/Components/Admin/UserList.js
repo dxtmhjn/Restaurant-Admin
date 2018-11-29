@@ -2,7 +2,7 @@ import React from "react";
 
 
 const singleUser =(
-    <table className="table table-bordered table-striped">
+    <table className="table table-striped food-menu">
     <tr>
         <th>User Id</th>
         <th>Details</th>
@@ -22,11 +22,11 @@ const singleUser =(
 )
 const userList = () =>  {
     return(
-       <div className="container">
-       <div className="row">
-       <div className="col-sm-12">
-       <h2>All Registered List</h2>
-       <br/>
+        <div className="wrapper">
+        <div className="card-container">
+        <div className="card">
+        <div className="card-header">All Registered List</div>
+      
             {singleUser}
        </div>
        </div>

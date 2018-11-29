@@ -13,10 +13,11 @@ const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
 const createRestaurant=(props)=>(
-    <div className="container">
-        <div className="row">
-        <div className="col-sm-8 offset-2">
-        <h4>Please Fill Details to Create Restaurant</h4>
+    <div className="wrapper">
+    <div className="card-container">
+    <div className="card">
+    <div className="card-header">Please Fill Details to Create Restaurant</div>
+        <div className="card-body">
         <Form onSubmit = {addresturant} 
         decorators={[focusOnError]}
         subscription={{
@@ -119,6 +120,7 @@ const createRestaurant=(props)=>(
         </Form>
         </div>
         </div>
+    </div>
     </div>
 )
 

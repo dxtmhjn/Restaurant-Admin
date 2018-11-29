@@ -1,17 +1,25 @@
 import React,{Component} from 'react';
 
 // Router
-import {NavLink } from 'react-router-dom';
+import {NavLink,Redirect } from 'react-router-dom';
 
 class Header extends Component{
-
+    state={
+        isloggedIn:true
+    }
+   
+    loginHandler =()=>{
+       this.setState({ isloggedIn:false});
+    }
     render(){
         const islogged = this.props.isLogged;
         let displayHeader;
         let customNavbar;
         let extraMenu ;
-        
-        if(islogged){
+        if (!this.state.isloggedIn) {
+            return <Redirect to="/login" push={true} />
+          }
+        if(this.state.isloggedIn){
             extraMenu = (
                 <div className="menu-extras topbar-custom">
     
@@ -201,7 +209,7 @@ class Header extends Component{
                                 <i className="fi-lock"></i> <span>Lock Screen</span>
                             </a>
     
-                            <a href="javascript:void(0);" onClick={this.props.changeLogin} className="dropdown-item notify-item">
+                            <a href="javascript:void(0);" onClick={this.loginHandler} className="dropdown-item notify-item">
                                 <i className="fi-power"></i> <span>Logout</span>
                             </a>
     
@@ -213,7 +221,7 @@ class Header extends Component{
         }
 
          
-        if(islogged){
+        if(this.state.isloggedIn){
              customNavbar=(
                 <div className="navbar-custom">
                 <div className="container-fluid">

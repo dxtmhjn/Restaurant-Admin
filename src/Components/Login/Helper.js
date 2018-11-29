@@ -1,7 +1,7 @@
 import HttpClient from "../../service/api";
 import {apiURL} from '../../constants/constant';
 
-export const isUserAuthenticated = (bodyParams) => {
+export const CheckUserAuthenticated = (bodyParams) => {
  
     const httpClient = new HttpClient();
     let url = 'user/authentication';
