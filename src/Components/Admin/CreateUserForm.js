@@ -3,6 +3,14 @@ import React from "react";
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
 import {adduser} from './Helper';
+// import { emitKeypressEvents } from "readline";
+
+// toaster
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
 const showResults = async values=>{
     await sleep(500)
@@ -11,6 +19,25 @@ const showResults = async values=>{
 
 const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
+
+const notify = (rvalue) => {
+    if(rvalue=="success"){
+      toast.success("success Notification")
+    }
+   else if(rvalue=="error"){
+      toast.error("Error Notification !")
+    }
+    else if(rvalue=="warning"){
+      toast.warn("Warning Notification !")
+    }
+    else if(rvalue=="info"){
+      toast.info("Info Notification !")
+    }
+    else{
+      toast("Wow so easy !")
+    }
+  
+  }
 
 const createUser = (props)=> (
     <div className="container">
@@ -229,7 +256,9 @@ const createUser = (props)=> (
                    )}
             </Field> 
           <br/>
-            <button type="submit" disabled={submitting} className="btn btn-primary" >Submit</button>
+            <button type="submit" disabled={submitting} 
+            className="btn btn-primary" 
+            onClick={()=>notify("error")}>Submit</button>
 
             </form>}
         </Form>
