@@ -22,7 +22,7 @@ class Login extends React.Component {
                 password :values.password
             }
             CheckUserAuthenticated(obj).then(res=>{
-                if(res && res.status)
+                if(res )
                     {this.setState({isloginSuccess:true});}
             })
         }
@@ -30,7 +30,7 @@ class Login extends React.Component {
      
    render(){
     if (this.state.isloginSuccess === true) {
-        return <Redirect to='/' />
+        return <Redirect to='/createrestaurant' />
       }
     return <div className="container">
         <div className="row">

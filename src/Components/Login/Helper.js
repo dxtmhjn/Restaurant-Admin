@@ -8,11 +8,12 @@ export const CheckUserAuthenticated = (bodyParams) => {
     return httpClient.post(url, bodyParams)
         .then(response => {
 
-              if (response.data && response.data.ok) {
-                    alert("Restaurant Saved Successfully");
+              if (response.data && response.data && response.data.status === 'success') {
+                    //alert("Restaurant Saved Successfully");
+                    localStorage.setItem("usertoken",bodyParams)
                     return true;
                 }else{
-                    alert("Error while saving Restaurant");
+                    //alert("Error while saving Restaurant");
                     return false;
                 }
             

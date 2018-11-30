@@ -8,8 +8,20 @@ class Header extends Component{
         isloggedIn:true
     }
    
-    loginHandler =()=>{
-       this.setState({ isloggedIn:false});
+    componentDidMount(){
+        var usertoken = localStorage.getItem("usertoken");
+        if(usertoken){
+            this.setState({ isloggedIn:true});
+        }
+    }
+
+    
+    logoutHandler =()=>{
+       this.setState({ isloggedIn:false},()=>{
+        localStorage.removeItem("usertoken");
+       });
+     
+      
     }
     render(){
         const islogged = this.props.isLogged;
@@ -209,7 +221,7 @@ class Header extends Component{
                                 <i className="fi-lock"></i> <span>Lock Screen</span>
                             </a>
     
-                            <a href="javascript:void(0);" onClick={this.loginHandler} className="dropdown-item notify-item">
+                            <a href="javascript:void(0);" onClick={this.logoutHandler} className="dropdown-item notify-item">
                                 <i className="fi-power"></i> <span>Logout</span>
                             </a>
     

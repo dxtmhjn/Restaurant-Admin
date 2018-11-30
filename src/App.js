@@ -20,19 +20,11 @@ import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
 
 
-
 // Router
 import {BrowserRouter as Router, Route, Link, NavLink,Redirect } from 'react-router-dom';
 
 
 class App extends Component {
-
-  
-
-
-
-
-
   render() {
     return (
       <Fragment>
@@ -40,6 +32,7 @@ class App extends Component {
             <div>
             <Header  ></Header>
             <MainBody  ></MainBody>
+            <Route path="/createuser" component={CreateUserForm} exact />
             <Route path="/createuser" component={CreateUserForm} exact />
             <Route path="/userlist" component={UserList} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
