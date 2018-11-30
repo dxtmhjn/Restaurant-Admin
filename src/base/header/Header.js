@@ -201,7 +201,7 @@ class Header extends Component{
                                 <i className="fi-lock"></i> <span>Lock Screen</span>
                             </a>
     
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
+                            <a href="javascript:void(0);" onClick={this.props.changeLogin} className="dropdown-item notify-item">
                                 <i className="fi-power"></i> <span>Logout</span>
                             </a>
     
@@ -250,6 +250,9 @@ class Header extends Component{
                             <NavLink to="/createuser" className="dropdown-item">
                             Create User
                             </NavLink>
+                            <NavLink to="/userlist" className="dropdown-item">
+                            User List
+                            </NavLink>
     
                         </div>
                     </li>
@@ -267,6 +270,26 @@ class Header extends Component{
                                 Create Chain For Restaurant
                             </NavLink>
 
+    
+                        </div>
+                    </li>
+                    <li className="has-submenu">
+                        <a className=" dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                             Menu
+                        </a>
+                        <div className="dropdown-menu dropdown-menu-right">
+                            
+                            <NavLink to="AddMenu" className="dropdown-item">
+                                Add Menu
+                            </NavLink>
+                            
+                            <NavLink to="EditMenu"  className="dropdown-item">
+                                Edit Menu
+                            </NavLink>
+                            <NavLink to="ViewMenu"  className="dropdown-item">
+                                View Menu
+                            </NavLink>
     
                         </div>
                     </li>

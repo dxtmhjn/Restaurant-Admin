@@ -3,13 +3,23 @@ import { Form, Field } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import moment from 'moment';
+import axios from 'axios';
 
 class AddMenuItem extends Component{
 
     cDate=moment().format("DD MMM YYYY");
      onSubmit = async values => {
         
-        window.alert(JSON.stringify(values, 0, 2))
+        window.alert(JSON.stringify(values, 0, 2));
+        axios.post('/menu/addnewmenu', {
+          
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       }
       
     render(){

@@ -33,15 +33,18 @@ class HttpClient {
     constructor() {
         this.api = null;
     }
-
+    
   //it is a method which initalize http instance
     getInitializedApi() {
         if (this.api) return this.api; // return initialized api if already initialized.
         return (this.api = axios.create({
             baseURL: this.getBaseUrl(),
             responseType: 'json',
-
-            // withCredentials: true
+            headers :{
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+              },
+              
         }));
     }
 

@@ -13,10 +13,12 @@ const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
 const createUser = (props)=> (
-    <div className="container">
-        <div className="row">
-            <div className="col-sm-8 offset-2">
-            <h4>Please Fill Details to Create User</h4>
+    <div className="wrapper">
+        <div className="card-container">
+        <div className="card">
+        <div className="card-header">Please Fill Details to Create User</div>
+            
+            <div className="card-body">
         <Form onSubmit = {adduser} 
         decorators={[focusOnError]}
         subscription={{
@@ -145,54 +147,17 @@ const createUser = (props)=> (
                     <div>
 
 
-                        <label >Restaurant ID</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <label >Restaurant Name</label>
+                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <option value="r1">Restaurant 1</option>
+                        <option value="r2">Restaurant 2</option>
+                        </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
-            <Field 
-                name="active"  placeholder="Active" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
-
-
-                        <label >Active</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
-            <Field 
-                name="createdDate"  placeholder="Created Date" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
-
-
-                        <label >Created Date</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
+          
+           
             <Field 
                 name="chain_id"  placeholder="Chain Id" validate={required}
                 subscription={{
@@ -209,7 +174,10 @@ const createUser = (props)=> (
 
 
                         <label >Chain Id</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <option value="c1">Id 1</option>
+                        <option value="c2">Id 2</option>
+                        </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
@@ -230,13 +198,19 @@ const createUser = (props)=> (
 
 
                         <label >Role</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <option value="c1">Super Admin</option>
+                        <option value="c2">Admin</option>
+                        <option value="c2">Manager</option>
+                        <option value="c2">Assistance</option>
+
+                        </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
             <Field 
-                name="type"  placeholder="type" validate={required}
+                name="type"  placeholder="type" 
                 subscription={{
                     value: true,
                     active: true,
@@ -251,7 +225,7 @@ const createUser = (props)=> (
 
 
                         <label >Type</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <input {...input} placeholder={placeholder} className="form-control" value="Restaurant" readOnly />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
@@ -261,6 +235,7 @@ const createUser = (props)=> (
 
             </form>}
         </Form>
+            </div>
             </div>
         </div>
     </div>

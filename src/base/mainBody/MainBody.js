@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import Login from "../../Components/Login/Login";
 
 class MainBody extends Component{
@@ -15,22 +15,13 @@ class MainBody extends Component{
         }
         else{
             body =(
-                <Login />
+                <Login changeLogin={this.props.loginHandler} />
             )
         }
         return (
-            <div className="wrapper">
-            <div className="container-fluid">
-
-                <div className="row">
-                    <div className="col-sm-12">
+            <Fragment>
                         {body}
-                    </div>
-                </div>
-               
-
-            </div> 
-        </div>
+                        </Fragment>
         
         );
     }
