@@ -5,22 +5,10 @@ class MainBody extends Component{
 
    
     render(){
-        const islogged = this.props.isLogged;
-        let body;
-        if(islogged){
-             body =(
-             <div></div>
-                
-             )
-        }
-        else{
-            body =(
-                <Login changeLogin={this.props.loginHandler} />
-            )
-        }
+   
         return (
             <Fragment>
-                        {body}
+                      
                         </Fragment>
         
         );

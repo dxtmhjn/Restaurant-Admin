@@ -1,6 +1,10 @@
 import HttpClient from "../../service/api";
 import {apiURL} from '../../constants/constant';
 
+// toaster
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const addresturant = (bodyParams) => {
  
     const httpClient = new HttpClient();
@@ -9,10 +13,10 @@ export const addresturant = (bodyParams) => {
         .then(response => {
 
               if (response.data && response.data.ok) {
-                    alert("Restaurant Saved Successfully");
+                toast.success("success Notification")
                     return true;
                 }else{
-                    alert("Error while saving Restaurant");
+                    toast.error("Error Notification !")
                     return false;
                 }
             
@@ -30,9 +34,11 @@ export const adduser = (bodyParams) => {
         .then(response => {
 
               if (response.data && response.data.ok) {
+                toast.success("success Notification")
                     return response.data;
                 }else{
-                    console.log("fail");
+                    toast.success("success Notification")
+                    return false;
                 }
             
         })

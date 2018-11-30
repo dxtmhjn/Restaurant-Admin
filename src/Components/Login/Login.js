@@ -2,22 +2,46 @@ import React from "react";
 
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
-
+import {CheckUserAuthenticated} from './Helper';
+import {Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {Authenticate} from './actions';
 const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
-const showResults = async values=>{
-    await sleep(500)
-    window.alert(JSON.stringify(values,undefined,2))
-}
 
 const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
-const login=(props)=>(
-    <div className="container">
+
+class Login extends React.Component {
+
+    state={
+        isloginSuccess :false
+    }
+
+    componentDidUpdate(nextProps,nextState){
+        if(nextProps.usertoken !== this.props.usertoken){
+            this.setState({isloginSuccess :true});
+        }
+    }
+ authenticateUser = (values)=>{
+        if(values){
+            var obj ={
+                email :values.id,
+                password :values.password
+            }
+            this.props.checkCredentails(obj);
+        }
+     }
+     
+   render(){
+    if (this.state.isloginSuccess === true) {
+        return <Redirect to='/createrestaurant' />
+      }
+    return <div className="container">
         <div className="row">
         <div className="col-sm-4 offset-4">
         <h1>Please Login</h1>
-        <Form onSubmit = {showResults} 
+        <Form onSubmit = {this.authenticateUser} 
         decorators={[focusOnError]}
         subscription={{
              submitting: true,
@@ -62,18 +86,31 @@ const login=(props)=>(
 
 
                         <label >Password</label>
-                        <input {...input} placeholder={placeholder} className="form-control" />
+                        <input type="password" {...input} placeholder={placeholder} className="form-control" />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
           <br/>
-            <button type="submit" disabled={submitting} className="btn btn-primary" onClick={props.changeLogin} >Submit</button>
+            <button type="submit" disabled={submitting} className="btn btn-primary"  >Submit</button>
             </form>}
         </Form>
         </div>
         </div>
     </div>
-)
-
-export default login;
+   }
+}
+function mapStateToProps(state, ownProps) {
+    return {
+      usertoken: state.AuthenticationReducer.usertoken
+    }
+  }
+  const mapDispatchToProps =(dispatch)=> {
+    return {
+      checkCredentails:( obj ) => {
+         dispatch(Authenticate( obj))
+    
+    }
+}
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

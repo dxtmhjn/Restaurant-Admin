@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import $ from 'jquery';
-
+//import { Redirect } from 'react-router'
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/scss/bootstrap.scss';
@@ -11,7 +11,7 @@ import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
 import  AddMenuItem from './Components/menu/addMenuItem/AddMenuItem';
-
+import login from './Components/Login/Login';
 import  EditMenu from './Components/menu/EditMenu/EditMenu';
 import  ViewMenu from './Components/menu/viewMenu/ViewMenu';
 import CreateUserForm from "./Components/Admin/CreateUserForm";
@@ -20,47 +20,35 @@ import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
 import viewMenu from "./Components/menu/viewMenu/ViewMenu";
 
-
+// toaster
+import { ToastContainer, toast } from 'react-toastify';
 
 // Router
-import {BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, NavLink,Redirect } from 'react-router-dom';
 
 
 
 class App extends Component {
-
-  state={
-    isLogged:true,
-};
-
-
-loginHandler=()=>{
-  this.setState({
-    isLogged : !this.state.isLogged,
-    
-  })
-  console.log(this.state.isLogged);
-}
-
-
-
-
   render() {
     return (
       <Fragment>
            <Router>
             <div>
-            <Header isLogged={this.state.isLogged} changeLogin={this.loginHandler}></Header>
-            <MainBody isLogged={this.state.isLogged} changeLogin={this.loginHandler}></MainBody>
+            <Header  ></Header>
+            <MainBody  ></MainBody>
+            <Route path="/createuser" component={CreateUserForm} exact />
             <Route path="/createuser" component={CreateUserForm} exact />
             <Route path="/userlist" component={UserList} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
             <Route path="/AddMenu" component={AddMenuItem} />
             <Route path="/EditMenu" component={EditMenu} />
+            <Route path="/login" component={login} />
            
+            
             <Route path="/ViewMenu" component={ViewMenu} />
             <Footer></Footer>
+            <ToastContainer />
             </div>
         </Router>
         
