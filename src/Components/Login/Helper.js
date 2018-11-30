@@ -11,10 +11,10 @@ export const CheckUserAuthenticated = (bodyParams) => {
               if (response.data && response.data && response.data.status === 'success') {
                     //alert("Restaurant Saved Successfully");
                     localStorage.setItem("usertoken",bodyParams)
-                    return true;
+                    return {status :true ,data :bodyParams};
                 }else{
                     //alert("Error while saving Restaurant");
-                    return false;
+                    return {status :false ,data :null};;
                 }
             
         })

@@ -222,7 +222,7 @@ class AddMenuItem extends Component{
                   <div className="card-footer bg-info ">
                   <label className="text-white">Select New Image 
                    <input name="foodimg"  type="file" className="form-control" style={{display: 'none'}}
-                    onChange={this.imgPreviewHnadler} />
+                    />
                    </label>
                   </div>
                     </div>

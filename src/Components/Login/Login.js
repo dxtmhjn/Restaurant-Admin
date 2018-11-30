@@ -4,6 +4,8 @@ import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
 import {CheckUserAuthenticated} from './Helper';
 import {Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {Authenticate} from './actions';
 const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
 
 const focusOnError = createDecorator()
@@ -15,16 +17,19 @@ class Login extends React.Component {
     state={
         isloginSuccess :false
     }
+
+    componentDidUpdate(nextProps,nextState){
+        if(nextProps.usertoken !== this.props.usertoken){
+            this.setState({isloginSuccess :true});
+        }
+    }
  authenticateUser = (values)=>{
         if(values){
             var obj ={
                 email :values.id,
                 password :values.password
             }
-            CheckUserAuthenticated(obj).then(res=>{
-                if(res )
-                    {this.setState({isloginSuccess:true});}
-            })
+            this.props.checkCredentails(obj);
         }
      }
      
@@ -95,5 +100,17 @@ class Login extends React.Component {
     </div>
    }
 }
-
-export default Login;
+function mapStateToProps(state, ownProps) {
+    return {
+      usertoken: state.AuthenticationReducer.usertoken
+    }
+  }
+  const mapDispatchToProps =(dispatch)=> {
+    return {
+      checkCredentails:( obj ) => {
+         dispatch(Authenticate( obj))
+    
+    }
+}
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(Login);
