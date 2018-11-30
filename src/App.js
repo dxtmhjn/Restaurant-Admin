@@ -19,6 +19,8 @@ import UserList from "./Components/Admin/UserList";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
 
+// toaster
+import { ToastContainer, toast } from 'react-toastify';
 
 // Router
 import {BrowserRouter as Router, Route, Link, NavLink,Redirect } from 'react-router-dom';
@@ -44,6 +46,7 @@ class App extends Component {
             
             <Route path="/ViewMenu" component={ViewMenu} />
             <Footer></Footer>
+            <ToastContainer />
             </div>
         </Router>
         
