@@ -172,8 +172,6 @@ const createUser = (props)=> (
                    )} */}
                      {({input, meta, placeholder}) =>(
                     <div>
-
-
                         <label >Restaurant Name</label>
                         <select  {...input} placeholder={placeholder} className="form-control" >
                         <option value="r1">Restaurant 1</option>
