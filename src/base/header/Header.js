@@ -1,17 +1,49 @@
 import React,{Component} from 'react';
-
+import { connect ,} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 // Router
-import {NavLink } from 'react-router-dom';
+import {NavLink,Redirect } from 'react-router-dom';
 
 class Header extends Component{
+    state={
+        isloggedIn:true,
+        username :"Guest"
+    }
+   
+    componentDidMount(){
+        var usertoken = localStorage.getItem("usertoken");
+        if(usertoken){
+            this.setState({ isloggedIn:true});
+        }
+    }
 
+    componentDidUpdate(prevProps, prevState){
+        // if ( prevProps.usertoken && 
+        //     this.props.usertoken &&
+           
+           
+        //    (  prevProps.usertoken.data === undefined && this.props.usertoken.data.name)) {
+        //     this.setState({ isloggedIn:true ,username :this.props.usertoken.data.name});
+        //   }
+    }
+    
+    logoutHandler =()=>{
+       this.setState({ isloggedIn:false},()=>{
+        localStorage.removeItem("usertoken");
+       });
+     
+      
+    }
     render(){
         const islogged = this.props.isLogged;
+        const user =this.state.username;
         let displayHeader;
         let customNavbar;
         let extraMenu ;
-        
-        if(islogged){
+        if (!this.state.isloggedIn) {
+            return <Redirect to="/login" push={true} />
+          }
+       // if(this.state.isloggedIn){
             extraMenu = (
                 <div className="menu-extras topbar-custom">
     
@@ -174,7 +206,7 @@ class Header extends Component{
                     <li className="dropdown notification-list">
                         <a className="nav-link dropdown-toggle waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="false" aria-expanded="false">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user" className="rounded-circle"/> <span className="ml-1 pro-user-name">Maxine K <i className="mdi mdi-chevron-down"></i> </span>
+                            <img src="assets/images/users/avatar-1.jpg" alt="user" className="rounded-circle"/> <span className="ml-1 pro-user-name">{user}<i className="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-right profile-dropdown ">
                             
@@ -201,7 +233,7 @@ class Header extends Component{
                                 <i className="fi-lock"></i> <span>Lock Screen</span>
                             </a>
     
-                            <a href="javascript:void(0);" onClick={this.props.changeLogin} className="dropdown-item notify-item">
+                            <a href="javascript:void(0);" onClick={this.logoutHandler} className="dropdown-item notify-item">
                                 <i className="fi-power"></i> <span>Logout</span>
                             </a>
     
@@ -210,10 +242,10 @@ class Header extends Component{
                 </ul>
             </div>
             );
-        }
+     //   }
 
          
-        if(islogged){
+     //   if(this.state.isloggedIn){
              customNavbar=(
                 <div className="navbar-custom">
                 <div className="container-fluid">
@@ -288,7 +320,7 @@ class Header extends Component{
                 </div>
             </div>
              )
-        }
+ //       }
         
         return (
          
@@ -327,5 +359,13 @@ class Header extends Component{
         );
     }
 }
+function mapStateToProps(state, ownProps) {
+    return {
+      usertoken: state.AuthenticationReducer.usertoken
+     
+    }
+  }
 
-export default Header;
+  
+
+export default withRouter(connect(mapStateToProps, null)(Header));

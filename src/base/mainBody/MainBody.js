@@ -1,37 +1,19 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import Login from "../../Components/Login/Login";
-
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 class MainBody extends Component{
 
    
     render(){
-        const islogged = this.props.isLogged;
-        let body;
-        if(islogged){
-             body =(
-             <div></div>
-                
-             )
-        }
-        else{
-            body =(
-                <Login changeLogin={this.props.loginHandler} />
-            )
-        }
+   
         return (
-            <div className="wrapper">
-            <div className="container-fluid">
-
-                <div className="row">
-                    <div className="col-sm-12">
-                        {body}
-                    </div>
-                </div>
-               
-
-            </div> 
-        </div>
-        
+            <Fragment>
+            <Header/>
+                       {this.props.children}
+                        
+        <Footer/>
+        </Fragment>
         );
     }
 }
