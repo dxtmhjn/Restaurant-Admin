@@ -64,9 +64,21 @@ export const addChainresturant = (bodyParams) => {
 }
 export const adduser = (bodyParams) => {
  
+    let userobj={
+        "name": bodyParams.name,
+    "password": bodyParams.password,
+    "email": bodyParams.email,
+    "mobile": bodyParams.mobile,
+    "restaurant_id": bodyParams.restaurent_id,
+    "active": true,
+    "createdDate": new Date(),
+    "chain_id": bodyParams.chain_id,
+    "role": bodyParams.role,
+    "type": "user"
+}
     const httpClient = new HttpClient();
     let url = 'user/add';
-    return httpClient.post(url, bodyParams)
+    return httpClient.post(url, userobj)
         .then(response => {
 
               if (response.data && response.data.ok) {

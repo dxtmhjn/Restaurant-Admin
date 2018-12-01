@@ -1,11 +1,13 @@
 import React,{Component} from 'react';
-
+import { connect ,} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 // Router
 import {NavLink,Redirect } from 'react-router-dom';
 
 class Header extends Component{
     state={
-        isloggedIn:true
+        isloggedIn:true,
+        username :"Guest"
     }
    
     componentDidMount(){
@@ -15,6 +17,15 @@ class Header extends Component{
         }
     }
 
+    componentDidUpdate(prevProps, prevState){
+        if ( prevProps.usertoken && 
+            this.props.usertoken &&
+           
+           
+           (  prevProps.usertoken.data === undefined && this.props.usertoken.data.name)) {
+            this.setState({ isloggedIn:true ,username :this.props.usertoken.data.name});
+          }
+    }
     
     logoutHandler =()=>{
        this.setState({ isloggedIn:false},()=>{
@@ -25,6 +36,7 @@ class Header extends Component{
     }
     render(){
         const islogged = this.props.isLogged;
+        const user =this.state.username;
         let displayHeader;
         let customNavbar;
         let extraMenu ;
@@ -194,7 +206,7 @@ class Header extends Component{
                     <li className="dropdown notification-list">
                         <a className="nav-link dropdown-toggle waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="false" aria-expanded="false">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user" className="rounded-circle"/> <span className="ml-1 pro-user-name">Maxine K <i className="mdi mdi-chevron-down"></i> </span>
+                            <img src="assets/images/users/avatar-1.jpg" alt="user" className="rounded-circle"/> <span className="ml-1 pro-user-name">{user}<i className="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-right profile-dropdown ">
                             
@@ -347,5 +359,13 @@ class Header extends Component{
         );
     }
 }
+function mapStateToProps(state, ownProps) {
+    return {
+      usertoken: state.AuthenticationReducer.usertoken
+     
+    }
+  }
 
-export default Header;
+  
+
+export default withRouter(connect(mapStateToProps, null)(Header));

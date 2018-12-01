@@ -92,7 +92,7 @@ const CreateUser = (props)=> (
 
 
                         <label >Password</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <input type="password" {...input} placeholder={placeholder} className="form-control"  />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
@@ -189,8 +189,8 @@ const CreateUser = (props)=> (
 
                         <label >Chain Id</label>
                         <select  {...input} placeholder={placeholder} className="form-control" >
-                        <option value="c1">Id 1</option>
-                        <option value="c2">Id 2</option>
+                        <option value="0">Choose Chain Restaurant</option>
+                        <option value="null">N/A</option>
                         </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
