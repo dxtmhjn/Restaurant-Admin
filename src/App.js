@@ -18,12 +18,13 @@ import CreateUserForm from "./Components/Admin/CreateUserForm";
 import UserList from "./Components/Admin/UserList";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
-
+import  UserContainer  from './Container/Admin/UserContainer';
+import ChainRestaurantConainer from './Container/Admin/ChainRestaurantConainer';
 // toaster
 import { ToastContainer, toast } from 'react-toastify';
 
 // Router
-import {BrowserRouter as Router, Route, Link, NavLink,Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Route,Switch, Link, NavLink,Redirect } from 'react-router-dom';
 
 
 class App extends Component {
@@ -31,25 +32,26 @@ class App extends Component {
     return (
       <Fragment>
            <Router>
-            <div>
-            <Header  ></Header>
-            <MainBody  ></MainBody>
-            <Route path="/createuser" component={CreateUserForm} exact />
-            <Route path="/createuser" component={CreateUserForm} exact />
+            <MainBody>
+           
+            <Route path="/createuser" component={UserContainer} exact />
             <Route path="/userlist" component={UserList} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
-            <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
+            <Route path="/createrestaurantchain" component={ChainRestaurantConainer} />
             <Route path="/AddMenu" component={AddMenuItem} />
             <Route path="/EditMenu" component={EditMenu} />
             <Route path="/login" component={login} />
            
             
             <Route path="/ViewMenu" component={ViewMenu} />
-            <Footer></Footer>
+            
+
+           
+            {/* <Footer></Footer> */}
             <ToastContainer />
-            </div>
+            </MainBody>
         </Router>
-        
+       
         </Fragment>
     );
   }

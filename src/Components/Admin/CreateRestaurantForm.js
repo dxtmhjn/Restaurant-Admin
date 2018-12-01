@@ -92,7 +92,7 @@ const createRestaurant=(props)=>(
            
 
             <Field 
-                name="type"  placeholder="Restaurant " validate={required}
+                name="type"  placeholder="Restaurant " 
                 subscription={{
                     value: true,
                     active: true,
@@ -107,7 +107,7 @@ const createRestaurant=(props)=>(
 
 
                         <label >Type</label>
-                        <input {...input} placeholder={placeholder} className="form-control" readOnly/>
+                        <input  defaultValue="restaurant" {...input} placeholder={placeholder} className="form-control" readOnly/>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}

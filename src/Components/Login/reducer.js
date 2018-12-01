@@ -22,7 +22,33 @@ export function AuthenticationReducer(state = initialState, action) {
         ...state,
         usertoken: action.payload
       }
+
+      case types.FETCH_RESTAURANT:
+      
+      return {
+        ...state,
+        isloading :action.isloading
+
+      }
+      case types.FETCH_RESTAURANT_SUCCESS:
+     
+      return {
+        ...state,
+        restaurant :transformToRestaurantModel(action.payload)
+      }
     default:
       return state
   }
+}
+
+
+const transformToRestaurantModel =(data)=>{
+  var list =[];
+
+  if(data && data.data &&  data.data.length >0){
+    data.data.forEach(element => {
+       list.push(element.value);
+     });
+  }
+  return list;
 }

@@ -39,7 +39,7 @@ const notify = (rvalue) => {
   
   }
 
-const createUser = (props)=> (
+const CreateUser = (props)=> (
     <div className="wrapper">
         <div className="card-container">
         <div className="card">
@@ -75,27 +75,7 @@ const createUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-            <Field 
-                name="username"  placeholder="Username" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
-
-
-                        <label >Username</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
+        
             <Field 
                 name="password"  placeholder="Password" validate={required}
                 subscription={{
@@ -174,8 +154,17 @@ const createUser = (props)=> (
                     <div>
                         <label >Restaurant Name</label>
                         <select  {...input} placeholder={placeholder} className="form-control" >
-                        <option value="r1">Restaurant 1</option>
-                        <option value="r2">Restaurant 2</option>
+                        <option value="0">Choose Restaurant</option>
+                        { props.restaurantList && props.restaurantList.length >0
+                     ? 
+                    
+                     props.restaurantList.map(item => {
+                            return (
+                                    <option
+                                      key={item._id}
+                                      value={item._id}>{item.restaurantname}</option>
+                                    );
+                        }) :  <option value="No Restaurant">No Restaurant</option>}
                         </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
@@ -268,4 +257,4 @@ const createUser = (props)=> (
     </div>
 )
 
-export default createUser;
+export default CreateUser;

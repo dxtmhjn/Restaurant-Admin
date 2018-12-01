@@ -35,7 +35,7 @@ class Login extends React.Component {
      
    render(){
     if (this.state.isloginSuccess === true) {
-        return <Redirect to='/createrestaurant' />
+        return <Redirect to='/createuser' />
       }
     return <div className="container">
         <div className="row">
