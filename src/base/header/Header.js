@@ -18,13 +18,13 @@ class Header extends Component{
     }
 
     componentDidUpdate(prevProps, prevState){
-        if ( prevProps.usertoken && 
-            this.props.usertoken &&
+        // if ( prevProps.usertoken && 
+        //     this.props.usertoken &&
            
            
-           (  prevProps.usertoken.data === undefined && this.props.usertoken.data.name)) {
-            this.setState({ isloggedIn:true ,username :this.props.usertoken.data.name});
-          }
+        //    (  prevProps.usertoken.data === undefined && this.props.usertoken.data.name)) {
+        //     this.setState({ isloggedIn:true ,username :this.props.usertoken.data.name});
+        //   }
     }
     
     logoutHandler =()=>{

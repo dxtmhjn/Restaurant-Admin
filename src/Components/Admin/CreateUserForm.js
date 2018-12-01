@@ -158,7 +158,7 @@ const CreateUser = (props)=> (
                         { props.restaurantList && props.restaurantList.length >0
                      ? 
                     
-                     props.restaurantList.map(item => {
+                       props.restaurantList.map(item => {
                             return (
                                     <option
                                       key={item._id}
