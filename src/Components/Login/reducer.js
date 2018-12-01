@@ -36,6 +36,19 @@ export function AuthenticationReducer(state = initialState, action) {
         ...state,
         restaurant :transformToRestaurantModel(action.payload)
       }
+      case types.GET_USERS:
+      
+      return {
+        ...state,
+        isloading :action.isloading
+
+      }
+      case types.GET_USERS_SUCCESS:
+     
+      return {
+        ...state,
+        users :transformToUserModel(action.payload)
+      }
     default:
       return state
   }
@@ -43,6 +56,17 @@ export function AuthenticationReducer(state = initialState, action) {
 
 
 const transformToRestaurantModel =(data)=>{
+  var list =[];
+
+  if(data && data.data &&  data.data.length >0){
+    data.data.forEach(element => {
+       list.push(element.value);
+     });
+  }
+  return list;
+}
+
+const transformToUserModel =(data)=>{
   var list =[];
 
   if(data && data.data &&  data.data.length >0){
