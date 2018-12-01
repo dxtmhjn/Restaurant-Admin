@@ -31,7 +31,7 @@ class Header extends Component{
         if (!this.state.isloggedIn) {
             return <Redirect to="/login" push={true} />
           }
-        if(this.state.isloggedIn){
+       // if(this.state.isloggedIn){
             extraMenu = (
                 <div className="menu-extras topbar-custom">
     
@@ -230,10 +230,10 @@ class Header extends Component{
                 </ul>
             </div>
             );
-        }
+     //   }
 
          
-        if(this.state.isloggedIn){
+     //   if(this.state.isloggedIn){
              customNavbar=(
                 <div className="navbar-custom">
                 <div className="container-fluid">
@@ -308,7 +308,7 @@ class Header extends Component{
                 </div>
             </div>
              )
-        }
+ //       }
         
         return (
          

@@ -8,7 +8,7 @@ import {
 
 export const CHECK_CREDENTIALS = 'CHECK_CREDENTIALS';
 export const CHECK_CREDENTIALS_SUCCESS = 'CHECK_CREDENTIALS_SUCCESS';
-
+export const FETCH_RESTAURANT = 'FETCH_RESTAURANT';
 export function checkCredentials(isloading) {
     return {
         type: CHECK_CREDENTIALS,
@@ -24,12 +24,20 @@ export function checkCredentialsSuccess(cred) {
 }
 
 
+export function fetchRestaurants(cred) {
+    return {
+        type: FETCH_RESTAURANT,
+        payload: cred
+    };
+}
+
 export function Authenticate(obj) {
     return (dispatch) => {
         dispatch(checkCredentials());
         CheckUserAuthenticated(obj).then(res => {
             if (res) {
                 dispatch(checkCredentialsSuccess(res));
+                dispatch(fetchRestaurants(res));
             }
         });
     }
