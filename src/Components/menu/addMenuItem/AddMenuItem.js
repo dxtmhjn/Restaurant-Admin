@@ -4,7 +4,7 @@ import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import moment from 'moment';
 import Axios from 'axios';
-
+import Dropzone from 'react-dropzone'
 
 class AddMenuItem extends Component{
 
@@ -40,6 +40,33 @@ class AddMenuItem extends Component{
         }).catch(error=>{
           console.log(error);
         })
+      }
+      handleDrop = files => {
+        const cloudPreSets = "gjvkq3dx";
+        // Push all the axios request promise into a single array
+        const uploaders = files.map(file => {
+          // Initial FormData
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("tags", `codeinfuse, medium, gist`);
+          formData.append("upload_preset", cloudPreSets); // Replace the preset name with your own
+          formData.append("api_key", "724369578258923"); // Replace API key with your own Cloudinary key
+          formData.append("timestamp", (Date.now() / 1000) | 0);
+          
+          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          return Axios.post("https://api.cloudinary.com/v1_1/codeinfuse/image/upload", formData, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }).then(response => {
+            const data = response.data;
+            const fileURL = data.secure_url // You should store this URL for future references in your app
+            console.log(data);
+          })
+        });
+      
+        // Once all the files are uploaded 
+        Axios.all(uploaders).then(() => {
+          // ... perform after upload is successful operation
+        });
       }
     render(){
         
@@ -217,12 +244,19 @@ class AddMenuItem extends Component{
                     </div>
                     <div className="col-lg-6 offset-6 form-group">
                    <div className="card col-md-8 offset-2   text-center">
-                   <img src={this.state.previewSrc} 
-                   alt="restaurant_img" className="img-preview img-responsive"/>
+                  
                   <div className="card-footer bg-info ">
                   <label className="text-white">Select New Image 
-                   <input name="foodimg"  type="file" className="form-control" style={{display: 'none'}}
-                    />
+                   {/* <input name="foodimg"  type="file" className="form-control" style={{display: 'none'}}
+                    /> */}
+                    <Dropzone 
+  onDrop={this.handleDrop} 
+  multiple 
+  accept="image/*" 
+ 
+>
+  <p>Drop your files or click here to upload</p>
+</Dropzone>
                    </label>
                   </div>
                     </div>
