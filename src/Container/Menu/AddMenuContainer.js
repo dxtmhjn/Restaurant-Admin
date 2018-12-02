@@ -2,20 +2,53 @@ import React, { Component } from "react";
 import { connect ,} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import AddMenuItem from '../../Components/menu/addMenuItem/AddMenuItem';
-import Header from '../../base/header/Header';
-import MainBody from '../../base/mainBody/MainBody';
+import {getChainresturant} from "../../Components/Admin/Helper";
+import {addMenu} from './Helper';
 class AddMenuContainer extends Component {
+  
+  state={
+    restaurantChainList :[]
+  }
+  
+  handleaddRestaurantMenu(params){
+      if(params){
+        addMenu(params).then(result=>{
 
+        })
+      }
+  }
+  addChainItemtoArray(res){
+    let result =[];
+    if(res && res.data && res.data.length >0){
+      res.data.forEach(element => {
+        result.push(element.value)
+      });
+     
+    }
+    return result;
+    }
+      handleRestaurantChangeSelection =(e)=>{
+        let resID= e.target.value;
+        
+         getChainresturant(resID).then(res=>{
+           if(res)
+            {
+              this.setState({restaurantChainList :this.addChainItemtoArray(res)})
+            }
+        })
+      }
     render() {
 		return (
       <div>
-      {/* <Header  ></Header>
-      <MainBody >
-		 */}
-                <AddMenuItem restaurantList ={this.props.restaurantList}/>
+     
+                <AddMenuItem restaurantList ={this.props.restaurantList}
+                handleRestaurantChangeSelection={this.handleRestaurantChangeSelection}
+                handleaddRestaurantMenu={this.handleaddRestaurantMenu}
+                restaurantChainList= {this.state.restaurantChainList}
+                />
                
         
-        {/* </MainBody> */}
+      
         </div>)
         }
 }

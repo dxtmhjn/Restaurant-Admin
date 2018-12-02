@@ -12,10 +12,11 @@ class AddMenuItem extends Component{
      previewSrc:"",
      isImageUploading :false
   }
-    cDate=moment().format("DD MMM YYYY");
-     onSubmit = async values => {
-        
-        window.alert(JSON.stringify(values, 0, 2))
+      cDate=moment().format("DD MMM YYYY");
+        onSubmit =  values => {
+        let params =values;
+        params.previewSrc= this.state.previewSrc;
+        this.props.handleaddRestaurantMenu(params);
       }
       
       imgPreviewHnadler=(event)=>{
@@ -97,7 +98,7 @@ class AddMenuItem extends Component{
                     <div className="col-lg-6 form-group">
                     <label>Restaurant ID</label>
             
-            <Field name="restaurant_id" component="select" type="select"  className="form-control form-control-sm">
+            <Field onChange={(e)=> this.props.handleRestaurantChangeSelection(e)}  name="restaurant_id" component="select" type="select"  className="form-control form-control-sm">
             <option value="0">Choose Restaurant</option>
             { this.props.restaurantList && this.props.restaurantList.length >0
                      ? 
@@ -115,10 +116,21 @@ class AddMenuItem extends Component{
                     <label>Chain ID</label>
             <Field
               name="chain_id"
-              component="input"
-              type="text" disabled
+              component="select" type="select"  
               className="form-control form-control-sm"
-            />
+            >
+             <option value="0">Choose Chain Restaurant</option>
+                        { this.props.restaurantChainList && this.props.restaurantChainList.length >0
+                     ? 
+                    
+                     this.props.restaurantChainList.map(item => {
+                            return (
+                                    <option
+                                      key={item._id}
+                                      value={item._id}>{item.restaurantname}</option>
+                                    );
+                        }) :  <option value="No Chain Restaurant">No Restaurant</option>}
+            </Field>
                     </div>
                     <div className="col-lg-6 form-group">
                     <label>Type</label>
@@ -129,17 +141,7 @@ class AddMenuItem extends Component{
               className="form-control form-control-sm"
             />
                     </div>
-                    <div className="col-lg-6 form-group">
-                    <label>Created Date</label>
-            <Field
-              name="createdDate"
-              component="input"
-              type="text" 
-              value={this.cDate}
-              placeholder={this.cDate}
-              className="form-control form-control-sm"
-            />
-                    </div>
+                    
                     
                     <div className="col-lg-6 form-group form-group">
                     <label>Name</label>
@@ -180,7 +182,7 @@ class AddMenuItem extends Component{
               </div>
                     </div>
                     <div className="col-lg-6 form-group form-group">
-                    <label>Toppings</label>
+                    <label>Category</label>
             <Field name="category" component="select"  className="form-control form-control-sm">
               <option value="breakfast">Breakfast</option>
               <option value="dinner">Dinner</option>
@@ -266,13 +268,11 @@ class AddMenuItem extends Component{
                    {/* <input name="foodimg"  type="file" className="form-control" style={{display: 'none'}}
                     /> */}
                     <Dropzone 
-  onDrop={this.handleDrop} 
-  multiple 
-  accept="image/*" 
- 
->
-  <p>Drop your files or click here to upload</p>
-</Dropzone>
+                  onDrop={this.handleDrop} 
+                  multiple 
+                  accept="image/*" >
+                  <p>Drop your Images or click here to upload</p>
+                  </Dropzone>
                    </label>
                   <div>
                      <img src={this.state.previewSrc}/>
@@ -290,7 +290,7 @@ class AddMenuItem extends Component{
             
 
           
-          <pre>{JSON.stringify(values, 0, 2)}</pre>
+          {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
             </form>
             )}
             />
