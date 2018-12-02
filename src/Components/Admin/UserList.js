@@ -1,6 +1,12 @@
 import React from "react";
+import {removeUser} from "./Helper";
 
+// Router
+import {NavLink,Redirect } from 'react-router-dom';
 
+const removeUserHandler=()=>{
+    console.log("user removed")
+}
 
 const UserList = (props) =>  {
     return(
@@ -23,8 +29,8 @@ const UserList = (props) =>  {
                 <td>{item.name}</td>
             <td>{item.role}</td>
             <td>
-            <span><a href="#" className="btn btn-success">Edit</a></span> &nbsp;
-            <span><a href="#" className="btn btn-danger">Delete</a></span>
+            <span><NavLink className="btn btn-success" to="/createuser">Edit</NavLink></span> &nbsp;
+            <span><a href="#" className="btn btn-danger" onClick={removeUserHandler()}>Delete</a></span>
             </td></tr>)
             ;
             })

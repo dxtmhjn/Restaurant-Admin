@@ -117,3 +117,23 @@ export const getChainresturant = (id) => {
             console.log(error);
         });
 }
+
+export const removeUser = (id) => {
+    const httpClient = new HttpClient();
+    let url = 'userlist/' + id;
+    return httpClient.get(url)
+        .then(response => {
+
+              if (response && response.data) {
+                toast.success("success Notification")
+                    return response.data;
+                }else{
+                    toast.error("Error Notification !")
+                    return false;
+                }
+            
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
