@@ -38,7 +38,7 @@ const restaurantChainList = (props) =>  {
             </td></tr>)
             ;
             })
-            : <span>No User Currently Present</span>}
+            : <span>No Restaurant Chain Present</span>}
             
     </tbody>
 </table>
