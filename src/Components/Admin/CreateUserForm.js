@@ -3,12 +3,9 @@ import React from "react";
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
 import {adduser} from './Helper';
+import {getChainresturant} from "./Helper";
+
 // import { emitKeypressEvents } from "readline";
-
-// toaster
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 
 const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
@@ -20,24 +17,16 @@ const showResults = async values=>{
 const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
-const notify = (rvalue) => {
-    if(rvalue=="success"){
-      toast.success("success Notification")
-    }
-   else if(rvalue=="error"){
-      toast.error("Error Notification !")
-    }
-    else if(rvalue=="warning"){
-      toast.warn("Warning Notification !")
-    }
-    else if(rvalue=="info"){
-      toast.info("Info Notification !")
-    }
-    else{
-      toast("Wow so easy !")
-    }
+const restourantChainList=(e)=>{
+   const resID= e.target.value;
+   const restaurantChainList = getChainresturant(resID).then(res=>{
+       console.log(res)
+   })
   
-  }
+
+  
+
+}
 
 const CreateUser = (props)=> (
     <div className="wrapper">
@@ -97,6 +86,7 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
+           
             <Field 
                 name="email"  placeholder="Email" validate={required}
                 subscription={{
@@ -118,6 +108,7 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
+          
             <Field 
                 name="mobile"  placeholder="Mobile" validate={required}
                 subscription={{
@@ -139,6 +130,7 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
+            
             <Field 
                 name="restaurent_id"  placeholder="Restaurant ID" validate={required}
                 subscription={{
@@ -153,7 +145,7 @@ const CreateUser = (props)=> (
                      {({input, meta, placeholder}) =>(
                     <div>
                         <label >Restaurant Name</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <select  {...input} placeholder={placeholder} className="form-control" onChange={(e)=> restourantChainList(e)} >
                         <option value="0">Choose Restaurant</option>
                         { props.restaurantList && props.restaurantList.length >0
                      ? 
@@ -170,8 +162,7 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-          
-           
+            
             <Field 
                 name="chain_id"  placeholder="Chain Id" validate={required}
                 subscription={{
@@ -190,12 +181,22 @@ const CreateUser = (props)=> (
                         <label >Chain Id</label>
                         <select  {...input} placeholder={placeholder} className="form-control" >
                         <option value="0">Choose Chain Restaurant</option>
-                        <option value="null">N/A</option>
+                        { props.restaurantList && props.restaurantList.length >0
+                     ? 
+                    
+                       props.restaurantList.map(item => {
+                            return (
+                                    <option
+                                      key={item._id}
+                                      value={item._id}>{item.restaurantname}</option>
+                                    );
+                        }) :  <option value="No Chain Restaurant">No Restaurant</option>}
                         </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
+          
             <Field 
                 name="role"  placeholder="Role" validate={required}
                 subscription={{
@@ -223,6 +224,7 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
+           
             <Field 
                 name="type"  placeholder="type" 
                 subscription={{
@@ -247,7 +249,7 @@ const CreateUser = (props)=> (
           <br/>
             <button type="submit" disabled={submitting} 
             className="btn btn-primary" 
-            onClick={()=>notify("error")}>Submit</button>
+            >Submit</button>
 
             </form>}
         </Form>
