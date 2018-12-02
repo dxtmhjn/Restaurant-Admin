@@ -21,7 +21,7 @@ const UserList = (props) =>  {
                
                 return ( <tr>
                 <td>{item.name}</td>
-            <td></td>
+            <td>{item.role}</td>
             <td>
             <span><a href="#" className="btn btn-success">Edit</a></span> &nbsp;
             <span><a href="#" className="btn btn-danger">Delete</a></span>
