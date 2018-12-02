@@ -4,7 +4,6 @@ import $ from 'jquery';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/scss/bootstrap.scss';
-import './assets/scss/style.scss';
 import Header from './base/header/Header';
 import Footer from './base/footer/Footer';
 import MainBody from './base/mainBody/MainBody';
@@ -21,6 +20,7 @@ import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
 import  UserContainer  from './Container/Admin/UserContainer';
 import ChainRestaurantConainer from './Container/Admin/ChainRestaurantConainer';
 import UserListContainer from './Container/Admin/UserListContainer';
+import AddMenuContainer from './Container/Menu/AddMenuContainer';
 // toaster
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -33,24 +33,25 @@ class App extends Component {
     return (
       <Fragment>
            <Router>
-            <MainBody>
+           <div className="wrapper">
+            <Header  ></Header>
+            <MainBody  ></MainBody>
            
             <Route path="/createuser" component={UserContainer} exact />
             <Route path="/userlist" component={UserListContainer} exact />
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/createrestaurantchain" component={ChainRestaurantConainer} />
-            <Route path="/AddMenu" component={AddMenuItem} />
+            <Route path="/AddMenu" component={AddMenuContainer} />
             <Route path="/EditMenu" component={EditMenu} />
             <Route path="/login" component={login} />
            
             
             <Route path="/ViewMenu" component={ViewMenu} />
             
-
-           
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
             <ToastContainer />
-            </MainBody>
+            </div>
+           
         </Router>
        
         </Fragment>

@@ -3,7 +3,7 @@ import React from "react";
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
 import {adduser} from './Helper';
-import {getChainresturant} from "./Helper";
+
 
 // import { emitKeypressEvents } from "readline";
 
@@ -17,24 +17,17 @@ const showResults = async values=>{
 const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
-const restourantChainList=(e)=>{
-   const resID= e.target.value;
-   const restaurantChainList = getChainresturant(resID).then(res=>{
-       console.log(res)
-   })
-  
 
-  
-
-}
 
 const CreateUser = (props)=> (
-    <div className="wrapper">
-        <div className="card-container">
-        <div className="card">
-        <div className="card-header">Please Fill Details to Create User</div>
-            
-            <div className="card-body">
+    <main>
+        <div className="main-part">
+        <section className="home-icon bg-skeen">
+        <div className="container">
+        <div className="row">
+        <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+       
+       <div className="card-container">
         <Form onSubmit = {adduser} 
         decorators={[focusOnError]}
         subscription={{
@@ -145,7 +138,7 @@ const CreateUser = (props)=> (
                      {({input, meta, placeholder}) =>(
                     <div>
                         <label >Restaurant Name</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" onChange={(e)=> restourantChainList(e)} >
+                        <select  {...input} placeholder={placeholder} className="form-control" onChange={(e)=> props.handleRestaurantChangeSelection(e)} >
                         <option value="0">Choose Restaurant</option>
                         { props.restaurantList && props.restaurantList.length >0
                      ? 
@@ -181,10 +174,10 @@ const CreateUser = (props)=> (
                         <label >Chain Id</label>
                         <select  {...input} placeholder={placeholder} className="form-control" >
                         <option value="0">Choose Chain Restaurant</option>
-                        { props.restaurantList && props.restaurantList.length >0
+                        { props.restaurantChainList && props.restaurantChainList.length >0
                      ? 
                     
-                       props.restaurantList.map(item => {
+                       props.restaurantChainList.map(item => {
                             return (
                                     <option
                                       key={item._id}
@@ -253,10 +246,13 @@ const CreateUser = (props)=> (
 
             </form>}
         </Form>
-            </div>
-            </div>
         </div>
-    </div>
+        </div>
+        </div>
+        </div>
+            </section>
+        </div>
+    </main>
 )
 
 export default CreateUser;

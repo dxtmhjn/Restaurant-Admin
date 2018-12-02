@@ -13,11 +13,14 @@ const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
 const createRestaurant=(props)=>(
-    <div className="wrapper">
-    <div className="card-container">
-    <div className="card">
-    <div className="card-header">Please Fill Details to Create Restaurant</div>
-        <div className="card-body">
+    <main>
+    <div className="main-part">
+    <section className="home-icon bg-skeen">
+    <div className="container">
+    <div className="row">
+    <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+   
+   <div className="card-container">
         <Form onSubmit = {addresturant} 
         decorators={[focusOnError]}
         subscription={{
@@ -120,8 +123,11 @@ const createRestaurant=(props)=>(
         </Form>
         </div>
         </div>
-    </div>
-    </div>
+        </div>
+        </div>
+            </section>
+        </div>
+    </main>
 )
 
 export default createRestaurant;

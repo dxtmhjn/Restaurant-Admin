@@ -8,10 +8,11 @@ class ChainRestaurantConainer extends Component {
 
     render() {
 		return (
-			<div> <Header  ></Header>
-            <MainBody >
+			<div>
+         {/* <Header  ></Header>
+            <MainBody > */}
                 <CreateRestaurantChain restaurantList ={this.props.restaurantList}/>
-                </MainBody>
+                {/* </MainBody> */}
                 </div>
         )
         }

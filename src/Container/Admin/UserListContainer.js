@@ -9,13 +9,13 @@ class UserListContainer extends Component {
     render() {
 		return (
       <div>
-      <Header  ></Header>
-      <MainBody >
+      {/* <Header  ></Header>
+      <MainBody > */}
 		
                 <UserList users ={this.props.users}/>
                
         
-        </MainBody>
+        {/* </MainBody> */}
         </div>)
         }
 }
