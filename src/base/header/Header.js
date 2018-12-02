@@ -174,8 +174,15 @@ class Header extends Component {
             <li>
               <NavLink to="createrestaurant">Create Restaurant</NavLink>
               </li>
+              <li>
+              <NavLink to="restaurantlist">Restaurant List</NavLink>
+              </li>
               <li><NavLink to="createrestaurantchain">
                 Create Chain For Restaurant
+              </NavLink>
+              </li>
+              <li><NavLink to="restaurantchainlist">
+                Restaurant Chain List
               </NavLink>
               </li>
             </ul>
