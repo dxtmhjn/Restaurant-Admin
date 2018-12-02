@@ -33,8 +33,8 @@ return result;
     render() {
 		return (
       <div>
-      <Header  ></Header>
-      <MainBody >
+      {/* <Header  ></Header>
+      <MainBody > */}
 		
                 <CreateUser 
                 handleRestaurantChangeSelection ={this.handleRestaurantChangeSelection}
@@ -43,7 +43,7 @@ return result;
                 />
                
         
-        </MainBody>
+        {/* </MainBody> */}
         </div>)
         }
 }

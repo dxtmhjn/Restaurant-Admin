@@ -1,7 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import Login from "../../Components/Login/Login";
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
+
 class MainBody extends Component{
 
    
@@ -9,11 +8,9 @@ class MainBody extends Component{
    
         return (
             <Fragment>
-            <Header/>
-                       {this.props.children}
-                        
-        <Footer/>
-        </Fragment>
+                      
+                        </Fragment>
+        
         );
     }
 }

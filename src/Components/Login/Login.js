@@ -37,9 +37,15 @@ class Login extends React.Component {
     if (this.state.isloginSuccess === true) {
         return <Redirect to='/createuser' />
       }
-    return <div className="container">
-        <div className="row">
-        <div className="col-sm-4 offset-4">
+    return  <main>
+    <div className="main-part">
+    <section className="home-icon bg-skeen">
+    <div className="container">
+    <div className="row">
+    
+    <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+   
+   <div className="card-container">
         <h1>Please Login</h1>
         <Form onSubmit = {this.authenticateUser} 
         decorators={[focusOnError]}
@@ -97,7 +103,11 @@ class Login extends React.Component {
         </Form>
         </div>
         </div>
-    </div>
+        </div>
+        </div>
+            </section>
+        </div>
+    </main>
    }
 }
 function mapStateToProps(state, ownProps) {

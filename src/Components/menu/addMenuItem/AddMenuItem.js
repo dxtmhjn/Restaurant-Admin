@@ -75,11 +75,19 @@ class AddMenuItem extends Component{
     render(){
         
         return (
-            <div className="wrapper">
-            <div className="card-container">
-            <div className="card">
-            <div className="card-header">Add Item To Menu</div>
-            <div className="card-body">
+          <main>
+          <div className="main-part">
+          <section className="home-icon bg-skeen">
+          <div className="container">
+          <div className="row ">
+          <div className="col-md-5 col-sm-5 col-xs-12">
+          
+          <div className="card-container"></div>
+          
+          </div>
+          <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+         
+         <div className="card-container">
             <Loader  show={this.state.isImageUploading} message={'loading'}>
             <Form
             onSubmit={this.onSubmit}
@@ -292,9 +300,12 @@ class AddMenuItem extends Component{
             />
             </Loader>
             </div>
-            </div>
-            </div>
-            </div>
+        </div>
+        </div>
+        </div>
+            </section>
+        </div>
+    </main>
         );
     }
 }
