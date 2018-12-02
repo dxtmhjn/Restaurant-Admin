@@ -3,7 +3,7 @@ import React from "react";
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
 import {adduser} from './Helper';
-import {getChainresturant} from "./Helper";
+
 
 // import { emitKeypressEvents } from "readline";
 
@@ -17,16 +17,7 @@ const showResults = async values=>{
 const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
-const restourantChainList=(e)=>{
-   const resID= e.target.value;
-   const restaurantChainList = getChainresturant(resID).then(res=>{
-       console.log(res)
-   })
-  
 
-  
-
-}
 
 const CreateUser = (props)=> (
     <div className="wrapper">
@@ -145,7 +136,7 @@ const CreateUser = (props)=> (
                      {({input, meta, placeholder}) =>(
                     <div>
                         <label >Restaurant Name</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" onChange={(e)=> restourantChainList(e)} >
+                        <select  {...input} placeholder={placeholder} className="form-control" onChange={(e)=> props.handleRestaurantChangeSelection(e)} >
                         <option value="0">Choose Restaurant</option>
                         { props.restaurantList && props.restaurantList.length >0
                      ? 
@@ -181,10 +172,10 @@ const CreateUser = (props)=> (
                         <label >Chain Id</label>
                         <select  {...input} placeholder={placeholder} className="form-control" >
                         <option value="0">Choose Chain Restaurant</option>
-                        { props.restaurantList && props.restaurantList.length >0
+                        { props.restaurantChainList && props.restaurantChainList.length >0
                      ? 
                     
-                       props.restaurantList.map(item => {
+                       props.restaurantChainList.map(item => {
                             return (
                                     <option
                                       key={item._id}
