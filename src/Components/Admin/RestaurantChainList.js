@@ -4,11 +4,11 @@ import {removeUser} from "./Helper";
 // Router
 import {NavLink,Redirect } from 'react-router-dom';
 
-const removeUserHandler=(id)=>{
-    removeUser(id);
+const removeUserHandler=()=>{
+    console.log("user removed")
 }
 
-const UserList = (props) =>  {
+const restaurantChainList = (props) =>  {
     return(
         <main>
         <div className="main-part">
@@ -20,7 +20,7 @@ const UserList = (props) =>  {
        <div className="card-container">
         <table className="table table-striped food-menu">
     <tr>
-        <th>User Name</th>
+        <th>User Id</th>
         <th>Details</th>
         <th>Access</th>
     </tr>
@@ -33,8 +33,8 @@ const UserList = (props) =>  {
                 <td>{item.name}</td>
             <td>{item.role}</td>
             <td>
-            <span><NavLink className="btn btn-success" to="/createuser">Edit</NavLink></span> &nbsp;
-            <span><a href="#" className="btn btn-danger" onClick={removeUserHandler(item.id)}>Delete</a></span>
+            <span><NavLink className="btn btn-success" to="/createrestaurantchain">Edit</NavLink></span> &nbsp;
+            <span><a href="#" className="btn btn-danger" onClick={removeUserHandler()}>Delete</a></span>
             </td></tr>)
             ;
             })
@@ -54,4 +54,4 @@ const UserList = (props) =>  {
     }
 
 
-export default UserList;
+export default restaurantChainList;
