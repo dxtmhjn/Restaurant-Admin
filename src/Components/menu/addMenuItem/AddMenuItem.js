@@ -80,12 +80,8 @@ class AddMenuItem extends Component{
           <section className="home-icon bg-skeen">
           <div className="container">
           <div className="row ">
-          <div className="col-md-5 col-sm-5 col-xs-12">
-          
-          <div className="card-container"></div>
-          
-          </div>
-          <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+        
+          <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInDown animated" >
          
          <div className="card-container">
             <Loader  show={this.state.isImageUploading} message={'loading'}>
@@ -101,7 +97,7 @@ class AddMenuItem extends Component{
                     <div className="col-lg-6 form-group">
                     <label>Restaurant ID</label>
             
-            <Field name="restaurant_id" component="select"  className="form-control form-control-sm">
+            <Field name="restaurant_id" component="select" type="select"  className="form-control form-control-sm">
             <option value="0">Choose Restaurant</option>
             { this.props.restaurantList && this.props.restaurantList.length >0
                      ? 
@@ -301,6 +297,7 @@ class AddMenuItem extends Component{
             </Loader>
             </div>
         </div>
+        
         </div>
         </div>
             </section>

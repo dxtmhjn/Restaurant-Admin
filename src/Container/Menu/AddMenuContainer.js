@@ -9,13 +9,13 @@ class AddMenuContainer extends Component {
     render() {
 		return (
       <div>
-      <Header  ></Header>
+      {/* <Header  ></Header>
       <MainBody >
-		
+		 */}
                 <AddMenuItem restaurantList ={this.props.restaurantList}/>
                
         
-        </MainBody>
+        {/* </MainBody> */}
         </div>)
         }
 }
