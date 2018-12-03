@@ -8,8 +8,9 @@ const removeUserHandler=()=>{
     console.log("user removed")
 }
 
-const restaurantChainList = (props) =>  {
+const RestaurantChainList = (props) =>  {
     return(
+        
         <main>
         <div className="main-part">
         <section className="home-icon bg-skeen">
@@ -18,22 +19,27 @@ const restaurantChainList = (props) =>  {
         <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
        
        <div className="card-container">
+      
         <table className="table table-striped food-menu">
     <tr>
-        <th>User Id</th>
-        <th>Details</th>
-        <th>Access</th>
+        <th>Chain Name</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Status</th>
+        
     </tr>
     <tbody>
         
-            { props.users && props.users.length >0 ?
-                props.users.map(item=>{
+            { props.restaurantChainList && props.restaurantChainList.length >0 ?
+                props.restaurantChainList.map(item=>{
                
                 return ( <tr>
-                <td>{item.name}</td>
-            <td>{item.role}</td>
+                <td>{item.restaurantname}</td>
+            <td>{item.description}</td>
+            <td>{item.address}</td>
+            <td>{item.active}</td>
             <td>
-            <span><NavLink className="btn btn-success" to="/createrestaurantchain">Edit</NavLink></span> &nbsp;
+            <span><NavLink className="btn btn-success"  to={`${"/createrestaurantchain/" + item._id }`}>Edit</NavLink></span> &nbsp;
             <span><a href="#" className="btn btn-danger" onClick={removeUserHandler()}>Delete</a></span>
             </td></tr>)
             ;
@@ -54,4 +60,4 @@ const restaurantChainList = (props) =>  {
     }
 
 
-export default restaurantChainList;
+export default RestaurantChainList;

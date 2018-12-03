@@ -6,6 +6,9 @@ import Header from '../../base/header/Header';
 import MainBody from '../../base/mainBody/MainBody';
 class ChainRestaurantConainer extends Component {
 
+  componentDidMount(){
+    this.r
+  }
     render() {
 		return (
 			<div>

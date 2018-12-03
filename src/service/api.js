@@ -53,7 +53,7 @@ class HttpClient {
         // Insert logic here to get the baseURL by either:
         // 1. Sniffing the URL to determine the environment we're running in.
         // 2. Looking for an environment variable as part of the build process.
-        return apiURL.SERVERBASE_URL
+        return apiURL.BASE_URL
     }
 
  //it is a method which use at the time of get

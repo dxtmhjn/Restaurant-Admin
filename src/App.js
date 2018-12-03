@@ -22,7 +22,7 @@ import ChainRestaurantConainer from './Container/Admin/ChainRestaurantConainer';
 import UserListContainer from './Container/Admin/UserListContainer';
 import AddMenuContainer from './Container/Menu/AddMenuContainer';
 import RestaurantList from "./Components/Admin/RestaurantList";
-import RestaurantChainList from "./Components/Admin/RestaurantChainList";
+import RestaurantChainListContainer from "./Container/Admin/RestaurantChainListContainter";
 
 // toaster
 import { ToastContainer, toast } from 'react-toastify';
@@ -47,8 +47,8 @@ class App extends Component {
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/restaurantlist" component={RestaurantList} />
 
-            <Route path="/createrestaurantchain" component={ChainRestaurantConainer} />
-            <Route path="/restaurantchainlist" component={RestaurantChainList} />
+            <Route path="/createrestaurantchain/:id" component={ChainRestaurantConainer} />
+            <Route path="/restaurantchainlist" component={RestaurantChainListContainer} />
 
             <Route path="/AddMenu" component={AddMenuContainer} />
             <Route path="/EditMenu" component={EditMenu} />
