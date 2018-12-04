@@ -26,3 +26,25 @@ export const getAllChainresturant = (bodyParams) => {
             console.log(error);
         });
 }
+
+export const getChainresturantByChainID = (id) => {
+ 
+    
+    const httpClient = new HttpClient();
+    let url = 'restaurant/getChainRestaurantByChainID/' + id;
+    return httpClient.get(url)
+        .then(response => {
+
+              if (response && response.data) {
+                toast.success("success Notification")
+                    return response.data;
+                }else{
+                    toast.error("Error Notification !")
+                    return false;
+                }
+            
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}

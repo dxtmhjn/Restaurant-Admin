@@ -3,10 +3,10 @@ import { connect ,} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CreateUser from '../../Components/Admin/CreateUserForm';
 import {getChainresturant} from "../../Components/Admin/Helper";
-import Header from '../../base/header/Header';
-import MainBody from '../../base/mainBody/MainBody';
-class UserContainer extends Component {
+import Cookies from'js-cookie';
 
+class UserContainer extends Component {
+ 
 state={
   restaurantChainList :[]
 }

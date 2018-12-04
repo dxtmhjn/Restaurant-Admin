@@ -4,3 +4,18 @@ export const apiURL = {
     SERVERBASE_URL: "https://juxtorder.herokuapp.com/api/",
    
   };
+
+  export const RolesManager ={
+
+    superadmin :{
+      "Menu Management" :[{
+        link:"/createuser",
+        name:"Create User"
+      },
+      {
+        link:"/userlist",
+        name:"User List"
+      },
+    ]
+    }
+  }

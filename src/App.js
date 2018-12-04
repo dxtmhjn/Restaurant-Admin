@@ -29,34 +29,44 @@ import { ToastContainer, toast } from 'react-toastify';
 
 // Router
 import {BrowserRouter as Router, Route,Switch, Link, NavLink,Redirect } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 
 
 class App extends Component {
+state={
+  role:""
+}
+  componentDidMount(){
+    //
+  }
   render() {
     return (
       <Fragment>
            <Router>
            <div className="wrapper">
+          
+          
             <Header  ></Header>
             <MainBody  ></MainBody>
-           
-            <Route path="/createuser" component={UserContainer} exact />
+            <Route path="/login" component={login} > </Route>
+  
+            <Route  path="/createuser" component={UserContainer} exact />
             <Route path="/userlist" component={UserListContainer} exact />
 
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
             <Route path="/restaurantlist" component={RestaurantList} />
 
             <Route path="/createrestaurantchain/:id" component={ChainRestaurantConainer} />
+            <Route path="/createrestaurantchain" component={ChainRestaurantConainer} />
             <Route path="/restaurantchainlist" component={RestaurantChainListContainer} />
 
             <Route path="/AddMenu" component={AddMenuContainer} />
             <Route path="/EditMenu" component={EditMenu} />
-            <Route path="/login" component={login} />
            
-            
+           
+           
             <Route path="/ViewMenu" component={ViewMenu} />
-            
+          
             <Footer></Footer>
             <ToastContainer />
             </div>

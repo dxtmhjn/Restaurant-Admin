@@ -3,7 +3,7 @@
  */
 import initialState from '../../store/initialState'
 import * as types from './actions'
-
+import Cookies from 'js-cookie';
 import _ from "lodash";
 
 export function AuthenticationReducer(state = initialState, action) {
@@ -17,7 +17,7 @@ export function AuthenticationReducer(state = initialState, action) {
 
       }
       case types.CHECK_CREDENTIALS_SUCCESS:
-     
+      Cookies.set('userrole', (action.payload && action.payload.data && action.payload.data.role?action.payload.data.role :"NOROLE"), { expires: 1 });
       return {
         ...state,
         usertoken: action.payload

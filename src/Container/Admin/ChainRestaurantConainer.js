@@ -2,19 +2,38 @@ import React, { Component } from "react";
 import { connect ,} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CreateRestaurantChain from '../../Components/Admin/CreateRestaurantChain';
-import Header from '../../base/header/Header';
-import MainBody from '../../base/mainBody/MainBody';
+import {getChainresturantByChainID} from './Helper';
 class ChainRestaurantConainer extends Component {
-
+state ={
+  editData :[]
+}
   componentDidMount(){
-    this.r
+    const { match: { params } } = this.props;
+    if(params && params.id)
+      {getChainresturantByChainID(params.id).then(res=>{
+        if(res){
+          this.setState({editData :this.addChainItemtoArray(res)})
+        }
+      })}
+  }
+  addChainItemtoArray(res){
+    let result =[];
+    if(res && res.data && res.data.length >0){
+      res.data.forEach(element => {
+        result.push(element.value)
+      });
+     
+    }
+    return result;
   }
     render() {
 		return (
 			<div>
          {/* <Header  ></Header>
             <MainBody > */}
-                <CreateRestaurantChain restaurantList ={this.props.restaurantList}/>
+                <CreateRestaurantChain
+                editData= {this.state.editData}
+                restaurantList ={this.props.restaurantList}/>
                 {/* </MainBody> */}
                 </div>
         )

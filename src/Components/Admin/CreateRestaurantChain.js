@@ -31,6 +31,7 @@ const Createrestaurantchain=(props)=>(
 
         <Field 
             name="restaurantname"  placeholder="Restaurant Name" validate={required}
+                  
                 subscription={{
                 value: true,
                 active: true,
@@ -43,7 +44,10 @@ const Createrestaurantchain=(props)=>(
                  {({input, meta, placeholder}) =>(
                 <div className={meta.active ? "active" : ""}>
                     <label >Restaurant Name</label>
-                    <input {...input} placeholder={placeholder} className="form-control" />
+                    <input  type='text'
+                    value={props.editData && props.editData.length >0 ?props.editData[0].restaurantname :"estdgs"}
+           
+                       {...input} placeholder={placeholder} className="form-control" />
                     {meta.error && meta.touched && <span>{meta.error}</span> }
                 </div> 
                )}

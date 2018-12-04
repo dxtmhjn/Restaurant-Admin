@@ -2,20 +2,27 @@ import React, { Component } from "react";
 
 // Router
 import { NavLink, Redirect, Link } from "react-router-dom";
-
+import Cookies from 'js-cookie';
+import {RolesManager} from '../../constants/constant';
 class Header extends Component {
     state={
         isloggedIn:true,
-        username :"Guest"
+        username :"Guest",
+        role :"",
+        menuitem :[]
     }
    
     componentDidMount(){
         var usertoken = localStorage.getItem("usertoken");
+        this.setState({role: Cookies.get('userrole')});
         if(usertoken){
             this.setState({ isloggedIn:true});
         }
     }
 
+    getMenuItemByRole(role){
+      this.setState({menuitem : RolesManager['role']});
+    }
     componentDidUpdate(prevProps, prevState){
         // if ( prevProps.usertoken && 
         //     this.props.usertoken &&
@@ -141,22 +148,7 @@ class Header extends Component {
           <li className="">
             <a href="index.html">Dashboard</a>
           </li>
-          <li className="has-child">
-            <a href="#">
-              <i className="icon-layers" />Menu Management
-            </a>
-            <ul className="drop-nav">
-              <li>
-                <Link to="/viewmenu">View Menu</Link>
-              </li>
-              <li>
-                <Link to="/addmenuitem">Add Menu Item</Link>
-              </li>
-            </ul>
-            <span className="drop-nav-arrow">
-              <i className="fa fa-angle-down" />
-            </span>
-          </li>
+    
           <li className="has-child">
             <a href="#">User Management</a>
             <ul className="drop-nav">
@@ -188,7 +180,7 @@ class Header extends Component {
             </ul>
           </li>
           <li className="has-child">
-            <a href="#">Menu</a>
+            <a href="#">Menu Management</a>
             <ul className="drop-nav">
             <li>
 
