@@ -40,12 +40,18 @@ const notify = (rvalue) => {
   }
 
 const createUser = (props)=> (
-    <div className="wrapper">
-        <div className="card-container">
-        <div className="card">
-        <div className="card-header">Please Fill Details to Create User</div>
+    <main>
+        <div className="main-part">
+        <section className="home-icon bg-skeen">
+        <div className="container">
+        <div className="row">
+        <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+       
+       <div className="card-container">
+      
+       <h6> Please Fill Details to Create User</h6>
             
-            <div className="card-body">
+           
         <Form onSubmit = {adduser} 
         decorators={[focusOnError]}
         subscription={{
@@ -55,7 +61,7 @@ const createUser = (props)=> (
             <form onSubmit={handleSubmit}>
 
             <Field 
-                name="name"  placeholder="Name" validate={required}
+                name="name" type="text"  placeholder="Name" validate={required}
                     subscription={{
                     value: true,
                     active: true,
@@ -70,13 +76,14 @@ const createUser = (props)=> (
     
 
                         <label >Full Name</label>
-                        <input {...input} placeholder={placeholder} className="form-control" />
+                        <input {...input} placeholder={placeholder} type="text" className="form-control" />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
             <Field 
-                name="username"  placeholder="Username" validate={required}
+                name="username" type="text"  placeholder="Username" validate={required}
+               
                 subscription={{
                     value: true,
                     active: true,
@@ -90,14 +97,14 @@ const createUser = (props)=> (
                     <div>
 
 
-                        <label >Username</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                       <label >Username</label>
+                        <input {...input} placeholder={placeholder}  type="text" />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
             <Field 
-                name="password"  placeholder="Password" validate={required}
+                name="password" type="password" placeholder="Password" validate={required}
                 subscription={{
                     value: true,
                     active: true,
@@ -112,13 +119,13 @@ const createUser = (props)=> (
 
 
                         <label >Password</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <input {...input} placeholder={placeholder} type="password" className="form-control"  />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
             <Field 
-                name="email"  placeholder="Email" validate={required}
+                name="email" type="email"  plaeholder="Email" validate={required}
                 subscription={{
                     value: true,
                     active: true,
@@ -133,13 +140,13 @@ const createUser = (props)=> (
 
 
                         <label >Email</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <input type="email" {...input} placeholder={placeholder} className="form-control"  />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
             <Field 
-                name="mobile"  placeholder="Mobile" validate={required}
+                name="mobile"  placeholder="Mobile"  type="text" validate={required}
                 subscription={{
                     value: true,
                     active: true,
@@ -154,13 +161,13 @@ const createUser = (props)=> (
 
 
                         <label >Mobile</label>
-                        <input {...input} placeholder={placeholder} className="form-control"  />
+                        <input type="text" {...input} placeholder={placeholder} className="form-control"  />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
             <Field 
-                name="restaurent_id"  placeholder="Restaurant ID" validate={required}
+                name="restaurent_id" type="text"placeholder="Restaurant ID" validate={required}
                 subscription={{
                     value: true,
                     active: true,
@@ -173,7 +180,7 @@ const createUser = (props)=> (
                      {({input, meta, placeholder}) =>(
                     <div>
                         <label >Restaurant Name</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <select  {...input} placeholder={placeholder}  >
                         <option value="r1">Restaurant 1</option>
                         <option value="r2">Restaurant 2</option>
                         </select>
@@ -199,7 +206,7 @@ const createUser = (props)=> (
 
 
                         <label >Chain Id</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <select  {...input} placeholder={placeholder}  >
                         <option value="c1">Id 1</option>
                         <option value="c2">Id 2</option>
                         </select>
@@ -223,7 +230,7 @@ const createUser = (props)=> (
 
 
                         <label >Role</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" >
+                        <select  {...input} placeholder={placeholder} >
                         <option value="c1">Super Admin</option>
                         <option value="c2">Admin</option>
                         <option value="c2">Manager</option>
@@ -250,22 +257,25 @@ const createUser = (props)=> (
 
 
                         <label >Type</label>
-                        <input {...input} placeholder={placeholder} className="form-control" value="Restaurant" readOnly />
+                        <input type="text" {...input} placeholder={placeholder} value="Restaurant" readOnly />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
           <br/>
             <button type="submit" disabled={submitting} 
-            className="btn btn-primary" 
+            className="button-default btn-large btn-primary-gold" 
             onClick={()=>notify("error")}>Submit</button>
 
             </form>}
         </Form>
             </div>
-            </div>
         </div>
-    </div>
+        </div>
+        </div>
+            </section>
+        </div>
+    </main>
 )
 
 export default createUser;

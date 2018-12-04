@@ -1,361 +1,215 @@
-import React,{Component} from 'react';
+import React, { Component } from "react";
 
 // Router
-import {NavLink,Redirect } from 'react-router-dom';
+import { NavLink, Redirect, Link } from "react-router-dom";
 
-class Header extends Component{
-    state={
-        isloggedIn:true
+class Header extends Component {
+  state = {
+    isloggedIn: true
+  };
+
+  componentDidMount() {
+    var usertoken = localStorage.getItem("usertoken");
+    if (usertoken) {
+      this.setState({ isloggedIn: true });
     }
-   
-    componentDidMount(){
-        var usertoken = localStorage.getItem("usertoken");
-        if(usertoken){
-            this.setState({ isloggedIn:true});
-        }
+  }
+
+  logoutHandler = () => {
+    this.setState({ isloggedIn: false }, () => {
+      localStorage.removeItem("usertoken");
+    });
+  };
+  render() {
+    const islogged = this.props.isLogged;
+    let displayHeader;
+    let customNavbar;
+    let extraMenu;
+    if (!this.state.isloggedIn) {
+      return <Redirect to="/login" push={true} />;
     }
-
-    
-    logoutHandler =()=>{
-       this.setState({ isloggedIn:false},()=>{
-        localStorage.removeItem("usertoken");
-       });
-     
-      
-    }
-    render(){
-        const islogged = this.props.isLogged;
-        let displayHeader;
-        let customNavbar;
-        let extraMenu ;
-        if (!this.state.isloggedIn) {
-            return <Redirect to="/login" push={true} />
-          }
-        if(this.state.isloggedIn){
-            extraMenu = (
-                <div className="menu-extras topbar-custom">
-    
-                <ul className="list-unstyled topbar-right-menu float-right mb-0">
-    
-                    <li className="menu-item">
-                        <a className="navbar-toggle nav-link">
-                            <div className="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
+    if (this.state.isloggedIn) {
+      extraMenu = (
+        <div className="header-top">
+          <div className="container">
+            <div className="header-top-inner">
+              <div className="header-top-left">
+                <a href="#" className="top-cell">
+                  <img src="images/fon.png" alt="" /> <span>123-456-7890</span>
+                </a>
+                <a href="#" className="top-email">
+                  <span>support@laboom.com</span>
+                </a>
+              </div>
+              <div className="header-top-right">
+                <div className="social-top">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-facebook" aria-hidden="true" />
+                      </a>
                     </li>
-                    <li className="dropdown notification-list hide-phone">
-                        <a className="nav-link dropdown-toggle waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i className="mdi mdi-earth"></i> English  <i className="mdi mdi-chevron-down"></i>
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right">
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item">
-                                Spanish
-                            </a>
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item">
-                                Italian
-                            </a>
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item">
-                                French
-                            </a>
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item">
-                                Russian
-                            </a>
-    
-                        </div>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-twitter" aria-hidden="true" />
+                      </a>
                     </li>
-    
-                    <li className="dropdown notification-list">
-                        <a className="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i className="fi-bell noti-icon"></i>
-                            <span className="badge badge-danger badge-pill noti-icon-badge">4</span>
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right dropdown-lg">
-    
-                            
-                            <div className="dropdown-item noti-title">
-                                <h6 className="m-0"><span className="float-right"><a href="" className="text-dark"><small>Clear All</small></a> </span>Notification</h6>
-                            </div>
-    
-                            <div className="slimscroll" style={{maxHeight: "230px"}}>
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon bg-success"><i className="mdi mdi-comment-account-outline"></i></div>
-                                    <p className="notify-details">Caleb Flakelar commented on Admin<small className="text-muted">1 min ago</small></p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon bg-info"><i className="mdi mdi-account-plus"></i></div>
-                                    <p className="notify-details">New user registered.<small className="text-muted">5 hours ago</small></p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon bg-danger"><i className="mdi mdi-heart"></i></div>
-                                    <p className="notify-details">Carlos Crouch liked <b>Admin</b><small className="text-muted">3 days ago</small></p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon bg-warning"><i className="mdi mdi-comment-account-outline"></i></div>
-                                    <p className="notify-details">Caleb Flakelar commented on Admin<small className="text-muted">4 days ago</small></p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon bg-purple"><i className="mdi mdi-account-plus"></i></div>
-                                    <p className="notify-details">New user registered.<small className="text-muted">7 days ago</small></p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon bg-custom"><i className="mdi mdi-heart"></i></div>
-                                    <p className="notify-details">Carlos Crouch liked <b>Admin</b><small className="text-muted">13 days ago</small></p>
-                                </a>
-                            </div>
-    
-                            <a href="javascript:void(0);" className="dropdown-item text-center text-primary notify-item notify-all">
-                                View all <i className="fi-arrow-right"></i>
-                            </a>
-    
-                        </div>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-instagram" aria-hidden="true" />
+                      </a>
                     </li>
-    
-                    <li className="dropdown notification-list">
-                        <a className="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i className="fi-speech-bubble noti-icon"></i>
-                            <span className="badge badge-dark badge-pill noti-icon-badge">6</span>
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right dropdown-lg">
-    
-                            
-                            <div className="dropdown-item noti-title">
-                                <h6 className="m-0"><span className="float-right"><a href="" className="text-dark"><small>Clear All</small></a> </span>Chat</h6>
-                            </div>
-    
-                            <div className="slimscroll" style={{maxHeight: "230px"}}>
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon"><img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle" alt="" /> </div>
-                                    <p className="notify-details">Cristina Pride</p>
-                                    <p className="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon"><img src="assets/images/users/avatar-3.jpg" className="img-fluid rounded-circle" alt="" /> </div>
-                                    <p className="notify-details">Sam Garret</p>
-                                    <p className="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon"><img src="assets/images/users/avatar-4.jpg" className="img-fluid rounded-circle" alt="" /> </div>
-                                    <p className="notify-details">Karen Robinson</p>
-                                    <p className="text-muted font-13 mb-0 user-msg">Wow that's great</p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon"><img src="assets/images/users/avatar-5.jpg" className="img-fluid rounded-circle" alt="" /> </div>
-                                    <p className="notify-details">Sherry Marshall</p>
-                                    <p className="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
-                                </a>
-    
-                                
-                                <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                    <div className="notify-icon"><img src="assets/images/users/avatar-6.jpg" className="img-fluid rounded-circle" alt="" /> </div>
-                                    <p className="notify-details">Shawn Millard</p>
-                                    <p className="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
-                                </a>
-                            </div>
-    
-                            <a href="javascript:void(0);" className="dropdown-item text-center text-primary notify-item notify-all">
-                                View all <i className="fi-arrow-right"></i>
-                            </a>
-    
-                        </div>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-pinterest" aria-hidden="true" />
+                      </a>
                     </li>
-    
-                    <li className="dropdown notification-list">
-                        <a className="nav-link dropdown-toggle waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user" className="rounded-circle"/> <span className="ml-1 pro-user-name">Maxine K <i className="mdi mdi-chevron-down"></i> </span>
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            
-                            <div className="dropdown-item noti-title">
-                                <h6 className="text-overflow m-0">Welcome !</h6>
-                            </div>
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                <i className="fi-head"></i> <span>My Account</span>
-                            </a>
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                <i className="fi-cog"></i> <span>Settings</span>
-                            </a>
-    
-                            
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                <i className="fi-help"></i> <span>Support</span>
-                            </a>
-    
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
-                                <i className="fi-lock"></i> <span>Lock Screen</span>
-                            </a>
-    
-                            <a href="javascript:void(0);" onClick={this.logoutHandler} className="dropdown-item notify-item">
-                                <i className="fi-power"></i> <span>Logout</span>
-                            </a>
-    
-                        </div>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-dribbble" aria-hidden="true" />
+                      </a>
                     </li>
-                </ul>
-            </div>
-            );
-        }
-
-         
-        if(this.state.isloggedIn){
-             customNavbar=(
-                <div className="navbar-custom">
-                <div className="container-fluid">
-                    <div id="navigation">
-                        <ul className="navigation-menu">
-    
-                            <li className="has-submenu">
-                                <a href="index.html"><i className="icon-speedometer"></i>Dashboard</a>
-                            </li>
-    
-                            <li className="has-submenu">
-                                <a href="#"><i className="icon-layers"></i>Menu Management</a>
-                                <ul className="submenu">
-                                <li><Link to="/viewmenu" className="dropdown-item">
-                            View Menu
-                            </Link>
-                            </li>
-                            <li><Link to="/addmenuitem" className="dropdown-item">
-                            Add Menu Item
-                            </Link>
-                            </li>
-                            </ul>
-                                
-                            </li>
-
-                            <li className="has-submenu">
-                        <a className=" dropdown-toggle nav-user" data-toggle="dropdown" href="#" 
-                           aria-haspopup="false" aria-expanded="false">
-                             User Management  
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right">
-    
-                            
-                            <NavLink to="/createuser" className="dropdown-item">
-                            Create User
-                            </NavLink>
-                            <NavLink to="/userlist" className="dropdown-item">
-                            User List
-                            </NavLink>
-    
-                        </div>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-google" aria-hidden="true" />
+                      </a>
                     </li>
-                            <li className="has-submenu">
-                        <a className=" dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                             Restaurant Management  
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right">
-                            
-                            <NavLink to="createrestaurant" className="dropdown-item">
-                                Create Restaurant
-                            </NavLink>
-                            <NavLink to="createrestaurantchain"  className="dropdown-item">
-                                Create Chain For Restaurant
-                            </NavLink>
-
-    
-                        </div>
-                    </li>
-                    <li className="has-submenu">
-                        <a className=" dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                             Menu
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right">
-                            
-                            <NavLink to="AddMenu" className="dropdown-item">
-                                Add Menu
-                            </NavLink>
-                            
-                            <NavLink to="EditMenu"  className="dropdown-item">
-                                Edit Menu
-                            </NavLink>
-                            <NavLink to="ViewMenu"  className="dropdown-item">
-                                View Menu
-                            </NavLink>
-    
-                        </div>
-                    </li>
-                        </ul>
-                    </div>
+                  </ul>
                 </div>
-            </div>
-             )
-        }
-        
-        return (
-         
-            <header id="topnav">
-            <div className="topbar-main">
-                <div className="container-fluid">
-
-                    <div className="logo">
-                         <a href="index.html" className="logo">
-                            <span className="logo-small"><i className="mdi mdi-radar"></i></span>
-                            <span className="logo-large"><i className="mdi mdi-radar"></i> Restaurant</span>
-                        </a>
-                       
-                        {/* <a href="index.html" className="logo">
-                            <img src="assets/images/logo_sm.png" alt="" height="26" className="logo-small">
-                            <img src="assets/images/logo.png" alt="" height="22" className="logo-large">
-                        </a> */}
-
-                    </div>
-                   
-
-
-                 {extraMenu}
-                   
-
-                    <div className="clearfix"></div>
-
+                <div className="language-menu">
+                  <a href="#" className="current-lang">
+                    English{" "}
+                    <i className="fa fa-caret-down" aria-hidden="true" />
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-angle-right" aria-hidden="true" />
+                        Turkish
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-angle-right" aria-hidden="true" />
+                        Nederlands
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-angle-right" aria-hidden="true" />
+                        Français
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-angle-right" aria-hidden="true" />
+                        Deutsch
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-angle-right" aria-hidden="true" />
+                        Italiano
+                      </a>
+                    </li>
+                  </ul>
                 </div>
+              </div>
             </div>
-           
-            {customNavbar}
-     
-        </header>
-
-                   
-        );
+          </div>
+        </div>
+      );
     }
+
+    if (this.state.isloggedIn) {
+      customNavbar = (
+        <ul>
+          <li className="">
+            <a href="index.html">Dashboard</a>
+          </li>
+          <li className="has-child">
+            <a href="#">
+              <i className="icon-layers" />Menu Management
+            </a>
+            <ul className="drop-nav">
+              <li>
+                <Link to="/viewmenu">View Menu</Link>
+              </li>
+              <li>
+                <Link to="/addmenuitem">Add Menu Item</Link>
+              </li>
+            </ul>
+            <span className="drop-nav-arrow">
+              <i className="fa fa-angle-down" />
+            </span>
+          </li>
+          <li className="has-child">
+            <a href="#">User Management</a>
+            <ul className="drop-nav">
+            <li>
+              <NavLink to="/createuser">Create User</NavLink>
+              </li>
+              <li>
+              <NavLink to="/userlist">User List</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="has-child">
+            <a href="#">Restaurant Management</a>
+            <ul className="drop-nav">
+            <li>
+              <NavLink to="createrestaurant">Create Restaurant</NavLink>
+              </li>
+              <li><NavLink to="createrestaurantchain">
+                Create Chain For Restaurant
+              </NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="has-child">
+            <a href="#">Menu</a>
+            <ul className="drop-nav">
+            <li>
+
+              <NavLink to="AddMenu">Add Menu</NavLink>
+              </li>
+              <li>
+              <NavLink to="EditMenu">Edit Menu</NavLink>
+              </li>
+              <li>
+              <NavLink to="ViewMenu">View Menu</NavLink>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      );
+    }
+
+    return (
+      <header>
+        <div className="header-part header-reduce sticky">
+          {extraMenu}
+
+          <div className="header-bottom">
+            <div className="container">
+              <div className="book-table header-collect book-sm">
+                <a href="#" data-toggle="modal" data-target="#booktable">
+                  <img src="images/icon-table.png" alt="" />
+                  Book a Table
+                </a>
+              </div>
+              <div className="menu-main">{customNavbar}</div>
+              <div className="logo">
+                <a href="index.html">
+                  <img src="images/logo.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 }
 
 export default Header;
