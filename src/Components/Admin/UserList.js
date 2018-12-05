@@ -1,39 +1,57 @@
 import React from "react";
+import {removeUser} from "./Helper";
 
+// Router
+import {NavLink,Redirect } from 'react-router-dom';
 
-const singleUser =(
-    <table className="table table-striped food-menu">
+const removeUserHandler=(id)=>{
+    removeUser(id);
+}
+
+const UserList = (props) =>  {
+    return(
+        <main>
+        <div className="main-part">
+        <section className="home-icon bg-skeen">
+        <div className="container">
+        <div className="row">
+        <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
+       
+       <div className="card-container">
+        <table className="table table-striped food-menu">
     <tr>
-        <th>User Id</th>
+        <th>User Name</th>
         <th>Details</th>
         <th>Access</th>
     </tr>
     <tbody>
-        <tr>
-            <td>1232344</td>
-            <td>yogesh,Restaurant admin</td>
+        
+            { props.users && props.users.length >0 ?
+                props.users.map(item=>{
+               
+                return ( <tr>
+                <td>{item.name}</td>
+            <td>{item.role}</td>
             <td>
-            <span><a href="#" className="btn btn-success">Edit</a></span> &nbsp;
-            <span><a href="#" className="btn btn-danger">Delete</a></span>
-            </td>
-        </tr>
+            <span><NavLink className="btn btn-success" to="/createuser">Edit</NavLink></span> &nbsp;
+            <span><a href="#" className="btn btn-danger" onClick={removeUserHandler(item.id)}>Delete</a></span>
+            </td></tr>)
+            ;
+            })
+            : <span>No User Currently Present</span>}
+            
     </tbody>
 </table>
-)
-const userList = () =>  {
-    return(
-        <div className="wrapper">
-        <div className="card-container">
-        <div className="card">
-        <div className="card-header">All Registered List</div>
-      
-            {singleUser}
-       </div>
-       </div>
-       </div>
+</div>
+        </div>
+        </div>
+        </div>
+            </section>
+        </div>
+    </main>
     )
 
     }
 
 
-export default userList;
+export default UserList;

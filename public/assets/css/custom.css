@@ -7,3 +7,250 @@
     -o-border-radius: 17px;
     border-radius: 17px;
 }
+
+
+.login-container {
+    padding: 1px 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("../images/cafe-bg.jpg");
+    background-size: cover;
+    color: #fff;
+    font-family: "Comfortaa", "Helvetica", sans-serif;
+  }
+  
+  .login-container .login {
+    max-width: 280px;
+    min-height: 500px;
+    margin: 30px auto;
+    background-color: rgba(10,10,10,.68);
+  }
+  
+  .login-container .login-icon-field {
+    height: 250px;
+    width: 100%;
+    padding-top:50px;
+    /*background-color: red;*/
+  }
+
+  .login-container .login-icon-field img{
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .login-container .login-icon {
+    margin: 50px 65px;
+  }
+  
+  .login-container .login-form {
+    padding: 8px 20px 20px;
+    height: 120px;
+    width: 100%;
+    /*background-color: green;*/
+  }
+  
+  .login-container .row {
+    display: block;
+  }
+  
+  .login-container .username-row {
+    position: relative;
+    height: 40px;
+    /*background-color: pink;*/
+   
+    margin-bottom: 10px;
+  }
+  
+  .login-container .password-row {
+    position: relative;
+    height: 40px;
+   /* background-color: grey;*/
+  
+  }
+  
+  .login-container .password-icon,
+  .login-container .user-icon {
+    margin: 5px;
+  }
+  
+  .login-container .password-icon .key-path,
+  .login-container .user-icon .user-path{
+    fill: rgba(10,10,10,0);
+    stroke: #fff;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    -webkit-animation: dash 3s .3s linear forwards;
+    animation: dash 3s .3s linear forwards;
+  }
+  
+  .login-container .user-icon .user-path {
+    -webkit-animation: dash 3s .8s linear forwards;
+    animation: dash 3s .8s linear forwards;
+  }
+  
+  .login-container input {
+    position: absolute;
+    width: 195px;
+    height: 30px;
+    margin: 5px 0;
+    background: transparent;
+    border: none;
+    color:#FFF;
+  }
+  
+  .login-container input:focus,
+  .login-container button:focus {
+    outline: none;
+  }
+  
+  .login-container input::-webkit-input-placeholder {
+    color: rgba(255,255,255,.4);
+  }
+  
+  .login-container input::-moz-placeholder {
+    color: rgba(255,255,255,.4);
+  }
+  
+  .login-container .call-to-action {
+    margin: 22px 0;
+    height: 130px;
+    width: 100%;
+    /*background-color: blue;*/
+  }
+  
+  .login-container button {
+    display: block;
+    width: 240px;
+    height: 40px;
+    padding: 0;
+    margin: 10px 20px 10px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #22c08a;
+    border: none;
+    border-radius: 20px;
+    transition: background-color .10s ease-in-out;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+  
+  .login-container button:hover {
+    background-color: #26d69a;
+  }
+  
+  .login-container button:active {
+    background-color: #1eaa7a;
+  }
+  
+  .login-container p {
+    display: inline-block;
+    width: 200px;
+    margin: 0 40px;
+    font-size: .8rem;
+    color: rgba(255,255,255,.4);
+    /*background-color: yellow;*/
+  }
+  
+  .login-container p a {
+    color: #fff;
+  }
+  
+  .login-container label,
+  .login-container p a:hover {
+    -webkit-cursor: pointer;
+    cursor: pointer;
+    color:#FFF;
+    
+  }
+  
+  @-webkit-keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .card.order-card{
+      background: transparent;
+      border:0px;
+      margin-bottom: 15px;
+  }
+
+  .card.order-card .card-header{
+    background: transparent;
+    padding-left:0px;
+    padding-bottom: 5px;
+    padding-right:0px;
+    border-bottom:0px;
+}
+.card.order-card .card-body{
+    background: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius:5px;
+    padding:0px;
+    box-shadow: 0px 2px 8px 0px #8080802e;
+}
+table.food-table tr:nth-child(even){
+    background:#f9f9f9;
+}
+
+
+table.food-table tr td{
+    border:0px;
+    padding: 20px 15px;
+    font-size:15px;
+    color: #7a7a8a;
+}
+table.food-table tr td:nth-child(2){
+    font-weight: 500;
+}
+table.food-table tr td:nth-child(1){
+   width:160px;
+}
+
+.veg-food-label{
+    width: 90px;
+    display: block;
+    color: #28a745;
+    text-align: center;
+    background: #bcf0c8;
+    font-size: 15px;
+    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
+.nonveg-food-label{
+    width: 90px;
+    display: block;
+    color: #dc3545;
+    text-align: center;
+    background: #ffd2d6;
+    font-size: 15px;
+    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
+
+.pending-status-label{
+    width: 120px;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    background: #e4b95b;
+    font-size: 15px;
+    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 4px;
+}

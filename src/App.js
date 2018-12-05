@@ -4,7 +4,6 @@ import $ from 'jquery';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/scss/bootstrap.scss';
-
 import Header from './base/header/Header';
 import Footer from './base/footer/Footer';
 import MainBody from './base/mainBody/MainBody';
@@ -18,40 +17,65 @@ import CreateUserForm from "./Components/Admin/CreateUserForm";
 import UserList from "./Components/Admin/UserList";
 import CreateRestaurantForm from "./Components/Admin/CreateRestaurantForm";
 import CreateRestaurantChain from "./Components/Admin/CreateRestaurantChain";
-import viewMenu from "./Components/menu/viewMenu/ViewMenu";
+import  UserContainer  from './Container/Admin/UserContainer';
+import ChainRestaurantConainer from './Container/Admin/ChainRestaurantConainer';
+import UserListContainer from './Container/Admin/UserListContainer';
+import AddMenuContainer from './Container/Menu/AddMenuContainer';
+import RestaurantList from "./Components/Admin/RestaurantList";
+import RestaurantChainListContainer from "./Container/Admin/RestaurantChainListContainter";
 
 // toaster
 import { ToastContainer, toast } from 'react-toastify';
 
 // Router
-import {BrowserRouter as Router, Route, Link, NavLink,Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Route,Switch, Link, NavLink,Redirect } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 
 class App extends Component {
+state={
+  role:""
+}
+  componentDidMount(){
+    //
+  }
   render() {
     return (
       <Fragment>
+      
            <Router>
-            <div className="wrapper">
-            <Header  ></Header>
-            <MainBody  ></MainBody>
-            <Route path="/createuser" component={CreateUserForm} exact />
-            <Route path="/createuser" component={CreateUserForm} exact />
-            <Route path="/userlist" component={UserList} exact />
+           <Fragment>
+          
+          
+            {/* <Header  ></Header>
+            <MainBody  ></MainBody> */}
+            <Route path="/login" component={login} > </Route>
+  
+            <Route  path="/createuser" component={UserContainer} exact />
+            <Route path="/userlist" component={UserListContainer} exact />
+
             <Route path="/createrestaurant" component={CreateRestaurantForm} />
-            <Route path="/createrestaurantchain" component={CreateRestaurantChain} />
-            <Route path="/AddMenu" component={AddMenuItem} />
+            <Route path="/restaurantlist" component={RestaurantList} />
+
+            <Route path="/createrestaurantchain/:id" component={ChainRestaurantConainer} />
+            <Route path="/createrestaurantchain" component={ChainRestaurantConainer} />
+            <Route path="/restaurantchainlist" component={RestaurantChainListContainer} />
+
+            <Route path="/AddMenu" component={AddMenuContainer} />
             <Route path="/EditMenu" component={EditMenu} />
-            <Route path="/login" component={login} />
+            <Route path="/kitchen-veg" component={KitchenVeg} />
            
-            
+           
+           
             <Route path="/ViewMenu" component={ViewMenu} />
+          
             <Footer></Footer>
             <ToastContainer />
-            </div>
+            </Fragment>
+           
         </Router>
-        
+       
         </Fragment>
     );
   }

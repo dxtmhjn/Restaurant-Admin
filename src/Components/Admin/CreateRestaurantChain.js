@@ -2,7 +2,7 @@ import React from "react";
 
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
-import {addresturant} from './Helper';
+import {addChainresturant} from './Helper';
 const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
 const showResults = async values=>{
     await sleep(500)
@@ -12,7 +12,7 @@ const showResults = async values=>{
 const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
-const createrestaurantchain=(props)=>(
+const Createrestaurantchain=(props)=>(
     <main>
     <div className="main-part">
     <section className="home-icon bg-skeen">
@@ -21,8 +21,7 @@ const createrestaurantchain=(props)=>(
     <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
    
    <div className="card-container">
-  
-    <Form onSubmit = {addresturant} 
+    <Form onSubmit = {addChainresturant} 
     decorators={[focusOnError]}
     subscription={{
          submitting: true,
@@ -32,6 +31,7 @@ const createrestaurantchain=(props)=>(
 
         <Field 
             name="restaurantname"  placeholder="Restaurant Name" validate={required}
+                  
                 subscription={{
                 value: true,
                 active: true,
@@ -44,7 +44,10 @@ const createrestaurantchain=(props)=>(
                  {({input, meta, placeholder}) =>(
                 <div className={meta.active ? "active" : ""}>
                     <label >Restaurant Name</label>
-                    <input type="text"{...input} placeholder={placeholder} className="form-control" />
+                    <input  type='text'
+                    value={props.editData && props.editData.length >0 ?props.editData[0].restaurantname :"estdgs"}
+           
+                       {...input} placeholder={placeholder} className="form-control" />
                     {meta.error && meta.touched && <span>{meta.error}</span> }
                 </div> 
                )}
@@ -94,7 +97,8 @@ const createrestaurantchain=(props)=>(
      
        
         <Field 
-            name="type"  placeholder="Restaurant " validate={required}
+            name="type"  placeholder="Chain" 
+            
             subscription={{
                 value: true,
                 active: true,
@@ -107,13 +111,13 @@ const createrestaurantchain=(props)=>(
                  {({input, meta, placeholder}) =>(
                 <div>
                     <label >Type</label>
-                    <input type="text" {...input} placeholder={placeholder} className="form-control" readOnly />
+                    <input   value="chain" defaultValue="chain" {...input} placeholder={placeholder} className="form-control" readOnly />
                     {meta.error && meta.touched && <span>{meta.error}</span> }
                 </div> 
                )}
         </Field> 
         <Field 
-            name="parent_id"  placeholder="Parent Id " validate={required}
+            name="parent_id"  placeholder="Restaurant" validate={required}
             subscription={{
                 value: true,
                 active: true,
@@ -127,10 +131,19 @@ const createrestaurantchain=(props)=>(
                 <div>
 
 
-                    <label >Parent Id</label>
-                    <select   {...input} placeholder={placeholder}  >
-                    <option value="p1">Parent 1</option>
-                    <option value="p2">Parent 2</option>
+                    <label >Restaurant</label>
+                    <select  {...input} placeholder={placeholder} className="form-control" >
+                    <option value="0">Choose Restaurant</option>
+                    { props.restaurantList && props.restaurantList.length >0
+                     ? 
+                    
+                     props.restaurantList.map(item => {
+                            return (
+                                    <option
+                                      key={item._id}
+                                      value={item._id}>{item.restaurantname}</option>
+                                    );
+                        }) :  <option value="No Restaurant">No Restaurant</option>}
                      </select>
                     {meta.error && meta.touched && <span>{meta.error}</span> }
                 </div> 
@@ -151,4 +164,4 @@ const createrestaurantchain=(props)=>(
     </main>
 )
 
-export default createrestaurantchain;
+export default Createrestaurantchain;

@@ -21,7 +21,6 @@ const createRestaurant=(props)=>(
     <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
    
    <div className="card-container">
-  
         <Form onSubmit = {addresturant} 
         decorators={[focusOnError]}
         subscription={{
@@ -96,7 +95,7 @@ const createRestaurant=(props)=>(
            
 
             <Field 
-                name="type"  type="text" placeholder="Restaurant " validate={required}
+                name="type"  placeholder="Restaurant " 
                 subscription={{
                     value: true,
                     active: true,
@@ -111,7 +110,7 @@ const createRestaurant=(props)=>(
 
 
                         <label >Type</label>
-                        <input type="text" {...input} placeholder={placeholder} className="form-control" readOnly/>
+                        <input  defaultValue="restaurant" {...input} placeholder={placeholder} className="form-control" readOnly/>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}

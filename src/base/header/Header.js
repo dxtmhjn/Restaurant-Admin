@@ -2,33 +2,55 @@ import React, { Component } from "react";
 
 // Router
 import { NavLink, Redirect, Link } from "react-router-dom";
-
+import Cookies from 'js-cookie';
+import {RolesManager} from '../../constants/constant';
 class Header extends Component {
-  state = {
-    isloggedIn: true
-  };
-
-  componentDidMount() {
-    var usertoken = localStorage.getItem("usertoken");
-    if (usertoken) {
-      this.setState({ isloggedIn: true });
+    state={
+        isloggedIn:true,
+        username :"Guest",
+        role :"",
+        menuitem :[]
     }
-  }
+   
+    componentDidMount(){
+        var usertoken = localStorage.getItem("usertoken");
+        this.setState({role: Cookies.get('userrole')});
+        if(usertoken){
+            this.setState({ isloggedIn:true});
+        }
+    }
+  
 
-  logoutHandler = () => {
-    this.setState({ isloggedIn: false }, () => {
-      localStorage.removeItem("usertoken");
-    });
-  };
+    getMenuItemByRole(role){
+      this.setState({menuitem : RolesManager['role']});
+    }
+    componentDidUpdate(prevProps, prevState){
+        // if ( prevProps.usertoken && 
+        //     this.props.usertoken &&
+           
+           
+        //    (  prevProps.usertoken.data === undefined && this.props.usertoken.data.name)) {
+        //     this.setState({ isloggedIn:true ,username :this.props.usertoken.data.name});
+        //   }
+    }
+    
+    logoutHandler =()=>{
+       this.setState({ isloggedIn:false},()=>{
+        localStorage.removeItem("usertoken");
+       });
+     
+      
+    }
   render() {
     const islogged = this.props.isLogged;
-    let displayHeader;
-    let customNavbar;
-    let extraMenu;
-    if (!this.state.isloggedIn) {
-      return <Redirect to="/login" push={true} />;
-    }
-    if (this.state.isloggedIn) {
+        const user =this.state.username;
+        let displayHeader;
+        let customNavbar;
+        let extraMenu ;
+        if (!this.state.isloggedIn) {
+            return <Redirect to="/login" push={true} />
+          }
+    
       extraMenu = (
         <div className="header-top">
           <div className="container">
@@ -119,30 +141,15 @@ class Header extends Component {
           </div>
         </div>
       );
-    }
+    
 
-    if (this.state.isloggedIn) {
+    
       customNavbar = (
         <ul>
           <li className="">
             <a href="index.html">Dashboard</a>
           </li>
-          <li className="has-child">
-            <a href="#">
-              <i className="icon-layers" />Menu Management
-            </a>
-            <ul className="drop-nav">
-              <li>
-                <Link to="/viewmenu">View Menu</Link>
-              </li>
-              <li>
-                <Link to="/addmenuitem">Add Menu Item</Link>
-              </li>
-            </ul>
-            <span className="drop-nav-arrow">
-              <i className="fa fa-angle-down" />
-            </span>
-          </li>
+    
           <li className="has-child">
             <a href="#">User Management</a>
             <ul className="drop-nav">
@@ -160,14 +167,21 @@ class Header extends Component {
             <li>
               <NavLink to="createrestaurant">Create Restaurant</NavLink>
               </li>
+              <li>
+              <NavLink to="restaurantlist">Restaurant List</NavLink>
+              </li>
               <li><NavLink to="createrestaurantchain">
                 Create Chain For Restaurant
+              </NavLink>
+              </li>
+              <li><NavLink to="restaurantchainlist">
+                Restaurant Chain List
               </NavLink>
               </li>
             </ul>
           </li>
           <li className="has-child">
-            <a href="#">Menu</a>
+            <a href="#">Menu Management</a>
             <ul className="drop-nav">
             <li>
 
@@ -183,7 +197,7 @@ class Header extends Component {
           </li>
         </ul>
       );
-    }
+
 
     return (
       <header>
