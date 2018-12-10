@@ -10,7 +10,7 @@ import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
 import  AddMenuItem from './Components/menu/addMenuItem/AddMenuItem';
-import login from './Components/Login/Login';
+import Login from './Components/Login/Login';
 import  EditMenu from './Components/menu/EditMenu/EditMenu';
 import  ViewMenu from './Components/menu/viewMenu/ViewMenu';
 import CreateUserForm from "./Components/Admin/CreateUserForm";
@@ -47,11 +47,14 @@ state={
            <Router>
            <Fragment>
           
-          
+           <Switch>
+        
+            <Route path="/login" component={Login} /> 
+  
             {/* <Header  ></Header>
             <MainBody  ></MainBody> */}
-            <Route path="/login" component={login} > </Route>
-  
+    
+          <Layout>
             <Route  path="/createuser" component={UserContainer} exact />
             <Route path="/userlist" component={UserListContainer} exact />
 
@@ -69,11 +72,12 @@ state={
            
            
             <Route path="/ViewMenu" component={ViewMenu} />
-          
-            <Footer></Footer>
+            </Layout>
+            </Switch>
+            {/* <Footer></Footer> */}
             <ToastContainer />
             </Fragment>
-           
+         
         </Router>
        
         </Fragment>
@@ -82,3 +86,10 @@ state={
 }
 
 export default App;
+const Layout = ({ children }) => (
+  <div>
+    <Header />
+      {children}
+    <Footer />
+  </div>
+);

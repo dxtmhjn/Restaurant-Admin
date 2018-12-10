@@ -54,7 +54,7 @@ class Login extends React.Component {
               <div className="login-form">
                 <div className="username-row row">
                   <label for="username_input">
-                    
+                    User ID
                   </label>
                   <Field
                     name="id"
@@ -70,8 +70,8 @@ class Login extends React.Component {
                   >
                     {({ input, meta, placeholder }) => (
                       <div className={meta.active ? "active" : ""}>
-                        <label>User Id</label>
-                        <input
+                      
+                        <input type="text"
                           className="username-input"
                           {...input}
                           placeholder={placeholder}
@@ -105,7 +105,7 @@ class Login extends React.Component {
                    )} */}
                     {({ input, meta, placeholder }) => (
                       <div>
-                        <label>Password</label>
+                    
                         <input
                           className="password-input"
                           type="password"
