@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router ,Switch,Route} from 'react-router-dom'
 // Redux Store
 import { Provider } from 'react-redux'
 import { configureStore } from './store'
+import Login from './Components/Login/Login';
 const store = configureStore()
 ReactDOM.render( <Provider store={store}>
     <Router>
-      <App />
+
+      <App/>
+     
     </Router>
   </Provider>, document.getElementById('root'));
 

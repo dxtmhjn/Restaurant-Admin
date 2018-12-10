@@ -203,7 +203,7 @@ tr th{padding:5px 10px;border:1px solid #797979;}
 section:after,
 section:before{clear:both;content:"";display:table;}
 section{clear:both;padding:60px 0;position:relative;}
-section.home-icon{padding:80px 0 140px;}
+section.home-icon{padding:50px 0 140px;}
 ::-webkit-input-placeholder{opacity:1 !important;}
 :-moz-placeholder{opacity:1 !important;}
 ::-moz-placeholder{opacity:1 !important;}
