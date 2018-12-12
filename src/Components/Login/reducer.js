@@ -13,13 +13,14 @@ export function AuthenticationReducer(state = initialState, action) {
       
       return {
         ...state,
-        isloading :action.isloading
+        isloading :true
 
       }
       case types.CHECK_CREDENTIALS_SUCCESS:
       Cookies.set('userrole', (action.payload && action.payload.data && action.payload.data.role?action.payload.data.role :"NOROLE"), { expires: 1 });
       return {
         ...state,
+        isloading :false,
         usertoken: action.payload
       }
 
