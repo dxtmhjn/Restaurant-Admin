@@ -4,6 +4,7 @@ import React, { Component,Fragment } from "react";
 import { NavLink, Redirect, Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import {RolesManager} from '../../constants/constant';
+
 class Navigation extends Component {
     state={
         isloggedIn:true,
@@ -65,7 +66,7 @@ class Navigation extends Component {
           <li>
                 <a href="index.html">
                     <i className="fi-air-play"></i>
-                    <span className="badge badge-danger badge-pill pull-right">7</span> 
+                    
                     <span> Dashboard </span>
                 </a>
             </li>
@@ -86,7 +87,7 @@ class Navigation extends Component {
 
             <li>
                 <a href="javascript: void(0);"><i className="fi-layers"></i> 
-                <span> Restaurant Management </span> <span className="menu-arrow"></span></a>
+                <span> Restaurant  </span> <span className="menu-arrow"></span></a>
                 <ul className="nav-second-level" aria-expanded="false">
                 <li>
               <NavLink to="createrestaurant">Create Restaurant</NavLink>
@@ -108,7 +109,7 @@ class Navigation extends Component {
 
           <li>
                 <a href="javascript: void(0);"><i className="fi-layers"></i> 
-                <span> Menu Management </span> <span className="menu-arrow"></span></a>
+                <span> Menu  </span> <span className="menu-arrow"></span></a>
                 <ul className="nav-second-level" aria-expanded="false">
                 <li>
 
@@ -139,11 +140,9 @@ class Navigation extends Component {
     <div className="topbar-left">
         <a href="index.html" className="logo">
             <span>
-                <img src="assets/images/logo.png" alt="" height="22"/>
+             LABOOM
             </span>
-            <i>
-                <img src="assets/images/logo_sm.png" alt="" height="28"/>
-            </i>
+            
         </a>
     </div>
 

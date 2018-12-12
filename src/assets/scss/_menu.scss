@@ -17,18 +17,18 @@
 
 .nav-second-level li a, .nav-thrid-level li a {
   padding: 8px 20px 8px 10px;
-  color: $white;
+  color: #95c3ff;
   display: block;
   position: relative;
 
   &:focus {
-    background-color: $bg-leftbar;
-    color: $dark;
+   
+    color: $white;
   }
 
   &:hover {
-    background-color: $bg-leftbar;
-    color: $dark;
+ 
+    color: $white;
   }
 }
 
@@ -133,9 +133,10 @@
   padding-bottom: 30px;
   position: fixed;
   top: 0;
+  padding-top: 90px;
 
   .topbar-left {
-    background-color: $bg-leftbar;
+    // background-color: $bg-leftbar;
     height: 70px;
     padding-left: 25px;
     position: fixed;
@@ -186,7 +187,7 @@
 
 
 #sidebar-menu > ul > li > a {
-  color: rgba($dark,0.8);
+  color: #95c3ff;
   display: block;
   padding: 12px 20px;
   margin: 2px 0;
@@ -194,7 +195,7 @@
   position: relative;
 
   &:hover,&:focus,&:active {
-    color: $custom;
+    color: $white;
     text-decoration: none;
   }
 }

@@ -8,6 +8,7 @@ import { BrowserRouter as Router ,Switch,Route} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from './store'
 import Login from './Components/Login/Login';
+
 const store = configureStore()
 ReactDOM.render( <Provider store={store}>
     <Router>
