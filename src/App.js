@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/scss/bootstrap.scss';
 import Header from './base/header/Header';
 import Footer from './base/footer/Footer';
+import Navigation from './base/navigation/Navigation';
 import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
@@ -23,16 +24,14 @@ import UserListContainer from './Container/Admin/UserListContainer';
 import AddMenuContainer from './Container/Menu/AddMenuContainer';
 import RestaurantList from "./Components/Admin/RestaurantList";
 import RestaurantChainListContainer from "./Container/Admin/RestaurantChainListContainter";
-import { connect ,} from 'react-redux'
-import { withRouter } from 'react-router-dom'
+
 // toaster
 import { ToastContainer, toast } from 'react-toastify';
 
 // Router
-
 import {BrowserRouter as Router, Route,Switch, Link, NavLink,Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import Loader from 'react-loader-advanced';
+
 
 
 class App extends Component {
@@ -50,10 +49,7 @@ state={
            <Fragment>
           
            <Switch>
-           <Loader  show={this.props.isloading} message={'loading'}>
-           <Route exact path="/" render={() => (
-    <Redirect to="/login"/>
-)}/>
+        
             <Route path="/login" component={Login} /> 
   
             {/* <Header  ></Header>
@@ -78,7 +74,6 @@ state={
            
             <Route path="/ViewMenu" component={ViewMenu} />
             </Layout>
-            </Loader>
             </Switch>
             {/* <Footer></Footer> */}
             <ToastContainer />
@@ -90,22 +85,17 @@ state={
     );
   }
 }
-function mapStateToProps(state, ownProps) {
-  return {
-    isloading :state.AuthenticationReducer.isloading,
-    usertoken: state.AuthenticationReducer.usertoken,
-    restaurantList :state.AuthenticationReducer.restaurant
-  }
-}
 
-
-
-export default withRouter(connect(mapStateToProps, null)(App));
-//export default App;
+export default App;
 const Layout = ({ children }) => (
-  <div>
-    <Header />
+  <div id="wrapper">
+    <Navigation />
+    <div className="content-page">
+
+            <Header></Header>
+            
       {children}
-    <Footer />
+    {/* <Footer /> */}
+    </div>
   </div>
 );

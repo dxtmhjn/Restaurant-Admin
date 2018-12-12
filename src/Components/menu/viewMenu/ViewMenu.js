@@ -3,14 +3,9 @@ import React,{Component} from 'react';
 class ViewMenu extends Component{
     render(){
         return (
-          <main>
-          <div className="main-part">
-          <section className="home-icon bg-skeen">
-          <div className="container">
-          <div className="row">
-          <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInDown animated" >
-         
-         <div className="card-container">
+          <div className="content">
+                <div className="container-fluid">
+         <div className=" card m-b-30 card-body card-container">
            <table className="table table-striped food-menu">
   <thead>
     <tr>
@@ -48,10 +43,6 @@ class ViewMenu extends Component{
 </div>
         </div>
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
         );
     }
 }

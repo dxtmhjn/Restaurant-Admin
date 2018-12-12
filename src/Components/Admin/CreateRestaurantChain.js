@@ -13,14 +13,9 @@ const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
 const Createrestaurantchain=(props)=>(
-    <main>
-    <div className="main-part">
-    <section className="home-icon bg-skeen">
-    <div className="container">
-    <div className="row">
-    <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
-   
-   <div className="card-container">
+    <div className="content">
+    <div className="container-fluid">
+   <div className=" card m-b-30 card-body card-container">
     <Form onSubmit = {addChainresturant} 
     decorators={[focusOnError]}
     subscription={{
@@ -28,7 +23,8 @@ const Createrestaurantchain=(props)=>(
     }}>
         {({handleSubmit, values, submitting })=>
         <form onSubmit={handleSubmit}>
-
+<div className="row">
+<div className="col-lg-12 form-group">
         <Field 
             name="restaurantname"  placeholder="Restaurant Name" validate={required}
                   
@@ -52,6 +48,8 @@ const Createrestaurantchain=(props)=>(
                 </div> 
                )}
         </Field> 
+        </div>
+        <div className="col-lg-12 form-group">
         <Field 
             name="address"  placeholder="Address" validate={required}
             subscription={{
@@ -68,11 +66,13 @@ const Createrestaurantchain=(props)=>(
 
 
                     <label >Address</label>
-                    <input {...input} placeholder={placeholder} className="form-control" />
+                    <input type="text" {...input} placeholder={placeholder} className="form-control" />
                     {meta.error && meta.touched && <span>{meta.error}</span> }
                 </div> 
                )}
         </Field> 
+        </div>
+        <div className="col-lg-12 form-group">
         <Field 
             name="description"  placeholder="description" validate={required}
             subscription={{
@@ -89,12 +89,13 @@ const Createrestaurantchain=(props)=>(
 
 
                     <label >Description</label>
-                    <input {...input} placeholder={placeholder} className="form-control" />
+                    <input type="text" {...input} placeholder={placeholder} className="form-control" />
                     {meta.error && meta.touched && <span>{meta.error}</span> }
                 </div> 
                )}
         </Field> 
-     
+     </div>
+     <div className="col-lg-12 form-group">
        
         <Field 
             name="type"  placeholder="Chain" 
@@ -116,6 +117,8 @@ const Createrestaurantchain=(props)=>(
                 </div> 
                )}
         </Field> 
+        </div>
+        <div className="col-lg-12 form-group">
         <Field 
             name="parent_id"  placeholder="Restaurant" validate={required}
             subscription={{
@@ -149,19 +152,16 @@ const Createrestaurantchain=(props)=>(
                 </div> 
                )}
         </Field> 
-      
-                    <br/>
-        <button type="submit" disabled={submitting} className="btn btn-primary" >Submit</button>
-
+      </div>
+      <div className="col-lg-12 form-group text-center">
+        <button type="submit" disabled={submitting} className="btn btn-large btn-warning" >Submit</button>
+    </div>
+    </div>
         </form>}
     </Form>
     </div>
         </div>
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
 )
 
 export default Createrestaurantchain;

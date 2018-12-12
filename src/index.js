@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import './assets/scss/style.scss';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router ,Switch,Route} from 'react-router-dom'
 // Redux Store

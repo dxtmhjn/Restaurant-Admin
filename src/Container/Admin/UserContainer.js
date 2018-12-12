@@ -4,18 +4,11 @@ import { withRouter } from 'react-router-dom'
 import CreateUser from '../../Components/Admin/CreateUserForm';
 import {getChainresturant} from "../../Components/Admin/Helper";
 import Cookies from'js-cookie';
-import {fetchRestaurants} from '../../Components/Login/actions';
+
 class UserContainer extends Component {
  
 state={
   restaurantChainList :[]
-}
-
-componentDidMount(){
-  let token=localStorage.getItem("usertoken");
-  if(token){
-    this.props.getRestaurant(token);
-  }
 }
 addChainItemtoArray(res){
 let result =[];
@@ -30,14 +23,12 @@ return result;
   handleRestaurantChangeSelection =(e)=>{
     let resID= e.target.value;
     
-    if(resID){
      getChainresturant(resID).then(res=>{
        if(res)
         {
           this.setState({restaurantChainList :this.addChainItemtoArray(res)})
         }
-    });
-  }
+    })
   }
     render() {
 		return (
@@ -64,12 +55,12 @@ function mapStateToProps(state, ownProps) {
   }
   const mapDispatchToProps =(dispatch)=> {
     return {
-      getRestaurant: obj => {
-        dispatch(fetchRestaurants(obj));
-      }
-    };
+      checkCredentails:( obj ) => {
+       
+    
+    }
 }
-  
+  }
   
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserContainer));

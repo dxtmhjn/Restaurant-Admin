@@ -1,0 +1,121 @@
+
+  .card.order-card{
+    background: transparent;
+    border:0px;
+    margin-bottom: 15px;
+}
+
+.card.order-card .card-header{
+  background: transparent;
+  padding-left:0px;
+  padding-bottom: 5px;
+  padding-right:0px;
+  border-bottom:0px;
+}
+.card.order-card .card-body{
+  background: #FFF;
+//   border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius:5px;
+  padding:0px;
+  box-shadow: 0px 2px 4px 0px #80808033;
+}
+table.food-table tr:nth-child(even){
+  background:#f9fbfe;
+}
+
+table.food-table{
+    width:100%;
+}
+
+table.food-table tr td{
+  border:0px;
+  padding: 25px 15px;
+  font-size:15px;
+  color: #7a7a8a;
+}
+table.food-table tr td:nth-child(2){
+  font-weight: 500;
+}
+table.food-table tr td:nth-child(1){
+ width:160px;
+}
+
+.veg-food-label{
+  width: 90px;
+  display: block;
+  color: #4b9a81;
+  text-align: center;
+  background: #e3f6ed;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 15px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+}
+.nonveg-food-label{
+  width: 90px;
+  display: block;
+  color: #dc3545;
+  text-align: center;
+  background: #ffd2d6;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 15px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+}
+
+.pending-status-label{
+  width: 120px;
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  background: $primary-clr;
+  font-size: 15px;
+  border-radius: 15px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+}
+
+.order-bg{
+    width: 130px;
+    background: #FFF;
+    text-align: center;
+    padding: 4px;
+    font-size:13px;
+    margin-bottom: 5px;
+    border-radius: 22px;
+    box-shadow: 0px 1px 3px #98a6ad7a;
+}
+
+.table-name{
+    font-size:15px;
+    font-weight: 600;
+    color:#616d87;
+    letter-spacing: .8px;
+}
+
+.status-btns{
+    background: #ebf0f5;
+  box-shadow:none;
+  width:100px;
+  color:#818fae;
+  border:0.5px solid #818fae7d;
+  border-radius:20px;
+  padding:2px;
+  margin-right: 10px;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px #98a6ad7a;
+  
+    &:hover{
+        background: #818fae;
+        color:#ebf0f5;
+    }
+}
+
+.login-bg{
+   
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+  }
