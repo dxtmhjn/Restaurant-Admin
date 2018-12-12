@@ -76,15 +76,10 @@ class AddMenuItem extends Component{
     render(){
         
         return (
-          <main>
-          <div className="main-part">
-          <section className="home-icon bg-skeen">
-          <div className="container">
-          <div className="row ">
-        
-          <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInDown animated" >
-         
-         <div className="card-container">
+          <div className="content">
+                <div className="container-fluid">
+
+         <div className=" card m-b-30 card-body card-container">
             <Loader  show={this.state.isImageUploading} message={'loading'}>
             <Form
             onSubmit={this.onSubmit}
@@ -181,7 +176,7 @@ class AddMenuItem extends Component{
             
               </div>
                     </div>
-                    <div className="col-lg-6 form-group form-group">
+                    <div className="col-lg-6 form-group ">
                     <label>Category</label>
             <Field name="category" component="select"  className="form-control form-control-sm">
               <option value="breakfast">Breakfast</option>
@@ -192,17 +187,17 @@ class AddMenuItem extends Component{
               <option value="sweets">Sweets</option>
             </Field></div>
 
-            <div className="col-lg-6 form-group form-group">
+            <div className="col-lg-6 form-group ">
                     <label>Status</label>
-                    <div className="jq-selectbox jqselect select-dropbox">
-            <Field name="active" component="select"  className="select-dropbox">
+                    
+            <Field name="active" component="select"  className="form-control form-control-sm">
               <option value="true" selected>Active</option>
               <option value="false">InActive</option>
             </Field></div>
-            </div>
-            <div className="col-lg-12 form-group">
+            
+            <div className="col-lg-6 form-group">
                     <label>Description</label>
-                   <Field name="foodDesc" component="textarea"  rows="5" />
+                   <Field name="foodDesc" component="textarea" className="form-control form-control-sm"  rows="2" />
          
                     </div>
                     
@@ -211,12 +206,12 @@ class AddMenuItem extends Component{
                   <div className="float-right">
                   <button
                 type="button" 
-                className="btn btn-sm btn-success"
+                className="btn btn-sm btn-primary mr-2"
                 onClick={() => push('variant', undefined)}>
-                +
+                Add
               </button>
-              <button type="button" className="btn btn-sm btn-danger" onClick={() => pop('variant')}>
-                x
+              <button type="button" className="btn btn-sm btn-primary" onClick={() => pop('variant')}>
+                Delete
               </button>
             </div>
             
@@ -229,7 +224,7 @@ class AddMenuItem extends Component{
               {({ fields }) =>
                 fields.map((name, index) => (
                   <div key={name}>
-                  <div className="row">
+                  <div className="row mb-2">
                   <div className="col-lg-3">  <label>Variant. #{index + 1}</label></div>
                   <div className="col-lg-4">
                   <Field
@@ -263,11 +258,11 @@ class AddMenuItem extends Component{
             </FieldArray>
                     </div>
                     
-                    <div className="col-lg-6 offset-6 form-group">
-                   <div className="card col-md-8 offset-2   text-center">
+                    <div className="col-lg-12  form-group">
+                   <div className="card text-center">
                   
-                  <div className="card-footer bg-info ">
-                  <label className="text-white">Select New Image 
+                  <div className="card-footer bg-default ">
+                  <label className="text-default">Select New Image 
                    {/* <input name="foodimg"  type="file" className="form-control" style={{display: 'none'}}
                     /> */}
                     <Dropzone 
@@ -284,7 +279,7 @@ class AddMenuItem extends Component{
                    </div>
                     
                     <div className="col-lg-12 form-group text-center">
-                    <button type="submit" className="button-default btn-large btn-primary-gold" disabled={submitting || pristine}>
+                    <button type="submit" className="btn btn-large btn-warning" disabled={submitting || pristine}>
                 Submit
               </button>
                 
@@ -303,10 +298,6 @@ class AddMenuItem extends Component{
         </div>
         
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
         );
     }
 }

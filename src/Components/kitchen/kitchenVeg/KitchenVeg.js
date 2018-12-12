@@ -3,14 +3,12 @@ import React, { Component } from "react";
 class KitchenVeg extends Component {
   render() {
     return (
-      <main>
-          <div className="main-part">
-          <section className="home-icon bg-skeen">
-          <div className="container">
+      <div className="content">
+                <div className="container-fluid">
           <div className="card order-card">
             <div className="card-header">
-            <span className="">Table 5</span>
-            <span className="float-right">Order: OD2288</span></div>
+            <span className="table-name">Table 5</span>
+            <span className="float-right order-bg">Order: OD2288</span></div>
             <div className="card-body">
              
               <table className="food-table">
@@ -20,7 +18,47 @@ class KitchenVeg extends Component {
                   <td>Full</td>
                   <td>₹ 340</td>
                   <td><div className="pending-status-label">Pending</div></td>
-                  <td></td>
+                  <td className="text-right">
+                   <button className="status-btns">+ Approve</button>
+                   <button className="status-btns">+ Cooking</button>
+                   <button className="status-btns">+ Ready</button>
+                    </td>
+                </tr>
+                <tr>
+                  <td><div className="veg-food-label">Veg</div></td>
+                  <td>Pasta</td>
+                  <td>Half</td>
+                  <td>₹ 145</td>
+                  <td><div className="pending-status-label">Cooking</div></td>
+                  <td className="text-right">
+                   <button className="status-btns">+ Approve</button>
+                   <button className="status-btns">+ Cooking</button>
+                   <button className="status-btns">+ Ready</button>
+                    </td>
+                </tr>
+              </table>
+             
+            </div>
+          </div>
+
+          <div className="card order-card">
+            <div className="card-header">
+            <span className="table-name">Table 5</span>
+            <span className="float-right order-bg">Order: OD2288</span></div>
+            <div className="card-body">
+             
+              <table className="food-table">
+                <tr>
+                  <td><div className="veg-food-label">Veg</div></td>
+                  <td>Biryani</td>
+                  <td>Full</td>
+                  <td>₹ 340</td>
+                  <td><div className="pending-status-label">Pending</div></td>
+                  <td className="text-right">
+                   <button className="status-btns">+ Approve</button>
+                   <button className="status-btns">+ Cooking</button>
+                   <button className="status-btns">+ Ready</button>
+                    </td>
                 </tr>
                 <tr>
                   <td><div className="nonveg-food-label">Non Veg</div></td>
@@ -28,23 +66,21 @@ class KitchenVeg extends Component {
                   <td>Half</td>
                   <td>₹ 145</td>
                   <td><div className="pending-status-label">Cooking</div></td>
-                  <td></td>
+                  <td className="text-right">
+                   <button className="status-btns">+ Approve</button>
+                   <button className="status-btns">+ Cooking</button>
+                   <button className="status-btns">+ Ready</button>
+                    </td>
                 </tr>
               </table>
              
             </div>
           </div>
-          <div className="card order-card">
-            <div className="card-header">Table 15</div>
-            <div className="card-body">
-              <p>hi</p>
-            </div>
           </div>
-          </div>
-        </section>
+        
         
       </div>
-      </main>
+      
     );
   }
 }

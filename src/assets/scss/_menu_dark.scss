@@ -17,18 +17,13 @@
 
 .nav-second-level li a, .nav-thrid-level li a {
   padding: 8px 20px 8px 10px;
-  color: #95c3ff;
+  color: $bg-leftbar-menu-color;
   display: block;
   position: relative;
 
-  &:focus {
-   
-    color: $white;
-  }
-
-  &:hover {
- 
-    color: $white;
+  &:focus,&:hover  {
+    background-color: $bg-leftbar-dark;
+    color: lighten($bg-leftbar-menu-color,5%);
   }
 }
 
@@ -48,7 +43,7 @@
 
 .nav-third-level li.active {
   > a {
-    color: $dark;
+    color: $bg-leftbar-menu-color;
   }
 }
 
@@ -118,8 +113,9 @@
   h5{
     margin-bottom: 2px;
     a{
-      color: $dark;
+      color: $bg-leftbar-menu-color;
     }
+
   }
 }
 
@@ -127,16 +123,15 @@
 .side-menu {
   width: $leftbar-width;
   z-index: 10;
-  background: $primary-clr;
+  background: $bg-leftbar-dark;
   bottom: 0;
   margin-top: 0;
   padding-bottom: 30px;
   position: fixed;
   top: 0;
-  padding-top: 90px;
 
   .topbar-left {
-    // background-color: $bg-leftbar;
+    background-color: $bg-leftbar-dark;
     height: 70px;
     padding-left: 25px;
     position: fixed;
@@ -187,7 +182,7 @@
 
 
 #sidebar-menu > ul > li > a {
-  color: #95c3ff;
+  color: $bg-leftbar-menu-color;
   display: block;
   padding: 12px 20px;
   margin: 2px 0;
@@ -195,7 +190,7 @@
   position: relative;
 
   &:hover,&:focus,&:active {
-    color: $white;
+    color: $custom;
     text-decoration: none;
   }
 }
@@ -308,7 +303,7 @@
         padding-bottom: 5px;
         padding-top: 5px;
         z-index: 9999;
-        background-color: $bg-leftbar;
+        background-color: $bg-leftbar-dark;
       }
     }
   }

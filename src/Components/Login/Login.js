@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 
 import { Form, Field } from "react-final-form";
 import createDecorator from "final-form-focus";
@@ -37,12 +37,25 @@ class Login extends React.Component {
     }
     return(
 
-    <div className="login-container">
-      <div id="login" className="login">
-        <div className="login-icon-field">
-          <img src="assets/images/cooking.svg" />
-        </div>
-        <Form
+<Fragment>
+    
+      <div className="accountbg login-bg" style={{backgroundImage: "url(" + "assets/images/kitchen.jpg" + ")"}}></div>
+
+      <div className="wrapper-page account-page-full">
+
+          <div className="card">
+              <div className="card-block">
+
+                  <div className="account-box">
+
+                      <div className="card-box p-5">
+                          <h2 className="text-uppercase text-center pb-4 mt-5">
+                              <a href="index.html" className="text-success">
+                                  <span><img src="assets/images/restaurant-logo.png" alt="" height="70"/></span>
+                              </a>
+                          </h2>
+
+                          <Form
           onSubmit={this.authenticateUser}
           decorators={[focusOnError]}
           subscription={{
@@ -51,15 +64,16 @@ class Login extends React.Component {
         >
           {({ handleSubmit, values, submitting }) => (
             <form onSubmit={handleSubmit}>
-              <div className="login-form">
-                <div className="username-row row">
-                  <label for="username_input">
-                    User ID
-                  </label>
-                  <Field
+
+                              <div className="form-group m-b-20 row">
+                                  <div className="col-12">
+                                      <label for="emailaddress">Username</label>
+
+
+                                       <Field
                     name="id"
-                    className="username-input"
-                    placeholder="ID"
+                    className="form-control"
+                    placeholder="Username"
                     validate={required}
                     subscription={{
                       value: true,
@@ -72,7 +86,7 @@ class Login extends React.Component {
                       <div className={meta.active ? "active" : ""}>
                       
                         <input type="text"
-                          className="username-input"
+                          className="form-control"
                           {...input}
                           placeholder={placeholder}
                         />
@@ -82,16 +96,19 @@ class Login extends React.Component {
                       </div>
                     )}
                   </Field>
-                 
-                </div>
-                <div className="password-row row">
-                  <label for="password_input">
-                    Password
-                  </label>
-                  <Field
+                                      
+                                  </div>
+                              </div>
+
+                              <div className="form-group row m-b-20">
+                                  <div className="col-12">
+                                     
+                                      <label for="password">Password</label>
+                                      
+                                      <Field
                     name="password"
-                    className="password-input"
-                    placeholder="password"
+                    className="form-control"
+                    placeholder="Password"
                     validate={required}
                     subscription={{
                       value: true,
@@ -107,7 +124,7 @@ class Login extends React.Component {
                       <div>
                     
                         <input
-                          className="password-input"
+                          className="form-control"
                           type="password"
                           {...input}
                           placeholder={placeholder}
@@ -118,20 +135,42 @@ class Login extends React.Component {
                       </div>
                     )}
                   </Field>
-                </div>
-              </div>
-              <div className="call-to-action">
-                
-                <button type="submit" disabled={submitting}>
-                  Log In
+                                       </div>
+                              </div>
+
+                              
+
+                              <div className="form-group row text-center m-t-10 mt-5">
+                                  <div className="col-12">
+                                  <button type="submit"  className="btn btn-block btn-custom waves-effect waves-light" disabled={submitting}>
+                  Sign In
                 </button>
                 
-              </div>
-            </form>
+                                      
+                                  </div>
+                              </div>
+
+                           </form>
           )}
         </Form>
+
+
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+          <div className="m-t-40 text-center">
+              <p className="account-copyright">2018 © Restaurant</p>
+          </div>
+
       </div>
-    </div>);
+
+</Fragment>
+
+
+);
 
     //     <main>
     //     <div className="main-part">

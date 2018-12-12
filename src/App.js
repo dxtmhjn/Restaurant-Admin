@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/scss/bootstrap.scss';
 import Header from './base/header/Header';
 import Footer from './base/footer/Footer';
+import Navigation from './base/navigation/Navigation';
 import MainBody from './base/mainBody/MainBody';
 import KitchenVeg from './Components/kitchen/kitchenVeg/KitchenVeg';
 import KitchenNonVeg from './Components/kitchen/kitchenNonVeg/KitchenNonVeg';
@@ -87,9 +88,14 @@ state={
 
 export default App;
 const Layout = ({ children }) => (
-  <div>
-    <Header />
+  <div id="wrapper">
+    <Navigation />
+    <div className="content-page">
+
+            <Header></Header>
+            
       {children}
-    <Footer />
+    {/* <Footer /> */}
+    </div>
   </div>
 );

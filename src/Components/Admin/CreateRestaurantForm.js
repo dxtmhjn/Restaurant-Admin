@@ -13,14 +13,9 @@ const focusOnError = createDecorator()
 const required =value=> (value ? undefined : "Required")
 
 const createRestaurant=(props)=>(
-    <main>
-    <div className="main-part">
-    <section className="home-icon bg-skeen">
-    <div className="container">
-    <div className="row">
-    <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
-   
-   <div className="card-container">
+    <div className="content">
+                <div className="container-fluid">
+   <div className="card m-b-30 card-body  card-container">
         <Form onSubmit = {addresturant} 
         decorators={[focusOnError]}
         subscription={{
@@ -29,7 +24,9 @@ const createRestaurant=(props)=>(
             {({handleSubmit, values, submitting })=>
             <form onSubmit={handleSubmit}>
 
-            <Field 
+            <div className="row">
+                    <div className="col-lg-12 form-group">
+                    <Field 
                 name="restaurantname"  placeholder="Restaurant Name" validate={required}
                     subscription={{
                     value: true,
@@ -50,6 +47,8 @@ const createRestaurant=(props)=>(
                     </div> 
                    )}
             </Field> 
+                    </div>
+                    <div className="col-lg-12 form-group">
             <Field 
                 name="address"  placeholder="Address" validate={required}
                 subscription={{
@@ -71,6 +70,8 @@ const createRestaurant=(props)=>(
                     </div> 
                    )}
             </Field> 
+            </div>
+            <div className="col-lg-12 form-group">
             <Field 
                 name="description"  placeholder="description" validate={required}
                 subscription={{
@@ -92,7 +93,8 @@ const createRestaurant=(props)=>(
                     </div> 
                    )}
             </Field> 
-           
+           </div>
+           <div className="col-lg-12 form-group">
 
             <Field 
                 name="type"  placeholder="Restaurant " 
@@ -110,24 +112,21 @@ const createRestaurant=(props)=>(
 
 
                         <label >Type</label>
-                        <input  defaultValue="restaurant" {...input} placeholder={placeholder} className="form-control" readOnly/>
+                        <input   defaultValue="restaurant" {...input} placeholder={placeholder} className="form-control" readOnly/>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
-          
-          <br/>
-            <button type="submit" disabled={submitting} className="button-default btn-large btn-primary-gold" >Submit</button>
-
+          </div>
+            <div className="col-lg-12 form-group text-center">
+            <button type="submit" disabled={submitting} className="btn btn-large btn-warning text-center" >Submit</button>
+</div>
+</div>
             </form>}
         </Form>
         </div>
         </div>
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
 )
 
 export default createRestaurant;

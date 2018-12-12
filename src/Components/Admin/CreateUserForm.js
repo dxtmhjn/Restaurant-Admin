@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 
 import { Form, Field} from "react-final-form";
 import createDecorator from 'final-form-focus';
@@ -20,13 +20,8 @@ const required =value=> (value ? undefined : "Required")
 
 
 const CreateUser = (props)=> (
-    <main>
-        <div className="main-part">
-        <section className="home-icon bg-skeen">
-        <div className="container">
-        <div className="row">
-        <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
-       
+    <div className="content">
+                <div className=" card m-b-30 card-body container-fluid">
        <div className="card-container">
         <Form onSubmit = {adduser} 
         decorators={[focusOnError]}
@@ -35,7 +30,8 @@ const CreateUser = (props)=> (
         }}>
             {({handleSubmit, values, submitting })=>
             <form onSubmit={handleSubmit}>
-
+<div className="row">
+<div className="col-lg-12 form-group">
             <Field 
                 name="name" type="text"  placeholder="Name" validate={required}
                     subscription={{
@@ -57,7 +53,8 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-        
+        </div>
+        <div className="col-lg-12 form-group">
             <Field 
                 name="password" type="password" placeholder="Password" validate={required}
                 subscription={{
@@ -79,7 +76,8 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-           
+           </div>
+           <div className="col-lg-12 form-group">
             <Field 
                 name="email" type="email"  plaeholder="Email" validate={required}
                 subscription={{
@@ -101,7 +99,8 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-          
+          </div>
+          <div className="col-lg-12 form-group">
             <Field 
                 name="mobile"  placeholder="Mobile"  type="text" validate={required}
                 subscription={{
@@ -123,7 +122,8 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-            
+            </div>
+            <div className="col-lg-12 form-group">
             <Field 
                 name="restaurent_id" type="text"placeholder="Restaurant ID" validate={required}
                 subscription={{
@@ -155,7 +155,8 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-            
+            </div>
+            <div className="col-lg-12 form-group">
             <Field 
                 name="chain_id"  placeholder="Chain Id" validate={required}
                 subscription={{
@@ -189,7 +190,8 @@ const CreateUser = (props)=> (
                     </div> 
                    )}
             </Field> 
-          
+          </div>
+          <div className="col-lg-12 form-group">
             <Field 
                 name="role"  placeholder="Role" validate={required}
                 subscription={{
@@ -202,11 +204,11 @@ const CreateUser = (props)=> (
                     <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
                    )} */}
                      {({input, meta, placeholder}) =>(
-                    <div>
+                    <Fragment>
 
 
                         <label >Role</label>
-                        <select  {...input} placeholder={placeholder} >
+                        <select  {...input} placeholder={placeholder} className="form-control" >
                         <option value="c1">Super Admin</option>
                         <option value="c2">Admin</option>
                         <option value="c2">Manager</option>
@@ -214,10 +216,11 @@ const CreateUser = (props)=> (
 
                         </select>
                         {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
+                        </Fragment>
                    )}
             </Field> 
-           
+           </div>
+           <div className="col-lg-12 form-group">
             <Field 
                 name="type"  placeholder="type" 
                 subscription={{
@@ -234,25 +237,23 @@ const CreateUser = (props)=> (
 
 
                         <label >Type</label>
-                        <input type="text" {...input} placeholder={placeholder} value="Restaurant" readOnly />
+                        <input className="form-control" type="text" {...input} placeholder={placeholder} value="Restaurant" readOnly />
                         {meta.error && meta.touched && <span>{meta.error}</span> }
                     </div> 
                    )}
             </Field> 
-          <br/>
+            </div>
+            <div className="col-lg-12 form-group text-center">
             <button type="submit" disabled={submitting} 
-            className="btn btn-primary" 
+            className="btn btn-large btn-warning" 
             >Submit</button>
-
+        </div>
+        </div>
             </form>}
         </Form>
         </div>
         </div>
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
 )
 
 export default CreateUser;
