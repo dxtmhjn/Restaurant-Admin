@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import AddMenuItem from '../../Components/menu/addMenuItem/AddMenuItem';
 import {getChainresturant} from "../../Components/Admin/Helper";
 import {addMenu} from './Helper';
+import {fetchRestaurants} from '../../Components/Login/actions';
 class AddMenuContainer extends Component {
   
   state={
@@ -60,10 +61,10 @@ function mapStateToProps(state, ownProps) {
   }
   const mapDispatchToProps =(dispatch)=> {
     return {
-      checkCredentails:( obj ) => {
-       
+      getRestaurant: obj => {
+        dispatch(fetchRestaurants(obj));
+      }
     
-    }
 }
   }
   
