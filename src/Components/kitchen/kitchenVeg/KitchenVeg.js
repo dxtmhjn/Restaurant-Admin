@@ -1,6 +1,22 @@
 import React, { Component } from "react";
+import axios from 'axios';
+import {apiURL} from '../../../constants/constant';
 
 class KitchenVeg extends Component {
+
+  componentDidMount(){
+    axios({
+      method:'get',
+      url:apiURL.SERVERBASE_URL+"/kitchen/getCurrentOrders",
+      responseType:'json'
+    })
+      .then(function(response) {
+     console.log(response);
+    });
+  }
+  
+
+
   render() {
     return (
       <div className="content">
