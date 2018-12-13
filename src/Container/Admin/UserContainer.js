@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 import { connect ,} from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import CreateUser from '../../Components/Admin/CreateUserForm';
+import CreateUserForm from '../../Components/Admin/CreateUserForm';
 import {getChainresturant} from "../../Components/Admin/Helper";
 import Cookies from'js-cookie';
-
+import {fetchRestaurants} from '../../Components/Login/actions';
 class UserContainer extends Component {
  
 state={
-  restaurantChainList :[]
+  restaurantChainList :[],
+  resID:"",
+  restaurantList:[]
+}
+componentDidMount(){
+  let token=localStorage.getItem("usertoken");
+  if(token){
+    this.props.getRestaurant(token);
+  }
+}
+componentDidUpdate(nxtProps,nxtState){
+  if(nxtProps.restaurantList && this.props.restaurantList && nxtProps.restaurantList.length !== this.props.restaurantList.length){
+    if(this.props.restaurantList.length >0)
+    {this.setState({restaurantList :this.props.restaurantList})}
+  }
 }
 addChainItemtoArray(res){
 let result =[];
@@ -20,9 +34,9 @@ if(res && res.data && res.data.length >0){
 }
 return result;
 }
-  handleRestaurantChangeSelection =(e)=>{
-    let resID= e.target.value;
-    
+  handleRestaurantChangeSelection =(id)=>{
+    let resID= id;
+    this.setState({resID :resID})
      getChainresturant(resID).then(res=>{
        if(res)
         {
@@ -30,15 +44,17 @@ return result;
         }
     })
   }
+
     render() {
 		return (
       <div>
       {/* <Header  ></Header>
       <MainBody > */}
 		
-                <CreateUser 
+                <CreateUserForm 
+                resID ={this.state.resID}
                 handleRestaurantChangeSelection ={this.handleRestaurantChangeSelection}
-                restaurantList ={this.props.restaurantList}
+                restaurantList ={this.state.restaurantList}
                 restaurantChainList= {this.state.restaurantChainList}
                 />
                
@@ -55,10 +71,10 @@ function mapStateToProps(state, ownProps) {
   }
   const mapDispatchToProps =(dispatch)=> {
     return {
-      checkCredentails:( obj ) => {
-       
+      getRestaurant: obj => {
+        dispatch(fetchRestaurants(obj));
+      }
     
-    }
 }
   }
   

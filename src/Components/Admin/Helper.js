@@ -62,18 +62,19 @@ export const addChainresturant = (bodyParams) => {
             console.log(error);
         });
 }
-export const adduser = (bodyParams) => {
- 
+export const adduser = (data) => {
+
+    
     let userobj={
-        "name": bodyParams.name,
-    "password": bodyParams.password,
-    "email": bodyParams.email,
-    "mobile": bodyParams.mobile,
-    "restaurant_id": bodyParams.restaurent_id,
+        "name": data.name,
+    "password": data.password,
+    "email": data.email,
+    "mobile": data.mobile,
+    "restaurant_id": data.restaurent_id,
     "active": true,
     "createdDate": new Date(),
-    "chain_id": bodyParams.chain_id,
-    "role": bodyParams.role,
+    "chain_id": data.chain_id,
+    "role": data.role,
     "type": "user"
 }
     const httpClient = new HttpClient();
