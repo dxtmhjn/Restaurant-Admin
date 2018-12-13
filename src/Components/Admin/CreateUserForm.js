@@ -124,6 +124,9 @@ const CreateUser = (props)=> (
             </Field> 
             </div>
             <div className="col-lg-12 form-group">
+           
+        
+         
             <Field 
                 name="restaurent_id" type="text"placeholder="Restaurant ID" validate={required}
                 subscription={{
@@ -132,13 +135,12 @@ const CreateUser = (props)=> (
                     error: true,
                     touched: true
                 }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
+                   
                      {({input, meta, placeholder}) =>(
                     <div>
                         <label >Restaurant Name</label>
-                        <select  {...input} placeholder={placeholder} className="form-control" onChange={(e)=> props.handleRestaurantChangeSelection(e)} >
+                     
+                        <select {...input} placeholder={placeholder} className="form-control" onChange={(e)=> props.handleRestaurantChangeSelection(e)} >
                         <option value="0">Choose Restaurant</option>
                         { props.restaurantList && props.restaurantList.length >0
                      ? 
