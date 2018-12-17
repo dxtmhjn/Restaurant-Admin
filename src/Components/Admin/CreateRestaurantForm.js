@@ -1,132 +1,115 @@
-import React from "react";
+import React, { Component } from "react";
 
-import { Form, Field} from "react-final-form";
+import { Form, Field } from "react-final-form";
 import createDecorator from 'final-form-focus';
-import {addresturant} from './Helper';
-const sleep = ms=> new Promise(resolve=> setTimeout(resolve,ms))
-const showResults = async values=>{
+import { adduser } from './Helper';
+
+
+// import { emitKeypressEvents } from "readline";
+
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+const showResults = async values => {
     await sleep(500)
-    window.alert(JSON.stringify(values,undefined,2))
+    window.alert(JSON.stringify(values, undefined, 2))
 }
 
 const focusOnError = createDecorator()
-const required =value=> (value ? undefined : "Required")
+const required = value => (value ? undefined : "Required")
+class createRestaurant extends Component {
 
-const createRestaurant=(props)=>(
-    <div className="content">
+    state = {
+        restaurantName: '',
+        address: '',
+        description: '',
+        type: '',
+        isSubmitDisabled: true
+    }
+
+    handleSubmit = (event) => {
+        adduser(this.state);
+    }
+    canSubmit() {
+        const { email, name, password } = this.state
+        // TODO: add valid email format validation in this condition
+        if (email.length > 0 && name.length > 0 && password.length >= 5) {
+            this.setState({
+                isSubmitDisabled: false
+            })
+        }
+        else {
+            this.setState({
+                isSubmitDisabled: true
+            })
+        }
+    }
+    handleChange = (event) => {
+        let currentName = event.target.name;
+        this.setState({
+            // use dynamic name value to set our state object property
+            [event.target.name]: event.target.value
+        }, function () {
+            if (currentName === 'restaurantid') {
+                this.props.handleRestaurantChangeSelection(this.state.restaurantid);
+            }
+            this.canSubmit()
+//  this.canSubmit()
+
+        })
+        //
+    }
+
+    render() {
+        return (
+            <div className="content">
                 <div className="container-fluid">
-   <div className="card m-b-30 card-body  card-container">
-        <Form onSubmit = {addresturant} 
-        decorators={[focusOnError]}
-        subscription={{
-             submitting: true,
-        }}>
-            {({handleSubmit, values, submitting })=>
-            <form onSubmit={handleSubmit}>
+                    <div className="card m-b-30 card-body  card-container">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="row">
+                                <div className="col-lg-12 form-group">
+                                </div>
+                                <div className="col-lg-12 form-group">
+                                    <label for="exampleFormControlInput1">Restaurant Name</label>
+                                    <input required type="text" className="form-control" name="restaurantName" id="restaurantName" placeholder="restaurantName"
+                                        value={this.state.restaurantName}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div className="col-lg-12 form-group">
+                                    <label for="exampleFormControlInput1">Address</label>
+                                    <input required type="text" className="form-control" name="address" id="address" placeholder="Address"
+                                        value={this.state.address}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div className="col-lg-12 form-group">
+                                    <label for="exampleFormControlInput1">Description</label>
+                                    <input required type="text" className="form-control" name="description" id="description" placeholder="description"
+                                        value={this.state.description}
+                                        onChange={this.handleChange}
+                                    />
 
-            <div className="row">
-                    <div className="col-lg-12 form-group">
-                    <Field 
-                name="restaurantname"  placeholder="Restaurant Name" validate={required}
-                    subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div className={meta.active ? "active" : ""}>
-    
+                                </div>
+                                <div className="col-lg-12 form-group">
+                                    <label for="exampleFormControlInput1">Type</label>
+                                    <input required type="text" className="form-control" name="type" id="type" placeholder="type"
+                                        value={this.state.type}
+                                        onChange={this.handleChange}
+                                    />
 
-                        <label >Restaurant Name</label>
-                        <input type="text" {...input} placeholder={placeholder} className="form-control" />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
+                                </div>
+                                <div className="col-lg-12 form-group text-center">
+                                    <button type="submit" disabled={this.submitting} className="btn btn-large btn-warning text-center" >Submit</button>
+
+                                </div>
+                            </div>
+                        </form>}
                     </div>
-                    <div className="col-lg-12 form-group">
-            <Field 
-                name="address"  placeholder="Address" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
-
-
-                        <label >Address</label>
-                        <input  type="text" {...input} placeholder={placeholder} className="form-control" />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
+                </div>
             </div>
-            <div className="col-lg-12 form-group">
-            <Field 
-                name="description"  placeholder="description" validate={required}
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
+        )
 
-
-                        <label >Description</label>
-                        <input type="text" {...input} placeholder={placeholder} className="form-control" />
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
-           </div>
-           <div className="col-lg-12 form-group">
-
-            <Field 
-                name="type"  placeholder="Restaurant " 
-                subscription={{
-                    value: true,
-                    active: true,
-                    error: true,
-                    touched: true
-                }}>
-                   {/* {fieldState =>(
-                    <pre>{JSON.stringify(fieldState, undefined, 2)}</pre> 
-                   )} */}
-                     {({input, meta, placeholder}) =>(
-                    <div>
-
-
-                        <label >Type</label>
-                        <input   defaultValue="restaurant" {...input} placeholder={placeholder} className="form-control" readOnly/>
-                        {meta.error && meta.touched && <span>{meta.error}</span> }
-                    </div> 
-                   )}
-            </Field> 
-          </div>
-            <div className="col-lg-12 form-group text-center">
-            <button type="submit" disabled={submitting} className="btn btn-large btn-warning text-center" >Submit</button>
-</div>
-</div>
-            </form>}
-        </Form>
-        </div>
-        </div>
-        </div>
-)
+    }
+}
 
 export default createRestaurant;
