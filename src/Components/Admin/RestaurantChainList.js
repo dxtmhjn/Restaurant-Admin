@@ -11,21 +11,16 @@ const removeUserHandler=()=>{
 const RestaurantChainList = (props) =>  {
     return(
         
-        <main>
-        <div className="main-part">
-        <section className="home-icon bg-skeen">
-        <div className="container">
-        <div className="row">
-        <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
-       
-       <div className="card-container">
-      
+        <div className="content">
+        <div className=" card m-b-30 card-body container-fluid">
+<div className="card-container">
         <table className="table table-striped food-menu">
     <tr>
         <th>Chain Name</th>
         <th>Description</th>
         <th>Address</th>
         <th>Status</th>
+        <th></th>
         
     </tr>
     <tbody>
@@ -51,10 +46,6 @@ const RestaurantChainList = (props) =>  {
 </div>
         </div>
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
     )
 
     }

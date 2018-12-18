@@ -1,6 +1,29 @@
 import React,{Component} from 'react';
+import {apiURL} from '../../../constants/constant';
+import axios from 'axios';
 
 class ViewMenu extends Component{
+  viewMenuItems=()=>{
+    let _self = this
+    axios({
+      method:'get',
+      url:apiURL.SERVERBASE_URL+"/menu/getAllMenu",
+      responseType:'json'
+    })
+      .then(function(response) {
+        if(response){
+          console.log(response);
+      _self.setState(
+        {
+          vegRecipes:response.data.rows
+        }
+        ,()=>{
+       
+        })
+      }
+      
+    });
+  }
     render(){
         return (
           <div className="content">
