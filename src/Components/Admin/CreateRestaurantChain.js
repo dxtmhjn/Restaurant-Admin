@@ -15,11 +15,11 @@ const required =value=> (value ? undefined : "Required")
 
 class Createrestaurantchain extends Component{
     state = {
-        restaurantname: '',
+        chainrestaurantname: '',
         address: '',
         description: '',
         ParentID:'',
-        type: '',
+        type: 'chain',
         isSubmitDisabled: true
     }
     handleSubmit = (event) => {
@@ -32,7 +32,7 @@ class Createrestaurantchain extends Component{
             // use dynamic name value to set our state object property
             [event.target.name]: event.target.value
         }, function () {
-            if (currentName === 'restaurantid') {
+            if (currentName === 'restaurantname') {
                 this.props.handleRestaurantChangeSelection(this.state.restaurantid);
             }
             //  this.canSubmit()
@@ -40,6 +40,8 @@ class Createrestaurantchain extends Component{
         })
         //
     }
+  
+
 render(){
     return(
 <div className="content">
@@ -49,13 +51,11 @@ render(){
         <form onSubmit={this.handleSubmit}>
 <div className="row">
 <div className="col-lg-12 form-group">
-            
-                    <label >Restaurant Name</label>
-                    <input required type='text' className="form-control" name="restaurantName" id="restaurantName" placeholder="restaurantName"
-                                        value={this.state.restaurantName}
-                                        onChange={this.handleChange}  />
-           
-        </div>
+                    <label >Chain Name</label>
+                    <input required type="text" name="chainrestaurantname" className="form-control" id="chainrestaurantname" placeholder="Chain Restaurant Name"
+                                        value={this.state.chainrestaurantname}
+                                        onChange={this.handleChange} />
+        </div> 
         <div className="col-lg-12 form-group">
                     <label >Address</label>
                     <input required type="text" name="address" className="form-control" id="address" placeholder="Address"

@@ -10,7 +10,12 @@ class AddMenuContainer extends Component {
   state={
     restaurantChainList :[]
   }
-  
+  componentDidMount(){
+    let token=localStorage.getItem("usertoken");
+    if(token){
+      this.props.getRestaurant(token);
+    }
+  }
   handleaddRestaurantMenu(params){
       if(params){
         addMenu(params).then(result=>{

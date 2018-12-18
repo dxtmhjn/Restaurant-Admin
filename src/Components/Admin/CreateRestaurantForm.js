@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Form, Field } from "react-final-form";
 import createDecorator from 'final-form-focus';
-import { adduser } from './Helper';
+import { addresturant } from './Helper';
 
 
 // import { emitKeypressEvents } from "readline";
@@ -27,7 +27,7 @@ class createRestaurant extends Component {
     }
 
     handleSubmit = (event) => {
-        adduser(this.state);
+        addresturant(this.state);
     }
     canSubmit() {
         const { email, name, password } = this.state
@@ -52,7 +52,7 @@ class createRestaurant extends Component {
             if (currentName === 'restaurantid') {
                 this.props.handleRestaurantChangeSelection(this.state.restaurantid);
             }
-            this.canSubmit()
+           // this.canSubmit()
 //  this.canSubmit()
 
         })
@@ -103,7 +103,7 @@ class createRestaurant extends Component {
 
                                 </div>
                             </div>
-                        </form>}
+                        </form>
                     </div>
                 </div>
             </div>

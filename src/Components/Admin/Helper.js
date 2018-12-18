@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export const addresturant = (bodyParams) => {
  
     var body ={
-        "restaurantname": bodyParams.restaurantname,
+        "restaurantname": bodyParams.restaurantName,
         "address": bodyParams.address,
         "description": bodyParams.description,
         "active": "true",
@@ -36,7 +36,7 @@ export const addresturant = (bodyParams) => {
 export const addChainresturant = (bodyParams) => {
  
     var body ={
-        "restaurantname": bodyParams.restaurantname,
+        "restaurantname": bodyParams.chainrestaurantname,
         "address": bodyParams.address,
         "description": bodyParams.description,
         "active": "true",

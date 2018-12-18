@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import CreateUser from '../../Components/Admin/CreateUserForm';
 import {getAllChainresturant} from "./Helper";
 import RestaurantChainList from "../../Components/Admin/RestaurantChainList";
-
+import {getChainresturant} from "../../Components/Admin/Helper";
 class RestaurantChainListContainter extends Component {
 
 state={
@@ -28,7 +28,16 @@ if(res && res.data && res.data.length >0){
 }
 return result;
 }
-  
+handleRestaurantChangeSelection =(id)=>{
+  let resID= id;
+  this.setState({resID :resID})
+   getChainresturant(resID).then(res=>{
+     if(res)
+      {
+        this.setState({restaurantChainList :this.addChainItemtoArray(res)})
+      }
+  })
+}
     render() {
         const { navigation } = this.props;
 		return (
@@ -38,7 +47,7 @@ return result;
           onPress={() => this.props.navigation.navigate('login')}
           >Click Me!</button>
                 <RestaurantChainList 
-              
+             
                 restaurantChainList= {this.state.restaurantChainList}
                 />
                

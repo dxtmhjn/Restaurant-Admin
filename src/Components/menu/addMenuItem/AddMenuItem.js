@@ -1,16 +1,18 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import { Form, Field } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import moment from 'moment';
 import Axios from 'axios';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
 import Loader from 'react-loader-advanced';
 class AddMenuItem extends Component{
 
   state={
      previewSrc:"",
-     isImageUploading :false
+     isImageUploading :false,
+     foodtype:'',
+     variants: [{ variantname: '' ,price:''}],
   }
       cDate=moment().format("DD MMM YYYY");
         onSubmit =  values => {
@@ -19,6 +21,19 @@ class AddMenuItem extends Component{
         this.props.handleaddRestaurantMenu(params);
       }
       
+      handleShareholderNameChange = (idx) => (evt) => {
+        const newShareholders = this.state.variants.map((variant, sidx) => {
+          if (idx !== sidx) return variant;
+          return { ...variant, [evt.target.name]: evt.target.value };
+        });
+        
+        this.setState({ variants: newShareholders });
+      }
+      handleSubmit = () => {
+        this.props.handleaddRestaurantMenu(this.state);
+    }
+  
+
       imgPreviewHnadler=(event)=>{
         const cloudImgUrl = "https://api.cloudinary.com/v1_1/dul3iybvg/upload";
         const cloudPreSets = "gjvkq3dx";
@@ -41,6 +56,20 @@ class AddMenuItem extends Component{
         }).catch(error=>{
           console.log(error);
         })
+      }
+      handleChange = (event) => {
+        this.setState({
+            // use dynamic name value to set our state object property
+            [event.target.name]: event.target.value
+        });
+        //
+    }
+      handleAddShareholder = () => {
+        this.setState({ variants: this.state.variants.concat([{ variantname: '' ,price:''}]) });
+      }
+      
+      handleRemoveShareholder = (idx) => () => {
+        this.setState({ variants: this.state.variants.filter((s, sidx) => idx !== sidx) });
       }
       handleDrop = files => {
         const cloudPreSets = "gjvkq3dx";
@@ -82,7 +111,7 @@ class AddMenuItem extends Component{
          <div className=" card m-b-30 card-body card-container">
             <Loader  show={this.state.isImageUploading} message={'loading'}>
            
-            <form   onSubmit={this.handleSubmit}>
+            <form   >
                 <div className="row">
                     <div className="col-lg-6 form-group">
                     <label>Restaurant ID</label>
@@ -127,6 +156,7 @@ class AddMenuItem extends Component{
               value="menu"
               type="text" disabled
               className="form-control form-control-sm"
+              
             />
                     </div>
                     
@@ -138,6 +168,8 @@ class AddMenuItem extends Component{
               
               type="text" 
               className="form-control form-control-sm"
+              value={this.state.menuname}
+              onChange={this.handleChange}
             />
                     </div>
                     <div className="col-lg-6 form-check">
@@ -150,7 +182,7 @@ class AddMenuItem extends Component{
                   type="radio"
                   value="veg"
                   className="ml-2"
-                  className=""
+                  checked={this.state.selected === 'veg'} onChange={(e) => this.setState({ foodtype: e.target.value })}
                 />
                <label className="ml-2">Veg</label>
                    </div> 
@@ -161,6 +193,7 @@ class AddMenuItem extends Component{
                   type="radio"
                   value="nonveg"
                   className=" "
+                  checked={this.state.selected === 'nonveg'} onChange={(e) => this.setState({ foodtype: e.target.value })}
                 />
                <label className="ml-2"> Non-Veg
               </label>
@@ -171,7 +204,7 @@ class AddMenuItem extends Component{
                     </div>
                     <div className="col-lg-6 form-group ">
                     <label>Category</label>
-            <select name="category"   className="form-control form-control-sm">
+            <select name="category"   onChange={this.handleChange} className="form-control form-control-sm">
               <option value="breakfast">Breakfast</option>
               <option value="dinner">Dinner</option>
               <option value="lunch">Lunch</option>
@@ -183,14 +216,17 @@ class AddMenuItem extends Component{
             <div className="col-lg-6 form-group ">
                     <label>Status</label>
                     
-            <select name="active" component="select"  className="form-control form-control-sm">
+            <select  onChange={this.handleChange} name="active" component="select"  className="form-control form-control-sm">
               <option value="true" selected>Active</option>
               <option value="false">InActive</option>
             </select></div>
             
             <div className="col-lg-6 form-group">
                     <label>Description</label>
-                   <textarea name="foodDesc"  className="form-control form-control-sm"  rows="2" />
+                   <textarea
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                   name="foodDesc"  className="form-control form-control-sm"  rows="2" />
          
                     </div>
                     
@@ -199,7 +235,7 @@ class AddMenuItem extends Component{
                   <div className="float-right">
                   <button
                 type="button" 
-                className="btn btn-sm btn-primary mr-2">
+                className="btn btn-sm btn-primary mr-2" onClick={this.handleAddShareholder}>
                 Add
               </button>
               <button type="button" className="btn btn-sm btn-primary" >
@@ -211,29 +247,44 @@ class AddMenuItem extends Component{
            
             <br/>
               
-                  <div className="row mb-2">
-                  <div className="col-lg-3">  <label>Variant.  </label></div>
-                  <div className="col-lg-4">
-                  <input
-                      name="variant-name"
-                      component="input"
-                      className="form-control form-control-sm"
-                    />
-                  </div>
-                  <div className="col-lg-4">
+                 
+                  
+                  {this.state.variants.map((shareholder, idx) => (
+          <div className="row mb-2">
+           <div className="col-lg-3">  <label>Variant. {idx} </label></div>
+                  
+           <div className="col-lg-4">
+            <input
+              name="variantname"
+              component="input"
+              placeholder="Variant Name"
+              className="form-control form-control-sm"
+              value={shareholder.name}
+              onChange={this.handleShareholderNameChange(idx)}
+            />
+            </div>
+            <div className="col-lg-4">
                   
                   <input
                       name="price"
                       component="input"
                       placeholder="Price"
+                      value={shareholder.price}
+              onChange={this.handleShareholderNameChange(idx)}
                       className="form-control form-control-sm"
                     />
                     </div>
-                  <div className="col-lg-1">
-                  <span  className="btn btn-sm btn-danger" >
+            
+            <div className="col-lg-1">
+                  <span onClick={this.handleRemoveShareholder(idx)} className="btn btn-sm btn-danger" >
                       x
                     </span></div>
                   </div>
+        ))}
+                  
+                  
+                 
+                  
                   
                     
                     
@@ -262,7 +313,7 @@ class AddMenuItem extends Component{
                    </div>
                     
                     <div className="col-lg-12 form-group text-center">
-                    <button type="submit" className="btn btn-large btn-warning" >
+                    <button type="button" className="btn btn-large btn-warning" onClick={this.handleSubmit} >
                 Submit
               </button>
                 

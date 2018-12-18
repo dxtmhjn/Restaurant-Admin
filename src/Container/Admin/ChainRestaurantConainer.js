@@ -3,6 +3,7 @@ import { connect ,} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CreateRestaurantChain from '../../Components/Admin/CreateRestaurantChain';
 import {getChainresturantByChainID} from './Helper';
+import {getChainresturant} from "../../Components/Admin/Helper";
 class ChainRestaurantConainer extends Component {
 state ={
   editData :[]
@@ -16,6 +17,17 @@ state ={
         }
       })}
   }
+
+  handleRestaurantChangeSelection =(id)=>{
+    let resID= id;
+    this.setState({resID :resID})
+     getChainresturant(resID).then(res=>{
+       if(res)
+        {
+          this.setState({restaurantChainList :this.addChainItemtoArray(res)})
+        }
+    })
+  }
   addChainItemtoArray(res){
     let result =[];
     if(res && res.data && res.data.length >0){
@@ -26,6 +38,7 @@ state ={
     }
     return result;
   }
+  
     render() {
 		return (
 			<div>
@@ -33,6 +46,7 @@ state ={
             <MainBody > */}
                 <CreateRestaurantChain
                 editData= {this.state.editData}
+                handleRestaurantChangeSelection ={this.handleRestaurantChangeSelection}
                 restaurantList ={this.props.restaurantList}/>
                 {/* </MainBody> */}
                 </div>
