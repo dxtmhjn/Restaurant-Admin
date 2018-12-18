@@ -16,6 +16,8 @@ getOrders=()=>{
     responseType:'json'
   })
     .then(function(response) {
+      if(response){
+        console.log(response);
     _self.setState(
       {
         vegRecipes:response.data.rows
@@ -23,6 +25,7 @@ getOrders=()=>{
       ,()=>{
      
       })
+    }
     
   });
 }

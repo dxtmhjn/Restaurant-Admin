@@ -81,19 +81,13 @@ class AddMenuItem extends Component{
 
          <div className=" card m-b-30 card-body card-container">
             <Loader  show={this.state.isImageUploading} message={'loading'}>
-            <Form
-            onSubmit={this.onSubmit}
-            initialValues={{ type:'menu', foodtype:'veg', active:true, createdDate:this.cDate}}
-            mutators={{
-                ...arrayMutators
-              }}
-            render={({ mutators: { push, pop }, handleSubmit,submitting, pristine, invalid, values }) => (
-            <form>
+           
+            <form   onSubmit={this.handleSubmit}>
                 <div className="row">
                     <div className="col-lg-6 form-group">
                     <label>Restaurant ID</label>
             
-            <Field onChange={(e)=> this.props.handleRestaurantChangeSelection(e)}  name="restaurant_id" component="select" type="select"  className="form-control form-control-sm">
+            <select onChange={(e)=> this.props.handleRestaurantChangeSelection(e)}  name="restaurant_id"   className="form-control form-control-sm">
             <option value="0">Choose Restaurant</option>
             { this.props.restaurantList && this.props.restaurantList.length >0
                      ? 
@@ -105,13 +99,12 @@ class AddMenuItem extends Component{
                                       value={item._id}>{item.restaurantname}</option>
                                     );
                         }) :  <option value="No Restaurant">No Restaurant</option>}
-            </Field>
+            </select>
                     </div>
                     <div className="col-lg-6 form-group">
                     <label>Chain ID</label>
-            <Field
+            <select
               name="chain_id"
-              component="select" type="select"  
               className="form-control form-control-sm"
             >
              <option value="0">Choose Chain Restaurant</option>
@@ -125,13 +118,13 @@ class AddMenuItem extends Component{
                                       value={item._id}>{item.restaurantname}</option>
                                     );
                         }) :  <option value="No Chain Restaurant">No Restaurant</option>}
-            </Field>
+            </select>
                     </div>
                     <div className="col-lg-6 form-group">
                     <label>Type</label>
-            <Field
+            <input
               name="type"
-              component="input"
+              value="menu"
               type="text" disabled
               className="form-control form-control-sm"
             />
@@ -140,9 +133,9 @@ class AddMenuItem extends Component{
                     
                     <div className="col-lg-6 form-group form-group">
                     <label>Name</label>
-            <Field
+            <input
               name="menuname"
-              component="input"
+              
               type="text" 
               className="form-control form-control-sm"
             />
@@ -151,9 +144,9 @@ class AddMenuItem extends Component{
                     <label>Food Type</label>               
                    <div className="row">
                    <div className="col pl-3">
-                   <Field
+                   <input
                   name="foodtype"
-                  component="input"
+                 
                   type="radio"
                   value="veg"
                   className="ml-2"
@@ -162,9 +155,9 @@ class AddMenuItem extends Component{
                <label className="ml-2">Veg</label>
                    </div> 
                    <div className="col">
-                   <Field
+                   <input
                   name="foodtype"
-                  component="input"
+                  
                   type="radio"
                   value="nonveg"
                   className=" "
@@ -178,26 +171,26 @@ class AddMenuItem extends Component{
                     </div>
                     <div className="col-lg-6 form-group ">
                     <label>Category</label>
-            <Field name="category" component="select"  className="form-control form-control-sm">
+            <select name="category"   className="form-control form-control-sm">
               <option value="breakfast">Breakfast</option>
               <option value="dinner">Dinner</option>
               <option value="lunch">Lunch</option>
               <option value="beverages">Beverages</option>
               <option value="starters">Starters</option>
               <option value="sweets">Sweets</option>
-            </Field></div>
+            </select></div>
 
             <div className="col-lg-6 form-group ">
                     <label>Status</label>
                     
-            <Field name="active" component="select"  className="form-control form-control-sm">
+            <select name="active" component="select"  className="form-control form-control-sm">
               <option value="true" selected>Active</option>
               <option value="false">InActive</option>
-            </Field></div>
+            </select></div>
             
             <div className="col-lg-6 form-group">
                     <label>Description</label>
-                   <Field name="foodDesc" component="textarea" className="form-control form-control-sm"  rows="2" />
+                   <textarea name="foodDesc"  className="form-control form-control-sm"  rows="2" />
          
                     </div>
                     
@@ -206,11 +199,10 @@ class AddMenuItem extends Component{
                   <div className="float-right">
                   <button
                 type="button" 
-                className="btn btn-sm btn-primary mr-2"
-                onClick={() => push('variant', undefined)}>
+                className="btn btn-sm btn-primary mr-2">
                 Add
               </button>
-              <button type="button" className="btn btn-sm btn-primary" onClick={() => pop('variant')}>
+              <button type="button" className="btn btn-sm btn-primary" >
                 Delete
               </button>
             </div>
@@ -219,43 +211,34 @@ class AddMenuItem extends Component{
            
             <br/>
               
-            
-                    <FieldArray name="variant" className="form-group">
-              {({ fields }) =>
-                fields.map((name, index) => (
-                  <div key={name}>
                   <div className="row mb-2">
-                  <div className="col-lg-3">  <label>Variant. #{index + 1}</label></div>
+                  <div className="col-lg-3">  <label>Variant.  </label></div>
                   <div className="col-lg-4">
-                  <Field
-                      name={`${name}.variantname`}
+                  <input
+                      name="variant-name"
                       component="input"
                       className="form-control form-control-sm"
                     />
                   </div>
                   <div className="col-lg-4">
                   
-                  <Field
-                      name={`${name}.price`}
+                  <input
+                      name="price"
                       component="input"
                       placeholder="Price"
                       className="form-control form-control-sm"
                     />
                     </div>
                   <div className="col-lg-1">
-                  <span
-                      onClick={() => fields.remove(index)}
-                      style={{ cursor: 'pointer' }} className="btn btn-sm btn-danger" >
+                  <span  className="btn btn-sm btn-danger" >
                       x
                     </span></div>
                   </div>
                   
                     
                     
-                    
-                  </div>
-                ))}
-            </FieldArray>
+                   
+               
                     </div>
                     
                     <div className="col-lg-12  form-group">
@@ -279,7 +262,7 @@ class AddMenuItem extends Component{
                    </div>
                     
                     <div className="col-lg-12 form-group text-center">
-                    <button type="submit" className="btn btn-large btn-warning" disabled={submitting || pristine}>
+                    <button type="submit" className="btn btn-large btn-warning" >
                 Submit
               </button>
                 
@@ -291,8 +274,7 @@ class AddMenuItem extends Component{
           {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
             </form>
           
-            )}
-            />
+          
             </Loader>
             </div>
         </div>
