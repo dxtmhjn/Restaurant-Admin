@@ -42,10 +42,7 @@ handleRestaurantChangeSelection =(id)=>{
         const { navigation } = this.props;
 		return (
       <div>
- <button type="button"
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('login')}
-          >Click Me!</button>
+ 
                 <RestaurantChainList 
              
                 restaurantChainList= {this.state.restaurantChainList}

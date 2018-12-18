@@ -10,19 +10,15 @@ const removeUserHandler=(id)=>{
 
 const UserList = (props) =>  {
     return(
-        <main>
-        <div className="main-part">
-        <section className="home-icon bg-skeen">
-        <div className="container">
-        <div className="row">
-        <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown animated" >
-       
-       <div className="card-container">
+        
+        <div className="content">
+        <div className=" card m-b-30 card-body container-fluid">
+<div className="card-container">
         <table className="table table-striped food-menu">
     <tr>
         <th>User Name</th>
         <th>Details</th>
-        <th>Access</th>
+        <th style={{textAlign:'right'}}>Access</th>
     </tr>
     <tbody>
         
@@ -32,9 +28,9 @@ const UserList = (props) =>  {
                 return ( <tr>
                 <td>{item.name}</td>
             <td>{item.role}</td>
-            <td>
-            <span><NavLink className="btn btn-success" to="/createuser">Edit</NavLink></span> &nbsp;
-            <span><a href="#" className="btn btn-danger" onClick={removeUserHandler(item.id)}>Delete</a></span>
+            <td style={{textAlign:'right'}}>
+            <span><NavLink className="btn btn-success btn-sm" to="/createuser">Edit</NavLink></span> &nbsp;
+            <span><a href="#" className="btn btn-danger btn-sm" onClick={removeUserHandler(item.id)}>Delete</a></span>
             </td></tr>)
             ;
             })
@@ -45,10 +41,7 @@ const UserList = (props) =>  {
 </div>
         </div>
         </div>
-        </div>
-            </section>
-        </div>
-    </main>
+    
     )
 
     }
