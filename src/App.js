@@ -69,8 +69,8 @@ state={
 
             <Route path="/AddMenu" component={AddMenuContainer} />
             <Route path="/EditMenu" component={EditMenu} />
-            <Route path="/kitchen-veg" component={KitchenVeg} />
-           
+            <Route path="/KitchenVeg" component={KitchenVeg} />
+            <Route path="/KitchenNonVeg" component={KitchenNonVeg} />
            
            
             <Route path="/ViewMenu" component={ViewMenu} />

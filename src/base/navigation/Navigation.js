@@ -123,7 +123,18 @@ class Navigation extends Component {
               </li>
                 </ul>
             </li>
-
+            <li>
+                <a href="javascript: void(0);"><i className="fi-layers"></i> 
+                <span> Kitchen Queue </span> <span className="menu-arrow"></span></a>
+                <ul className="nav-second-level" aria-expanded="false">
+                <li>
+              <NavLink to="/KitchenVeg">Veg Queue</NavLink>
+              </li>
+              <li>
+              <NavLink to="/KitchenNonVeg">Non Veg Queue</NavLink>
+              </li>
+                </ul>
+            </li>
 
         </ul>
       );

@@ -34,6 +34,31 @@ getOrders=()=>{
 getOrdersByRestaurantID=(rest_id)=>{
   
 }
+handleStatus=(id,key)=>{
+  let _self = this
+  let _params ={
+    [key] :true
+  }
+  axios({
+    method:'post',
+    url:apiURL.SERVERBASE_URL+"/kitchen/updateOrders/" +id,
+    responseType:'json',
+    body :_params
+  })
+    .then(function(response) {
+      if(response){
+        console.log(response);
+    _self.setState(
+      {
+        vegRecipes:response.data.rows
+      }
+      ,()=>{
+     
+      })
+    }
+    
+  });
+}
 
   componentDidMount(){
     this.getOrders();
@@ -50,7 +75,7 @@ getOrdersByRestaurantID=(rest_id)=>{
 
               <div className="card-header">
               <span className="table-name">{item.value.tableNo}</span>
-              <span className="float-right order-bg">Order: OD2288</span></div>
+              <span className="float-right order-bg">Order: {item.value._id}</span></div>
               <div className="card-body">
                
                 <table className="food-table">
@@ -59,15 +84,15 @@ getOrdersByRestaurantID=(rest_id)=>{
                     return(
                       
                       <tr key={id}>
-                      <td><div className="veg-food-label">{order.foodtype}</div></td>
+                      <td><div className="veg-food-label">{order.foodtype ? order.foodtype : 'veg'}</div></td>
                       <td>{order.variantname}</td>
                       <td>Full</td>
                       <td>₹ 340</td>
                       <td><div className="pending-status-label">Pending</div></td>
                       <td className="text-right">
-                       <button className="status-btns">+ Approve</button>
-                       <button className="status-btns">+ Cooking</button>
-                       <button className="status-btns">+ Ready</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(order._id,'isaccepted')}>+ Approve</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(order._id,'ispreparing')}>+ Cooking</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(order._id,'isready')}>+ Ready</button>
                         </td>
                     </tr>
                     )

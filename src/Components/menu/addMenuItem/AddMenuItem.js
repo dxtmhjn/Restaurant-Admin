@@ -182,7 +182,7 @@ class AddMenuItem extends Component{
                   type="radio"
                   value="veg"
                   className="ml-2"
-                  checked={this.state.selected === 'veg'} onChange={(e) => this.setState({ foodtype: e.target.value })}
+                  checked={this.state.foodtype === 'veg'} onChange={(e) => this.setState({ foodtype: e.target.value })}
                 />
                <label className="ml-2">Veg</label>
                    </div> 
@@ -193,7 +193,7 @@ class AddMenuItem extends Component{
                   type="radio"
                   value="nonveg"
                   className=" "
-                  checked={this.state.selected === 'nonveg'} onChange={(e) => this.setState({ foodtype: e.target.value })}
+                  checked={this.state.foodtype === 'nonveg'} onChange={(e) => this.setState({ foodtype: e.target.value })}
                 />
                <label className="ml-2"> Non-Veg
               </label>
