@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component,Fragment } from "react";
 import axios from 'axios';
 import {apiURL} from '../../../constants/constant';
 import * as _ from 'lodash';
+import { UpdateOrderStatus} from '../Helper';
 
 class KitchenVeg extends Component {
   state={
@@ -36,28 +37,15 @@ getOrdersByRestaurantID=(rest_id)=>{
 }
 handleStatus=(id,key)=>{
   let _self = this
+  
   let _params ={
-    [key] :true
-  }
-  axios({
-    method:'post',
-    url:apiURL.SERVERBASE_URL+"/kitchen/updateOrders/" +id,
-    responseType:'json',
-    body :_params
-  })
-    .then(function(response) {
-      if(response){
-        console.log(response);
-    _self.setState(
-      {
-        vegRecipes:response.data.rows
-      }
-      ,()=>{
-     
-      })
-    }
     
-  });
+      "key" :key,
+      "value" :true
+      
+    
+  }
+  UpdateOrderStatus(id,_params)
 }
 
   componentDidMount(){
@@ -79,22 +67,32 @@ handleStatus=(id,key)=>{
               <div className="card-body">
                
                 <table className="food-table">
+                <tr >
+                       <td className="text-right">
+                       <button className="status-btns" onClick={()=>this.handleStatus(item.value._id,'isaccepted')}>+ Approve</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(item.value._id,'ispreparing')}>+ Cooking</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(item.value._id,'isready')}>+ Ready</button>
+                        </td>
+                    </tr>
                 {
+                       
+                      
                   item.value.variantselected.map((order,id)=>{
                     return(
-                      
+                 
                       <tr key={id}>
                       <td><div className="veg-food-label">{order.foodtype ? order.foodtype : 'veg'}</div></td>
                       <td>{order.variantname}</td>
                       <td>Full</td>
                       <td>₹ 340</td>
                       <td><div className="pending-status-label">Pending</div></td>
-                      <td className="text-right">
-                       <button className="status-btns" onClick={()=>this.handleStatus(order._id,'isaccepted')}>+ Approve</button>
-                       <button className="status-btns" onClick={()=>this.handleStatus(order._id,'ispreparing')}>+ Cooking</button>
-                       <button className="status-btns" onClick={()=>this.handleStatus(order._id,'isready')}>+ Ready</button>
-                        </td>
+                      {/* <td className="text-right">
+                       <button className="status-btns" onClick={()=>this.handleStatus(item.value._id,'isaccepted')}>+ Approve</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(item.value._id,'ispreparing')}>+ Cooking</button>
+                       <button className="status-btns" onClick={()=>this.handleStatus(item.value._id,'isready')}>+ Ready</button>
+                        </td> */}
                     </tr>
+                   
                     )
 
                   }
