@@ -70,18 +70,24 @@ handleStatus=(id,key)=>{
   <div className="card order-card" key={index}>
 
               <div className="card-header">
+              <div className="row">
+              <div className="col-lg-3 col-sm-12">
               <span className="table-name">{item.tableNo && item.tableNo !== undefined ? item.tableNo :"Table Number Not Found"}</span>
-              <span className="float-right order-bg">Order: {item._id}</span></div>
-              <div className="card-body">
-               
-                <table className="food-table">
-                <tr >
-                       <td className="text-right">
-                       <button className="status-btns" onClick={()=>this.handleStatus(item._id,'isaccepted')}>+ Approve</button>
+              </div>
+              <div className="col-lg-4 col-sm-12"> <span className="order-bg">Order: {item._id}</span></div>
+              <div className="col-lg-5 col-sm-12">
+              <div className="btn-row float-right">
+               <button className="status-btns" onClick={()=>this.handleStatus(item._id,'isaccepted')}>+ Approve</button>
                        <button className="status-btns" onClick={()=>this.handleStatus(item._id,'ispreparing')}>+ Cooking</button>
                        <button className="status-btns" onClick={()=>this.handleStatus(item._id,'isready')}>+ Ready</button>
-                        </td>
-                    </tr>
+                        </div></div>
+              </div>
+              
+              </div>
+            <div className="card-body">
+               
+                <table className="food-table">
+                
                 {
                        
                       
@@ -93,7 +99,7 @@ handleStatus=(id,key)=>{
                       <td>{order.variantname}</td>
                       <td>{order.quantity}</td>
                       <td>₹ {order.price}</td>
-                      <td><div className="pending-status-label">Pending</div></td>
+                      <td style={{float:"right"}}><div className="pending-status-label">Pending</div></td>
                       {/* <td className="text-right">
                        <button className="status-btns" onClick={()=>this.handleStatus(item._id,'isaccepted')}>+ Approve</button>
                        <button className="status-btns" onClick={()=>this.handleStatus(item._id,'ispreparing')}>+ Cooking</button>
