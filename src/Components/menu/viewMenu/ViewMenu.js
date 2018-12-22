@@ -31,6 +31,22 @@ class ViewMenu extends Component{
       
     });
   }
+  handleDelete=(id)=>{
+//menu/deleteMenu
+let _self = this
+axios({
+  method:'post',
+  url:apiURL.SERVERBASE_URL+"menu/deleteMenu/" + id,
+  responseType:'json'
+})
+  .then(function(response) {
+    if(response){
+      console.log(response);
+      _self.viewMenuItems();
+  }
+  
+});
+  }
     render(){
         return (
           <div className="content">
@@ -69,8 +85,8 @@ class ViewMenu extends Component{
       <td scope="row">{item.value.createdDate}</td>
       <td scope="row">
       <div className="btn-group">
-      <button className="btn btn-sm btn-primary">Edit</button>
-      <button className="btn btn-sm btn-danger">Delete</button>
+      {/* <button className="btn btn-sm btn-primary">Edit</button> */}
+      <button className="btn btn-sm btn-danger" onClick={()=>this.handleDelete(item.id)}>Delete</button>
       </div>
       </td>
      
