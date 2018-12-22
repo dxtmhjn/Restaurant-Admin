@@ -3,10 +3,17 @@ import {apiURL} from '../../../constants/constant';
 import axios from 'axios';
 
 class ViewMenu extends Component{
+
+  state ={
+    vegRecipes :[]
+  }
+  componentDidMount(){
+    this.viewMenuItems();
+  }
   viewMenuItems=()=>{
     let _self = this
     axios({
-      method:'get',
+      method:'post',
       url:apiURL.SERVERBASE_URL+"/menu/getAllMenu",
       responseType:'json'
     })
@@ -34,8 +41,8 @@ class ViewMenu extends Component{
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Variant</th>
+      <th scope="col">Variant Name</th>
+      <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">Type</th>
       <th scope="col">Category</th>
@@ -44,15 +51,22 @@ class ViewMenu extends Component{
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td scope="row">1</td>
-      <td scope="row"><strong>Biryani</strong></td>
-      <td scope="row">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </td>
-      <td scope="row">Half Biryani, Full Biryani</td>
-      <td scope="row">Rs. 100, 180</td>
-      <td scope="row"><span class="veg">Veg</span></td>
-      <td scope="row">Breakfast, Lunch, Dinner</td>
-      <td scope="row">27 Nov 2018</td>
+  { this.state.vegRecipes && this.state.vegRecipes.length >0 ?this.state.vegRecipes.map(
+  (item,index)=>{
+    
+    
+     return item.value.variant && item.value.variant.length >0 ? 
+     item.value.variant.map(x=>{
+        return (
+<tr>
+      <td scope="row">{index +1}</td>
+      <td scope="row"><strong>{item.value.name}</strong></td>
+      <td scope="row"><strong>{x.variantname}</strong></td>
+      <td scope="row">{x.quantity}</td>
+      <td scope="row">Rs. {x.price}</td>
+      <td scope="row"><span class="veg">{item.value.foodtype}</span></td>
+      <td scope="row">{item.value.category}</td>
+      <td scope="row">{item.value.createdDate}</td>
       <td scope="row">
       <div className="btn-group">
       <button className="btn btn-sm btn-primary">Edit</button>
@@ -61,6 +75,12 @@ class ViewMenu extends Component{
       </td>
      
     </tr>
+
+        )
+      }) : null
+    
+  }): <tr><td>No Record</td></tr>}
+    
   </tbody>
 </table>
 </div>
